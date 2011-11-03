@@ -128,7 +128,7 @@ namespace Fatigue_Calculator_Desktop
         private void loadLookup()
         {
 
-#if Multiuser
+#if (Multiuser || Unprotected)
             // get the lookup type from the settings
             string ltype = Properties.Settings.Default.IDLookupType;
             switch (ltype.ToLower())
@@ -199,6 +199,8 @@ namespace Fatigue_Calculator_Desktop
             //}
 #else
             lookup = lookupType.none;
+            people = new person[1];
+            people[0]= new person();
             return;
 #endif
             //try

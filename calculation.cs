@@ -16,8 +16,8 @@ namespace Fatigue_Calculator_Desktop
         private bool _logged;
         public bool logged 
         {
-            public get {return _logged;}
-            public set { _logged = value;}
+            get {return _logged;}
+            set { _logged = value;}
         }
         // fatigue levels enum to indicate the 4 fatigue levels
         public enum fatigueLevels
