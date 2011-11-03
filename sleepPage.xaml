@@ -1,0 +1,54 @@
+﻿<Page x:Class="Fatigue_Calculator_Desktop.sleepPage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	  xmlns:fc="clr-namespace:Fatigue_Calculator_Desktop"
+	  mc:Ignorable="d" 
+	  d:DesignHeight="643" d:DesignWidth="1024"
+	Title="sleepPage">
+
+	<Grid Background="{StaticResource brushFCBlue}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="40"></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="75"></ColumnDefinition>
+			<ColumnDefinition Width="75"></ColumnDefinition>
+			<ColumnDefinition Width="40"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"></RowDefinition>
+			<RowDefinition Height="50"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition  Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="50"></RowDefinition>
+			<RowDefinition Height="40"></RowDefinition>
+		</Grid.RowDefinitions>
+		<TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="7" Style="{StaticResource styleFCHeading1Orange}">Please Enter your Sleep Pattern</TextBlock>
+		<TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="7" Name="sleep24label" Style="{StaticResource styleFCHeading2White}" VerticalAlignment="Center">How many hours of sleep have you had in the last 24 hours?</TextBlock>
+		<fc:spinner Grid.Row="3" Grid.Column="9" Grid.ColumnSpan="1" x:Name="spnSleep24Hours" maxValue="24" ValueChanged="spnSleep24Hours_ValueChanged"></fc:spinner>
+		<fc:spinner Grid.Row="3" Grid.Column="10" Grid.ColumnSpan="1" x:Name="spnSleep24Mins" maxValue="60" Step="15" ShowMax="False" ValueChanged="spnSleep24Mins_ValueChanged" ></fc:spinner>
+		<TextBlock Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="7" Name="sleep48label" Style="{StaticResource styleFCHeading2White}" VerticalAlignment="Center">How many hours of sleep have you had in the last 48 hours?</TextBlock>
+		<fc:spinner Grid.Row="5" Grid.Column="9" Grid.ColumnSpan="1" x:Name="spnSleep48Hours" maxValue="48" ValueChanged="spnSleep48Hours_ValueChanged"></fc:spinner>
+		<fc:spinner Grid.Row="5" Grid.Column="10" Grid.ColumnSpan="1"  x:Name="spnSleep48Mins" maxValue="60" Step="15" ShowMax="False" ValueChanged="spnSleep48Mins_ValueChanged" ></fc:spinner>
+		<TextBlock Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="7" Name="hoursAwakelabel" Style="{StaticResource styleFCHeading2White}" VerticalAlignment="Center" >How many hours since when you last woke and 12:00 pm?</TextBlock>
+		<fc:spinner Grid.Row="7" Grid.Column="9" Grid.ColumnSpan="1" x:Name="spnHoursAwake" maxValue="48" ValueChanged="spnHoursAwake_ValueChanged"></fc:spinner>
+		<fc:spinner Grid.Row="7" Grid.Column="10" Grid.ColumnSpan="1" x:Name="spnMinsAwake" maxValue="60" Step="15" ShowMax="False" HorizontalAlignment="Right" Width="75"></fc:spinner>
+		<Button Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="1" Name="btnBack" Template="{StaticResource controlFCButton}" Click="btnBack_Click">Back</Button>
+		<Button Grid.Row="9" Grid.Column="9" Grid.ColumnSpan="2" Name ="btnGo" Template="{StaticResource controlFCButton}" Click="btnGo_Click">Continue</Button>
+
+
+	</Grid>
+</Page>

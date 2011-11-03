@@ -1,0 +1,78 @@
+﻿<Page x:Class="Fatigue_Calculator_Desktop.resultsPage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	  mc:Ignorable="d" 
+	  d:DesignHeight="643" d:DesignWidth="1024"
+	Title="resultsPage">
+
+	<Grid Background="{StaticResource brushFCBlue}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="40"></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="75"></ColumnDefinition>
+			<ColumnDefinition Width="75"></ColumnDefinition>
+			<ColumnDefinition Width="40"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"></RowDefinition>
+			<RowDefinition Height="50"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition  Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="50"></RowDefinition>
+			<RowDefinition Height="40"></RowDefinition>
+		</Grid.RowDefinitions>
+
+		<TextBlock Style="{StaticResource styleFCHeading1Orange}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="10">Your Fatigue Roster</TextBlock>
+		<TextBlock Name="lblLevel" Style="{StaticResource styleFCHeading1OrangeRegular}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="10" VerticalAlignment="Center">YOU ARE AT EXTREME RISK OF FATIGUE</TextBlock>
+		<Button Name="btnBack" Template="{StaticResource controlFCButton}" Grid.Row="9" Grid.Column="1" Click="btnBack_Click">Back</Button>
+		<Button Name="btnGraph" Template="{StaticResource controlFCButton}" Grid.Row="9" Grid.Column="5" Click="btnGraph_Click">Graph</Button>
+		<Button Name="btnPrint" Template="{StaticResource controlFCButton}" Click="btnPrint_Click" Grid.Row="9" Grid.Column="9" Grid.ColumnSpan="2">Print</Button>
+		<Border Grid.Row="4" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="10" BorderThickness="2" CornerRadius="15" Padding="15,5,5,5" Margin="0,0,-7,0" Background="White" BorderBrush="Black">
+			<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="50"></RowDefinition>
+				<RowDefinition></RowDefinition>
+				<RowDefinition Height="50"></RowDefinition>
+				<RowDefinition></RowDefinition>
+				<RowDefinition Height="50"></RowDefinition>
+				<RowDefinition></RowDefinition>
+				<RowDefinition  Height="50"></RowDefinition>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"></ColumnDefinition>
+				<ColumnDefinition></ColumnDefinition>
+				<ColumnDefinition Width="Auto"></ColumnDefinition>
+				<ColumnDefinition></ColumnDefinition>
+				<ColumnDefinition Width="150"></ColumnDefinition>
+			</Grid.ColumnDefinitions>
+			
+			<TextBlock Name="lblScore" Style="{StaticResource styleFCHeading2White}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Foreground="{StaticResource brushFCBlue}">Your current fatigue score is YYYY</TextBlock>
+			<TextBlock Name="lblModerate" Style="{StaticResource styleFCHeading2White}" Grid.Row="2" Grid.Column="0"  VerticalAlignment="Center" Foreground="Orange" >You will be at Medium risk of Fatigue Today at HH:MM</TextBlock>
+			<TextBlock Name="lblHigh" Style="{StaticResource styleFCHeading2White}" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Foreground="Red" >You will be at High risk of Fatigue Tomorrow at HH:MM</TextBlock>
+			<TextBlock Name="lblExtreme" Style="{StaticResource styleFCHeading2White}"  Grid.Row="6" Grid.Column="0"  VerticalAlignment="Center" Foreground="Black">You will be at Extreme risk of Fatigue Thursday at HH:MM</TextBlock>
+			<Image Name="imgLow" Grid.Row="0" Grid.Column="2" Source=".\Images\awake.png"/>
+			<Image Name="imgModerate" Grid.Row="2" Grid.Column="2" Source=".\Images\tired.png"/>
+			<Image Name="imgHigh" Grid.Row="4" Grid.Column="2" Source=".\Images\sleepy.png"/>
+			<Image Name="imgExtreme" Grid.Row="6" Grid.Column="2" Source=".\Images\asleep.png"/>
+			<Button Name="btnCurrentRecommend" Template="{StaticResource controlFCButton}" Grid.Row="0" Grid.Column="4" Click="btnCurrentRecommend_Click">Recommendations</Button>
+			<Button Name="btnModerateRecommend" Template="{StaticResource controlFCButton}" Grid.Row="2" Grid.Column="4" Click="btnModerateRecommend_Click">Recommendations</Button>
+			<Button Name="btnHighRecommend" Template="{StaticResource controlFCButton}" Grid.Row="4" Grid.Column="4"  Click="btnHighRecommend_Click">Recommendations</Button>
+			<Button Name="btnExtremeRecommend" Template="{StaticResource controlFCButton}" Grid.Row="6" Grid.Column="4"  Click="btnExtremeRecommend_Click">Recommendations</Button>
+		</Grid>
+		</Border>
+	</Grid>
+</Page>

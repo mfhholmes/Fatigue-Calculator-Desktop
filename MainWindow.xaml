@@ -1,0 +1,26 @@
+﻿<Window x:Class="Fatigue_Calculator_Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+        Title="Fatigue Calculator Desktop"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        VerticalAlignment="Center"
+        Margin="0"
+        Padding="0" 
+        WindowStyle="None"
+        >
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/Background.png" />
+    </Window.Background>
+    <Grid Name="body" Height="768" Width="1024" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"></RowDefinition>
+            <RowDefinition Height="643"></RowDefinition>
+            <RowDefinition Height="50" ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Image Name="header" Source="/Fatigue%20Calculator%20Desktop;component/Images/header.png"></Image>
+        <Frame Name="container" Grid.Row="1" NavigationUIVisibility="Hidden" ></Frame>
+        <Image Name="footer" Grid.Row="2" Source="/images/footer.png"></Image>
+    </Grid>
+</Window>

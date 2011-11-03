@@ -1,0 +1,51 @@
+﻿<Page x:Class="Fatigue_Calculator_Desktop.shiftPage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	  xmlns:fc="clr-namespace:Fatigue_Calculator_Desktop"
+	  mc:Ignorable="d" 
+	  d:DesignHeight="643" d:DesignWidth="1024"
+	Title="shiftPage">
+
+	<Grid Background="{StaticResource brushFCBlue}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="40"></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="75"></ColumnDefinition>
+			<ColumnDefinition Width="75"></ColumnDefinition>
+			<ColumnDefinition Width="40"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"></RowDefinition>
+			<RowDefinition Height="50"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition  Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="50"></RowDefinition>
+			<RowDefinition Height="40"></RowDefinition>
+		</Grid.RowDefinitions>
+
+		<TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9" Style="{StaticResource styleFCHeading1Orange}">Please Enter your Shift Pattern</TextBlock>
+		<TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="9" Style="{StaticResource styleFCHeading2White}" VerticalAlignment="Center">Use the up and down arrows to set the correct start and finish time for your shift.</TextBlock>
+		<TextBlock Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="9" VerticalAlignment="Center" Style="{StaticResource styleFCHeading2White}">When does your shift start?</TextBlock>
+		<TextBlock Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="9" VerticalAlignment="Center" Style="{StaticResource styleFCHeading2White}" >When does your shift end?</TextBlock>
+		<fc:spinner Grid.Row="5" Grid.Column="9" x:Name="spnStartHour" maxValue="24" minValue="0" velocityShift="0.5" ShowMax="False"></fc:spinner>
+		<fc:spinner Grid.Row="5" Grid.Column="10" x:Name="spnStartMin" maxValue="60" minValue="0" velocityShift="0.2" ShowMax="False" ></fc:spinner>
+		<fc:spinner Grid.Row="7" Grid.Column="9" x:Name="spnEndHour" maxValue="24" minValue="0" velocityShift="0.5" ShowMax="False"></fc:spinner>
+		<fc:spinner Grid.Row="7" Grid.Column="10" x:Name="spnEndMin" maxValue="60" minValue="0" velocityShift="0.2" ShowMax="False" ></fc:spinner>
+		<Button Grid.Row="9" Grid.Column="1" Name="btnBack" Click="btnBack_Click" Template="{StaticResource controlFCButton}">Back</Button>
+		<Button Grid.Row="9" Grid.Column="9" Grid.ColumnSpan="2" Name="btnGo" Click="btnGo_Click" Template="{StaticResource controlFCButton}">Continue</Button>
+	</Grid>
+</Page>

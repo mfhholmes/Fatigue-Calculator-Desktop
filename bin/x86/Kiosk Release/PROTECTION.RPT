@@ -1,0 +1,262 @@
+
+-----------------------------------------------------------
+PC Guard for .NET 05.06.0900 Commercial - Protection report
+-----------------------------------------------------------
+Created on: Sun Oct 30 16:41:38 2011 
+
+Application filename:         O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\bin\x86\Kiosk Release\Fatigue Calculator Desktop.exe
+Target platform:              .NET
+Type:                         Executable file
+
+Output filename:              O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\bin\x86\Kiosk Release\Fatigue Calculator Desktop.exe
+
+Backup created:               Yes
+Backup filename:              O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Protection\backup\Kiosk\Fatigue Calculator Desktop.exe
+
+File size:                    1.175.552 bytes
+File size after protection:   1.308.160 bytes
+
+Sections (3/2)
+-----------------------------------------------------------
+Name      V Offset  V Size    R Offset  R Size    Flags
+-----------------------------------------------------------
+.text     00002000  0011B7E4  00000200  0011B800  60000020 +
+.rsrc     0011E000  00003340  0011BA00  00003400  40000040 +
+.reloc    00122000  0000000C  0011EE00  00000200  42000040 +
+-----------------------------------------------------------
+
+Application name:             Fatigue Calculator Desktop Kiosk
+Application signature:        FTGCLCKSK1
+Application Update ID:        0
+
+Languages:
+-----------------------------------------------------------
+English (default)
+
+User information:
+Name:                         
+Address:                      
+Company:                      
+Custom info 1:                
+Custom info 2:                
+Custom info 3:                
+
+Custom dialogs enabled:       No
+
+Logging enabled:              No
+
+
+Protection method:            Remote
+Program ID:                   393303D816ADA032EC88DC66
+License transfer enabled:     Yes
+License removal enabled:      Yes
+License extension enabled:    No
+
+Updates policy:               No
+
+Limited license enabled:      No
+
+Auto enter application:       No
+Load activation file:         No
+Lock program to directory:    No
+Erase previous license:       No
+Pass control to external app: No
+
+Password protection:          No
+
+Serial numbers enabled:       No
+
+DEMO mode:                    No
+
+MACHINE LOCKING:
+-----------------------------------------------------------
+LOCKS                         ENABLED    CHANGEABLE 
+-----------------------------------------------------------
+(HD) HD volume serial         X          X
+(OS) Operating system         O          O
+(BIOS) Motherboard bios       X          X
+(NET) Network card            O          O
+(CPU) CPU                     X          X
+(HDHW) HD hardware            X          X
+(CDHW) CD/DVD hardware        O          O
+-----------------------------------------------------------
+Allowed hardware changes:     2
+
+Limited number of instances:   No
+
+IP Filtering enabled:         No
+
+Program already protected:    No
+Code sections encrypted:      Yes
+Data sections encrypted:      Yes
+Relocation data encrypted:    Yes
+Resources encrypted:          No
+Check license file position:  No
+Object names hidden:          Yes
+Show warning messages:        Yes
+Check API hooking:            No
+CRC Self checking:            Yes
+Check program filename:       No
+Encrypt Import directories:   No
+Erase Import directory data:  No
+Anti-dumping protection:      No
+Smart DLL handling:           No
+Detect virtual machine:       No
+Disable remote sessions:      No
+Reset license on crc errors:  Yes
+Delete damaged license file:  Yes
+RTE enabled application:      No
+Deep freeze detection:        No
+Manage load config:           No
+Fix OS version information:   Yes
+Compatibility flag 01:        Yes
+Compatibility flag 02:        No
+Compatibility flag 03:        No
+Internal overlay detected:    No
+Extra system time checks:     No
+Prevent file modifications:   No
+System time adjustments:      No
+Support for restricted users: Yes
+Support for roaming profiles: No
+License file folder:          COr9aZflr
+
+Custom buttons enabled:       No
+
+Protection interface enabled: No
+
+-----------------------------------------------------------
+END OF REPORT (Sun Oct 30 16:41:38 2011)
+-----------------------------------------------------------
+
+
+
+-----------------------------------------------------------
+PC Guard for .NET 05.06.0900 Commercial - Protection report
+-----------------------------------------------------------
+Created on: Sun Oct 30 17:01:03 2011 
+
+Application filename:         O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\bin\x86\Kiosk Release\Fatigue Calculator Desktop.exe
+Target platform:              .NET
+Type:                         Executable file
+
+Output filename:              O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\bin\x86\Kiosk Release\Fatigue Calculator Desktop.exe
+
+Backup created:               Yes
+Backup filename:              O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Protection\backup\Kiosk\Fatigue Calculator Desktop.exe
+
+File size:                    1.175.552 bytes
+File size after protection:   1.308.160 bytes
+
+Sections (3/2)
+-----------------------------------------------------------
+Name      V Offset  V Size    R Offset  R Size    Flags
+-----------------------------------------------------------
+.text     00002000  0011B7E4  00000200  0011B800  60000020 +
+.rsrc     0011E000  00003340  0011BA00  00003400  40000040 +
+.reloc    00122000  0000000C  0011EE00  00000200  42000040 +
+-----------------------------------------------------------
+
+Application name:             Fatigue Calculator Desktop Kiosk
+Application signature:        FTGCLCKSK1
+Application Update ID:        0
+
+Languages:
+-----------------------------------------------------------
+English (default)
+
+User information:
+Name:                         
+Address:                      
+Company:                      
+Custom info 1:                
+Custom info 2:                
+Custom info 3:                
+
+Custom dialogs enabled:       No
+
+Logging enabled:              No
+
+
+Protection method:            Remote
+Program ID:                   393303D816ADA032EC88DC66
+License transfer enabled:     Yes
+License removal enabled:      Yes
+License extension enabled:    No
+
+Updates policy:               No
+
+Limited license enabled:      No
+
+Auto enter application:       No
+Load activation file:         No
+Lock program to directory:    No
+Erase previous license:       No
+Pass control to external app: No
+
+Password protection:          No
+
+Serial numbers enabled:       No
+
+DEMO mode:                    No
+
+MACHINE LOCKING:
+-----------------------------------------------------------
+LOCKS                         ENABLED    CHANGEABLE 
+-----------------------------------------------------------
+(HD) HD volume serial         X          X
+(OS) Operating system         O          O
+(BIOS) Motherboard bios       X          X
+(NET) Network card            O          O
+(CPU) CPU                     X          X
+(HDHW) HD hardware            X          X
+(CDHW) CD/DVD hardware        O          O
+-----------------------------------------------------------
+Allowed hardware changes:     2
+
+Limited number of instances:   No
+
+IP Filtering enabled:         No
+
+Program already protected:    No
+Code sections encrypted:      Yes
+Data sections encrypted:      Yes
+Relocation data encrypted:    Yes
+Resources encrypted:          No
+Check license file position:  No
+Object names hidden:          Yes
+Show warning messages:        Yes
+Check API hooking:            No
+CRC Self checking:            Yes
+Check program filename:       No
+Encrypt Import directories:   No
+Erase Import directory data:  No
+Anti-dumping protection:      No
+Smart DLL handling:           No
+Detect virtual machine:       No
+Disable remote sessions:      No
+Reset license on crc errors:  Yes
+Delete damaged license file:  Yes
+RTE enabled application:      No
+Deep freeze detection:        No
+Manage load config:           No
+Fix OS version information:   Yes
+Compatibility flag 01:        Yes
+Compatibility flag 02:        No
+Compatibility flag 03:        No
+Internal overlay detected:    No
+Extra system time checks:     No
+Prevent file modifications:   No
+System time adjustments:      No
+Support for restricted users: Yes
+Support for roaming profiles: No
+License file folder:          COr9aZflr
+
+Custom buttons enabled:       No
+
+Protection interface enabled: No
+
+-----------------------------------------------------------
+END OF REPORT (Sun Oct 30 17:01:03 2011)
+-----------------------------------------------------------
+
+

@@ -1,0 +1,110 @@
+﻿<Page x:Class="Fatigue_Calculator_Desktop.identityPage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	  mc:Ignorable="d" 
+	  d:DesignHeight="643" d:DesignWidth="1024"
+	Title="identityPage">
+
+	<Grid Background="{StaticResource brushFCBlue}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="40"></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="75"></ColumnDefinition>
+			<ColumnDefinition Width="75"></ColumnDefinition>
+			<ColumnDefinition Width="40"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"></RowDefinition>
+			<RowDefinition Height="50"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition  Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="50"></RowDefinition>
+			<RowDefinition Height="40"></RowDefinition>
+		</Grid.RowDefinitions>
+		
+		<TextBlock Style="{StaticResource styleFCHeading1Orange}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="10">Please Confirm your Identity</TextBlock>
+
+		<TextBlock Name="lblID" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="10" VerticalAlignment="Center"  Style="{StaticResource styleFCHeading2White}">Name / ID Number:</TextBlock>
+		<TextBox Name="txtName" Height="50" FontSize="32" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="5" PreviewTextInput="txtName_PreviewTextInput" ></TextBox>
+		<TextBlock Name="match" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="5" Foreground="{StaticResource brushFCOrange}" Style="{StaticResource styleFCBodyCopy1}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Visibility="Hidden">Match Found</TextBlock>
+		<Grid Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="7" Grid.RowSpan="4">
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition  />
+				<ColumnDefinition  />
+				<ColumnDefinition  />
+				<ColumnDefinition  />
+				<ColumnDefinition  />
+				<ColumnDefinition  />
+				<ColumnDefinition  />
+				<ColumnDefinition  />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<Button Grid.Row="0" Grid.Column="0" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">1</Button>
+			<Button Grid.Row="0" Grid.Column="1" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">2</Button>
+			<Button Grid.Row="0" Grid.Column="2" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">3</Button>
+			<Button Grid.Row="0" Grid.Column="3" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">4</Button>
+			<Button Grid.Row="0" Grid.Column="4" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">5</Button>
+			<Button Grid.Row="0" Grid.Column="5" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">6</Button>
+			<Button Grid.Row="0" Grid.Column="6" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">7</Button>
+			<Button Grid.Row="0" Grid.Column="7" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">8</Button>
+			<Button Grid.Row="0" Grid.Column="8" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">9</Button>
+			<Button Grid.Row="0" Grid.Column="9" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">0</Button>
+			<Button Grid.Row="1" Grid.Column="0" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">Q</Button>
+			<Button Grid.Row="1" Grid.Column="1" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">W</Button>
+			<Button Grid.Row="1" Grid.Column="2" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">E</Button>
+			<Button Grid.Row="1" Grid.Column="3" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">R</Button>
+			<Button Grid.Row="1" Grid.Column="4" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">T</Button>
+			<Button Grid.Row="1" Grid.Column="5" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">Y</Button>
+			<Button Grid.Row="1" Grid.Column="6" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">I</Button>
+			<Button Grid.Row="1" Grid.Column="7" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">O</Button>
+			<Button Grid.Row="1" Grid.Column="8" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">U</Button>
+			<Button Grid.Row="1" Grid.Column="9" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">P</Button>
+			<Button Grid.Row="2" Grid.Column="0" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">A</Button>
+			<Button Grid.Row="2" Grid.Column="1" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">S</Button>
+			<Button Grid.Row="2" Grid.Column="2" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">D</Button>
+			<Button Grid.Row="2" Grid.Column="3" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">F</Button>
+			<Button Grid.Row="2" Grid.Column="4" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">G</Button>
+			<Button Grid.Row="2" Grid.Column="5" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">H</Button>
+			<Button Grid.Row="2" Grid.Column="6" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">J</Button>
+			<Button Grid.Row="2" Grid.Column="7" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">K</Button>
+			<Button Grid.Row="2" Grid.Column="8" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">L</Button>
+			<Button Grid.Row="2" Grid.Column="9" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">'</Button>
+			<Button Grid.Row="3" Grid.Column="0" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">-</Button>
+			<Button Grid.Row="3" Grid.Column="1" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">Z</Button>
+			<Button Grid.Row="3" Grid.Column="2" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">X</Button>
+			<Button Grid.Row="3" Grid.Column="3" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">C</Button>
+			<Button Grid.Row="3" Grid.Column="4" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">V</Button>
+			<Button Grid.Row="3" Grid.Column="5" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">B</Button>
+			<Button Grid.Row="3" Grid.Column="6" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">N</Button>
+			<Button Grid.Row="3" Grid.Column="7" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">M</Button>
+			<Button Grid.Row="3" Grid.Column="8" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">Back</Button>
+			<Button Grid.Row="3" Grid.Column="9" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">Reset</Button>
+			<Button Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="4" Click="Keyboard_Click" Template="{StaticResource controlFCKeyboardButton}">Space</Button>
+		</Grid>
+		<Button Name="btnBack" Grid.Column="1" Grid.Row="9" Click="btnBack_Click" Template="{StaticResource controlFCButton}">Back</Button>
+		<Button Name="btnGo" Grid.Column="9" Grid.Row="9" Grid.ColumnSpan="2" Click="btnGo_Click" Template="{StaticResource controlFCButton}">Continue</Button>
+
+	</Grid>
+</Page>
