@@ -31,3 +31,5 @@ O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\
 O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Unprotected Release\GenerateResource.read.1.tlog
 O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Unprotected Release\GenerateResource.write.1.tlog
 O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Unprotected Release\Fatigue Calculator Desktop.exe
+O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Unprotected Release\disclaimerPage.baml
+O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Unprotected Release\disclaimerPage.g.cs

@@ -4,11 +4,12 @@
 
         Title="Fatigue Calculator Desktop"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized"
         VerticalAlignment="Stretch"
         Margin="0"
         Padding="0" 
-        WindowStyle="None" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="894" d:DesignWidth="1131" SizeToContent="Manual" ResizeMode="NoResize">
+		Height="800"
+		Width="1200"
+        mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="894" d:DesignWidth="1131" SizeToContent="Manual" ResizeMode="NoResize">
     <Window.Background>
         <ImageBrush ImageSource="/Images/Background.png" />
     </Window.Background>

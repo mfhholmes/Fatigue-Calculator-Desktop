@@ -1,12 +1,11 @@
 ﻿Install project
-	add the licence text
-	add the options for fullscreen, windowless, etc
+	
 Printing
-	debug printing with a working printer
 
 Appearance
 
 By Page
+Main
 Welcome
 Identity
 	virtual keyboard skin

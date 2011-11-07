@@ -132,7 +132,7 @@ namespace Fatigue_Calculator_Desktop
                         lastTransition = nextTransition;
                     }
                 }
-                drawShiftSegment(context, x1, y1, y2, Brushes.WhiteSmoke, 0.2, (int)calc.currentOutputs.shiftStart.TotalHours, (int)calc.currentOutputs.shiftEnd.TotalHours, tickWidth, _maxTicks);
+                drawShiftSegment(context, x1, y1, y2, Brushes.WhiteSmoke, 0.2,  (int)Math.Round(calc.currentOutputs.shiftStart.TotalHours,0), (int)Math.Round(calc.currentOutputs.shiftEnd.TotalHours,0), tickWidth, _maxTicks);
             }// try block
             catch (Exception e)
             {
@@ -295,7 +295,7 @@ namespace Fatigue_Calculator_Desktop
                 // shift markers are above the graph
                 Label marker;
                 // get the number of hours between origin and shift start
-                int hours = (int)shift.TotalHours;
+                int hours = (int)Math.Round(shift.TotalHours,0);
                 if (hours < 0) // always possible that they're doing a calculation mid-shift
                 {
                     hours = 0;

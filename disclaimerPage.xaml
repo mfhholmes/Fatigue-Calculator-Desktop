@@ -1,0 +1,60 @@
+﻿<Page x:Class="Fatigue_Calculator_Desktop.disclaimerPage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	  mc:Ignorable="d" 
+	  d:DesignHeight="643" d:DesignWidth="1024"
+	Title="disclaimerPage">
+
+	<Grid Background="{StaticResource brushFCBlue}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="40"></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="75"></ColumnDefinition>
+			<ColumnDefinition Width="75"></ColumnDefinition>
+			<ColumnDefinition Width="40"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"></RowDefinition>
+			<RowDefinition Height="50"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition  Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="50"></RowDefinition>
+			<RowDefinition Height="40"></RowDefinition>
+		</Grid.RowDefinitions>
+
+		<TextBlock Style="{StaticResource styleFCHeading1Orange}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="10">Disclaimer</TextBlock>
+		<TextBlock Style="{StaticResource styleFCBodyCopy4}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="10" Grid.RowSpan="5">
+Disclaimer MB Solutions (Aust) Pty Ltd Directors, its members and employees accept no liability for and give no undertakings concerning the accuracy,
+completeness or fitness for purpose of the information provided. They take no responsibility for any loss, damage or injusry to persons which the user of the Fatigue
+Calculator or any third party may suffer in relying on the information provided when making a decision affecting their interests. The information provided in this
+document and through consultation with MB Solutions (Aust) Pty Ltd is intended for general use only. It is not a definitive guide, does not constitute formal advice,
+and does not take into consideration the particular circumstances and needs of your organisation. Every effort has been made to ensure the accuracy and
+completeness of this document and all correspondence. MB Solutions (Aust) Pty Ltd cannot be held responsible and extends no warranties as to the suitability of
+the information in this dolcument or of the product for any particular purpose and for actions taken by third parties. No Representations or warranties are made by
+UNISA as to the product performance or suitability, and UNISA shall not be liable for any claims or actions arising from use of the Product, which shall be at user's
+own risk. You agree to indemnify and defend MB Solutions (Aust) Pty Ltd and its associates against any liability (including losses, damages, fines and expenses)
+arising as a direct or indirect consequence of use (or misuse) of FATIGUE CALCULATOR or derivate products thereof. MB Solutions (Aust) Pty Ltd liability to you
+for any breach of this agreement, or in connection with this agreement, shall be limited to repayment of the amounts which have been paid by you to MB Solutions
+(Aust) Pty Ltd. MB Solutions (Aust) Pty Ltd shall not be under any further liability to you in respect of any loss or damage (including consequential loss or damage)
+however caused (whether by MB Solutions (Aust) Pty Ltd negligence or otherwise) which may be suffered or incurred or which may arise directly or indirectly in
+respect of FATIGUE CALCULATOR or this agreement.
+		</TextBlock>
+		<Button Name="btnBack" Grid.Column="1" Grid.Row="9" Click="btnBack_Click" Template="{StaticResource controlFCButton}">I Don't Accept</Button>
+		<Button Name="btnGo" Grid.Column="9" Grid.Row="9" Grid.ColumnSpan="2" Click="btnGo_Click" Template="{StaticResource controlFCButton}">I Accept</Button>
+	</Grid>
+
+</Page>

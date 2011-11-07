@@ -20,6 +20,7 @@ namespace Fatigue_Calculator_Desktop
     public partial class sleepPage : Page
     {
         private calculation currentCalc;
+        private bool helpShown = true;
 
         public sleepPage()
         {
@@ -38,6 +39,7 @@ namespace Fatigue_Calculator_Desktop
             spnHoursAwake.Value = (int)currentCalc.currentInputs.hoursAwake;
             spnMinsAwake.Value = (int)((currentCalc.currentInputs.hoursAwake - spnMinsAwake.Value) * 60.0);
             hoursAwakelabel.Text = "How many hours since you last woke, as of " + DateTime.Now.ToString("h:mm tt");
+            btnHelp_Click(this, new RoutedEventArgs());
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -97,6 +99,31 @@ namespace Fatigue_Calculator_Desktop
         private void spnSleep48Mins_ValueChanged(object sender, RoutedEventArgs e)
         {
             if ((spnSleep24Hours.Value == spnSleep48Hours.Value) && (spnSleep24Mins.Value > spnSleep48Mins.Value)) spnSleep48Mins.Value = spnSleep24Mins.Value;
+        }
+
+        private void btnHelp_Click(object sender, RoutedEventArgs e)
+        {
+            if (helpShown)
+            {
+                sleep24label.Inlines.Remove(sleep24Help);
+                sleep48label.Inlines.Remove(sleep48Help);
+                hoursAwakelabel.Inlines.Remove(hoursAwakeHelp);
+                sleep24label.Inlines.Remove(LB1);
+                sleep48label.Inlines.Remove(LB2);
+                hoursAwakelabel.Inlines.Remove(LB3);
+                helpShown = false;
+            }
+            else
+            {
+                sleep24label.Inlines.Add(LB1);
+                sleep48label.Inlines.Add(LB2);
+                hoursAwakelabel.Inlines.Add(LB3);
+                sleep24label.Inlines.Add(sleep24Help);
+                sleep48label.Inlines.Add(sleep48Help);
+                hoursAwakelabel.Inlines.Add(hoursAwakeHelp);
+                helpShown = true;
+            }
+
         }
 
     }

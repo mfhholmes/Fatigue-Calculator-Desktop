@@ -53,6 +53,17 @@
 		<Setter Property="Foreground" Value="{StaticResource brushFCOrange}"/>
 	</Style>
 
+	<Style x:Key="styleFCWhiteRun" TargetType="Run">
+		<Setter Property="FontFamily" Value="./Fonts/#PF Handbook Pro Thin"/>
+		<Setter Property="FontSize" Value="24"/>
+		<Setter Property="Foreground" Value=" White"/>
+	</Style>
+	<Style x:Key="styleFCOrangeRun" TargetType="Run">
+		<Setter Property="FontFamily" Value="./Fonts/#PF Handbook Pro Thin"/>
+		<Setter Property="FontSize" Value="24"/>
+		<Setter Property="Foreground" Value="{StaticResource brushFCOrange}"/>
+	</Style>
+
 	<Style x:Key="styleFCBodyCopy1" TargetType="{x:Type TextBlock}">
 		<Setter Property="FontSize" Value="28" />
 		<Setter Property="FontFamily" Value="./Fonts/#PF Handbook Pro Thin"/>
@@ -69,6 +80,14 @@
 	</Style>
 	<Style x:Key="styleFCBodyCopy3" TargetType="{x:Type TextBlock}">
 		<Setter Property="FontSize" Value="24" />
+		<Setter Property="FontFamily" Value="./Fonts/#PF Handbook Pro Thin"/>
+		<Setter Property="TextWrapping" Value="Wrap" />
+		<Setter Property="TextAlignment" Value="Justify" />
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="TextBlock.BitmapEffect" Value="{StaticResource effectFCDropShadowSoft}"/>
+	</Style>
+	<Style x:Key="styleFCBodyCopy4" TargetType="{x:Type TextBlock}">
+		<Setter Property="FontSize" Value="20" />
 		<Setter Property="FontFamily" Value="./Fonts/#PF Handbook Pro Thin"/>
 		<Setter Property="TextWrapping" Value="Wrap" />
 		<Setter Property="TextAlignment" Value="Justify" />

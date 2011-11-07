@@ -20,6 +20,7 @@ namespace Fatigue_Calculator_Desktop
     public partial class identityPage : Page
     {
         private calculation currentCalc;
+        private Storage currentStore;
 
         private enum lookupType
         {
@@ -29,12 +30,6 @@ namespace Fatigue_Calculator_Desktop
         }
         private lookupType lookup;
 
-        private struct person
-        {
-            public int IDnumber;
-            public string Name;
-        }
-        private person[] people;
 
         public identityPage()
         {
@@ -46,6 +41,7 @@ namespace Fatigue_Calculator_Desktop
             InitializeComponent();
             // set up values from calculation
             currentCalc = passedCalc;
+            currentStore = new Storage();
             loadLookup();
         }
 
@@ -64,9 +60,7 @@ namespace Fatigue_Calculator_Desktop
                     {
                         //  no validation, free input, let's go
                         currentCalc.currentInputs.identity = this.txtName.Text;
-                        shiftPage next = new shiftPage(currentCalc);
-                        this.NavigationService.Navigate(next);
-                        return;
+                        break;
                     }
                 case lookupType.dynamic:
                     {
@@ -75,14 +69,11 @@ namespace Fatigue_Calculator_Desktop
                         {
                             // matched, and already in the control, let's go
                             currentCalc.currentInputs.identity = this.txtName.Text;
-                            shiftPage next = new shiftPage(currentCalc);
-                            this.NavigationService.Navigate(next);
-                            return;
+                            break;
                         }
                         else
                         {
                             // didn't match...no go
-                            //TODO: we should maybe tell them?
                             return;
                         }
                     }
@@ -92,19 +83,15 @@ namespace Fatigue_Calculator_Desktop
                         if (checkLookup(txtName.Text, true))
                         {
                             // matched, but not in the control
-                            this.txtName.Text = getLookup(txtName.Text);
+                            this.txtName.Text = currentStore.getLookup(txtName.Text);
                             currentCalc.currentInputs.identity = this.txtName.Text;
-                            shiftPage next = new shiftPage(currentCalc);
-                            this.NavigationService.Navigate(next);
-                            return;
+                            break;
                         }
                         else
                         {
                             // didn't match...no go
-                            //TODO: we should maybe tell them?
                             return;
                         }
-
                     }
                 default:
                     {
@@ -112,7 +99,17 @@ namespace Fatigue_Calculator_Desktop
                         return;
                     }
             }
-            
+            // now check if this is their first calculation, and if so, give them the Disclaimer
+            if (currentStore.isNewPerson(this.txtName.Text))
+            {
+                disclaimerPage disclaimer = new disclaimerPage(currentCalc);
+                this.NavigationService.Navigate(disclaimer);
+            }
+            else
+            {
+                shiftPage next = new shiftPage(currentCalc);
+                this.NavigationService.Navigate(next);
+            }
         }
 
         private void Keyboard_Click(object sender, RoutedEventArgs e)
@@ -128,14 +125,21 @@ namespace Fatigue_Calculator_Desktop
         private void loadLookup()
         {
 
-#if (Multiuser || Unprotected)
+#if (Multiuser || Unprotected || DEBUG)
             // get the lookup type from the settings
             string ltype = Properties.Settings.Default.IDLookupType;
             switch (ltype.ToLower())
             {
                 case "dynamic":
                     {
-                        lookup = lookupType.dynamic;
+                        if (currentStore.loadIDLookupList())
+                        {
+                            lookup = lookupType.dynamic;
+                        }
+                        else
+                        {
+                            lookup = lookupType.none;
+                        }
                         break;
                     }
                 case "none":
@@ -145,7 +149,14 @@ namespace Fatigue_Calculator_Desktop
                     }
                 case "single":
                     {
-                        lookup= lookupType.single;
+                        if (currentStore.loadIDLookupList())
+                        {
+                            lookup = lookupType.single;
+                        }
+                        else
+                        {
+                            lookup = lookupType.none;
+                        }
                         break;
                     }
                 default:
@@ -154,63 +165,12 @@ namespace Fatigue_Calculator_Desktop
                         break;
                     }
             }
-            {
-                // get the filename from the settings
-                string filename = Properties.Settings.Default.IdentityLookupFile;
-                if (filename.Length == 0)
-                {
-                    lookup= lookupType.none;
-                    return;
-                }
-                // check for special paths using  the storage class
-                Storage storage = new Storage();
-                filename = storage.getPath(filename);
-                // see if the file exists
-                System.IO.FileInfo file = new System.IO.FileInfo(new System.Uri(filename).LocalPath);
-                if (!file.Exists)
-                {
-                    lookup= lookupType.none;
-                    return;
-                }
-
-                // if so, attempt to load it
-                System.IO.FileStream fstream = file.OpenRead();
-
-                // iterate through the list and set up the array
-                System.IO.StreamReader reader = new System.IO.StreamReader(fstream);
-                string personData = "";
-                person data;
-                System.Collections.ArrayList newPeople = new System.Collections.ArrayList();
-                while (!reader.EndOfStream)
-                {
-                    personData = reader.ReadLine();
-                    data = splitString(personData.Split(','));
-                    newPeople.Add(data);
-                }
-                reader.Close();
-                // transfer the people to the array
-                people = new person[newPeople.Count];
-                for (int i = 0; i < newPeople.Count; i++) people[i] = (person)newPeople[i];
-                // and we're done
-            }
-            //catch
-            //{
-            //    // failed somewhere along the line
-            //}
+            
 #else
             lookup = lookupType.none;
-            people = new person[1];
-            people[0]= new person();
             return;
 #endif
             //try
-        }
-        private person splitString(string[] data)
-        {
-            person result = new person();
-            result.IDnumber = Convert.ToInt16(data[0]);
-            result.Name = data[1].ToUpper();
-            return result;
         }
         private bool checkLookup(string text, bool isFinal)
         {
@@ -219,10 +179,10 @@ namespace Fatigue_Calculator_Desktop
             {
                 case lookupType.dynamic:
                     {
-                        int matches = doLookup(text);
+                        int matches = currentStore.doLookup(text);
                         if (matches == 1)
                         {
-                            txtName.Text = getLookup(text);
+                            txtName.Text = currentStore.getLookup(text);
                             match.Visibility = System.Windows.Visibility.Visible;
                             match.Text = "Match Found";
                             return true;
@@ -251,7 +211,7 @@ namespace Fatigue_Calculator_Desktop
                     {
                         if (isFinal)
                         {
-                            if (doLookup(text) == 1)
+                            if (currentStore.doLookup(text) == 1)
                             {
                                 match.Visibility = System.Windows.Visibility.Visible;
                                 match.Text = "Match Found";
@@ -274,67 +234,6 @@ namespace Fatigue_Calculator_Desktop
                 default:
                     return false;
             }
-        }
-        private int doLookup(string text)
-        {
-            // check the array and see how many names or numbers match in the file
-            int result;
-            if(int.TryParse(text, out result))
-            {
-                result = 0;
-                // numbers
-                for (int i = 0; i < people.Length; i++)
-                {
-                    if (people[i].IDnumber.ToString().Substring(0,Math.Min(text.Length, people[i].IDnumber.ToString().Length)).ToUpper() == text.ToUpper())
-                    {
-                        result++;
-                    }
-                }
-                
-            }
-            else
-            {
-                for (int i = 0; i < people.Length; i++)
-                {
-                    if (people[i].Name.Substring(0, Math.Min(text.Length, people[i].Name.Length)).ToUpper() == text.ToUpper())
-                    {
-                        result++;
-                    }
-                }
-            }
-            return result;
-
-        }
-        private string getLookup(string text)
-        {
-            // same as before, only we just return the first match
-            // check the array and see how many names or numbers match in the file
-            int result;
-            if(int.TryParse(text, out result))
-            {
-                result = 0;
-                // numbers
-                for (int i = 0; i < people.Length; i++)
-                {
-                    if (people[i].IDnumber.ToString().Substring(0, Math.Min(text.Length, people[i].IDnumber.ToString().Length)).ToUpper() == text.ToUpper())
-                    {
-                        return people[i].IDnumber.ToString();
-                    }
-                }
-                
-            }
-            else
-            {
-                for (int i = 0; i < people.Length; i++)
-                {
-                    if (people[i].Name.Substring(0, Math.Min(text.Length, people[i].Name.Length)).ToUpper() == text.ToUpper())
-                    {
-                        return people[i].Name ;
-                    }
-                }
-            }
-            return "";
-
         }
 
         private void txtName_PreviewTextInput(object sender, TextCompositionEventArgs e)

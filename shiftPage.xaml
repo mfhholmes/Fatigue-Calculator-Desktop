@@ -39,13 +39,23 @@
 
 		<TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9" Style="{StaticResource styleFCHeading1Orange}">Please Enter your Shift Pattern</TextBlock>
 		<TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="9" Style="{StaticResource styleFCHeading2White}" VerticalAlignment="Center">Use the up and down arrows to set the correct start and finish time for your shift.</TextBlock>
-		<TextBlock Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="9" VerticalAlignment="Center" Style="{StaticResource styleFCHeading2White}">When does your shift start?</TextBlock>
-		<TextBlock Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="9" VerticalAlignment="Center" Style="{StaticResource styleFCHeading2White}" >When does your shift end?</TextBlock>
+		<TextBlock Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="7" VerticalAlignment="Center" Style="{StaticResource styleFCHeading2White}" Name="shiftStartLabel" HorizontalAlignment="Stretch">
+			<Run>When does your shift start?</Run>
+			<LineBreak x:Name="LB1"> </LineBreak>
+			<Run Style="{StaticResource styleFCOrangeRun}" x:Name="shiftStartHelp" >Use the controls to the right to enter the time that your shift starts in hours and minutes (to the nearest 30 mins).</Run>
+		</TextBlock>
+		<TextBlock Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="7" VerticalAlignment="Center" Style="{StaticResource styleFCHeading2White}" Name="shiftEndLabel" HorizontalAlignment="Stretch">
+			<Run>When does your shift end?</Run>
+			<LineBreak x:Name="LB2"> </LineBreak>
+			<Run Style="{StaticResource styleFCOrangeRun}" x:Name="shiftEndHelp">If your shift ends before it starts, the Calculator will assume your shift ends tomorrow and calculate accordingly.</Run>
+
+		</TextBlock>
 		<fc:spinner Grid.Row="5" Grid.Column="9" x:Name="spnStartHour" maxValue="24" minValue="0" velocityShift="0.5" ShowMax="False"></fc:spinner>
-		<fc:spinner Grid.Row="5" Grid.Column="10" x:Name="spnStartMin" maxValue="60" minValue="0" velocityShift="0.2" ShowMax="False" ></fc:spinner>
+		<fc:spinner Grid.Row="5" Grid.Column="10" x:Name="spnStartMin" maxValue="60" minValue="0" Step="30" velocityShift="0.2" ShowMax="False" ></fc:spinner>
 		<fc:spinner Grid.Row="7" Grid.Column="9" x:Name="spnEndHour" maxValue="24" minValue="0" velocityShift="0.5" ShowMax="False"></fc:spinner>
-		<fc:spinner Grid.Row="7" Grid.Column="10" x:Name="spnEndMin" maxValue="60" minValue="0" velocityShift="0.2" ShowMax="False" ></fc:spinner>
+		<fc:spinner Grid.Row="7" Grid.Column="10" x:Name="spnEndMin" maxValue="60" minValue="0" Step="30" velocityShift="0.2" ShowMax="False" ></fc:spinner>
 		<Button Grid.Row="9" Grid.Column="1" Name="btnBack" Click="btnBack_Click" Template="{StaticResource controlFCButton}">Back</Button>
 		<Button Grid.Row="9" Grid.Column="9" Grid.ColumnSpan="2" Name="btnGo" Click="btnGo_Click" Template="{StaticResource controlFCButton}">Continue</Button>
+		<Button Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="1" Name="btnHelp" Click="btnHelp_Click" Template="{StaticResource controlFCButton}">Instructions</Button>
 	</Grid>
 </Page>

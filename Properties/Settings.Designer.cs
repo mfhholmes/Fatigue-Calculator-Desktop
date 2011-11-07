@@ -61,7 +61,7 @@ namespace Fatigue_Calculator_Desktop.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("%documents%**fatiguelog.csv")]
+        [global::System.Configuration.DefaultSettingValueAttribute("%documents%fatiguelog.csv")]
         public string logfile {
             get {
                 return ((string)(this["logfile"]));

@@ -23,6 +23,7 @@ namespace Fatigue_Calculator_Desktop
     public partial class shiftPage : Page
     {
         private calculation currentCalc;
+        private bool helpShown = true;
 
         public shiftPage()
         {
@@ -37,6 +38,7 @@ namespace Fatigue_Calculator_Desktop
             spnStartMin.Value = currentCalc.currentInputs.shiftStart.Minute;
             spnEndHour.Value = currentCalc.currentInputs.shiftEnd.Hour;
             spnEndMin.Value = currentCalc.currentInputs.shiftEnd.Minute;
+            btnHelp_Click(this, new RoutedEventArgs());
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -62,6 +64,29 @@ namespace Fatigue_Calculator_Desktop
             //go forward to the hours slept page
             sleepPage next = new sleepPage(currentCalc);
             this.NavigationService.Navigate(next);
+        }
+
+        private void btnHelp_Click(object sender, RoutedEventArgs e)
+        {
+            //pretty simple, just remove the runs from the textblocks to hide them, add them back to show them
+            // need to start the app with the blocks shown so they're included in the XAML page
+            if (helpShown)
+            {
+                shiftStartLabel.Inlines.Remove(LB1);
+                shiftEndLabel.Inlines.Remove(LB2);
+                shiftStartLabel.Inlines.Remove(shiftStartHelp);
+                shiftEndLabel.Inlines.Remove(shiftEndHelp);
+                helpShown = false;
+            }
+            else
+            {
+                shiftStartLabel.Inlines.Add(LB1);
+                shiftEndLabel.Inlines.Add(LB2);
+                shiftStartLabel.Inlines.Add(shiftStartHelp);
+                shiftEndLabel.Inlines.Add(shiftEndHelp);
+                helpShown = true;
+            }
+
         }
 
 
