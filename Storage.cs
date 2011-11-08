@@ -34,21 +34,64 @@ namespace Fatigue_Calculator_Desktop
 
             public logEntry(string logLine)
             {
-                string[] entries = logLine.Split(',');
-                DateDone = entries[0];
-                TimeDone = entries[1];
-                DeviceId = entries[2];
-                Identity = entries[3];
-                ShiftStart = entries[4];
-                ShiftEnd = entries[5];
-                sleep24 = entries[6];
-                sleep48 = entries[7];
-                hoursAwake = entries[8];
-                lowThreshold = entries[9];
-                highThreshold = entries[10];
-                currentScore = entries[11];
-                currentLevel = entries[12];
-                algorithmVersion = entries[13];
+                try
+                {
+                    string[] entries = logLine.Split(',');
+                    if (entries.Length == 14)
+                    {
+                        DateDone = entries[0];
+                        TimeDone = entries[1];
+                        DeviceId = entries[2];
+                        Identity = entries[3];
+                        ShiftStart = entries[4];
+                        ShiftEnd = entries[5];
+                        sleep24 = entries[6];
+                        sleep48 = entries[7];
+                        hoursAwake = entries[8];
+                        lowThreshold = entries[9];
+                        highThreshold = entries[10];
+                        currentScore = entries[11];
+                        currentLevel = entries[12];
+                        algorithmVersion = entries[13];
+                    }
+                    else
+                    {
+                        // there's an issue with earlier versions missing the identity line
+                        DateDone = entries[0];
+                        TimeDone = entries[1];
+                        DeviceId = entries[2];
+                        Identity = "";
+                        ShiftStart = entries[3];
+                        ShiftEnd = entries[4];
+                        sleep24 = entries[5];
+                        sleep48 = entries[6];
+                        hoursAwake = entries[7];
+                        lowThreshold = entries[8];
+                        highThreshold = entries[9];
+                        currentScore = entries[10];
+                        currentLevel = entries[11];
+                        algorithmVersion = entries[12];
+                    }
+                }
+                catch
+                {
+                    // must be another bad thing
+                    DateDone = "";
+                    TimeDone = "";
+                    DeviceId = "";
+                    Identity = "";
+                    ShiftStart = "";
+                    ShiftEnd = "";
+                    sleep24 = "";
+                    sleep48 = "";
+                    hoursAwake = "";
+                    lowThreshold = "";
+                    highThreshold = "";
+                    currentScore = "";
+                    currentLevel = "";
+                    algorithmVersion = "";
+
+                }
             }
         }
 
@@ -111,6 +154,7 @@ namespace Fatigue_Calculator_Desktop
         public int doLookup(string text)
         {
             // check the array and see how many names or numbers match in the file
+            // is it a name or a number?
             int result;
             if (int.TryParse(text, out result))
             {
@@ -127,6 +171,7 @@ namespace Fatigue_Calculator_Desktop
             }
             else
             {
+                // name
                 for (int i = 0; i < people.Length; i++)
                 {
                     if (people[i].Name.Substring(0, Math.Min(text.Length, people[i].Name.Length)).ToUpper() == text.ToUpper())
