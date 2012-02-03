@@ -19,8 +19,8 @@ namespace Fatigue_Calculator_Desktop
     /// </summary>
     public partial class identityPage : Page
     {
-        private calculation currentCalc;
-        private Storage currentStore;
+        private calculation _currentCalc;
+        private IdentityFile _idFile;
 
         private enum lookupType
         {
@@ -34,15 +34,14 @@ namespace Fatigue_Calculator_Desktop
         public identityPage()
         {
             InitializeComponent();
-            loadLookup();
+            loadIdentities();
         }
         public identityPage(calculation passedCalc)
         {
             InitializeComponent();
             // set up values from calculation
-            currentCalc = passedCalc;
-            currentStore = new Storage();
-            loadLookup();
+            _currentCalc = passedCalc;
+            loadIdentities();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -59,7 +58,7 @@ namespace Fatigue_Calculator_Desktop
                 case lookupType.none:
                     {
                         //  no validation, free input, let's go
-                        currentCalc.currentInputs.identity = this.txtName.Text;
+                        _currentCalc.currentInputs.identity = this.txtName.Text;
                         break;
                     }
                 case lookupType.dynamic:
@@ -68,7 +67,7 @@ namespace Fatigue_Calculator_Desktop
                         if (checkLookup(txtName.Text, true))
                         {
                             // matched, and already in the control, let's go
-                            currentCalc.currentInputs.identity = this.txtName.Text;
+                            _currentCalc.currentInputs.identity = this.txtName.Text;
                             break;
                         }
                         else
@@ -83,8 +82,10 @@ namespace Fatigue_Calculator_Desktop
                         if (checkLookup(txtName.Text, true))
                         {
                             // matched, but not in the control
-                            this.txtName.Text = currentStore.getLookup(txtName.Text);
-                            currentCalc.currentInputs.identity = this.txtName.Text;
+                            List<identity> matches = _idFile.LookUpName(txtName.Text);
+                            if (matches.Count == 1)
+                                this.txtName.Text = matches.ElementAt(0).Name;
+                            _currentCalc.currentInputs.identity = this.txtName.Text;
                             break;
                         }
                         else
@@ -100,14 +101,14 @@ namespace Fatigue_Calculator_Desktop
                     }
             }
             // now check if this is their first calculation, and if so, give them the Disclaimer
-            if (currentStore.isNewPerson(this.txtName.Text))
+            if (_idFile.LookUpName(txtName.Text).Count == 0)
             {
-                disclaimerPage disclaimer = new disclaimerPage(currentCalc);
+                disclaimerPage disclaimer = new disclaimerPage(_currentCalc);
                 this.NavigationService.Navigate(disclaimer);
             }
             else
             {
-                shiftPage next = new shiftPage(currentCalc);
+                shiftPage next = new shiftPage(_currentCalc);
                 this.NavigationService.Navigate(next);
             }
         }
@@ -122,17 +123,19 @@ namespace Fatigue_Calculator_Desktop
             checkLookup(txtName.Text,false);
 
         }
-        private void loadLookup()
+        private void loadIdentities()
         {
-
+        _idFile = new IdentityFile();
 #if (Multiuser || Unprotected || DEBUG)
             // get the lookup type from the settings
             string ltype = Properties.Settings.Default.IDLookupType;
+            string filename = Properties.Settings.Default.IdentityLookupFile;
+            
             switch (ltype.ToLower())
             {
                 case "dynamic":
                     {
-                        if (currentStore.loadIDLookupList())
+                        if ( _idFile.SetIdentityListSource(filename))
                         {
                             lookup = lookupType.dynamic;
                         }
@@ -149,7 +152,7 @@ namespace Fatigue_Calculator_Desktop
                     }
                 case "single":
                     {
-                        if (currentStore.loadIDLookupList())
+                        if (_idFile.SetIdentityListSource(filename))
                         {
                             lookup = lookupType.single;
                         }
@@ -174,15 +177,17 @@ namespace Fatigue_Calculator_Desktop
         }
         private bool checkLookup(string text, bool isFinal)
         {
+            identity matched;
             // check the flag
             switch (lookup)
             {
                 case lookupType.dynamic:
                     {
-                        int matches = currentStore.doLookup(text);
+                        int matches = _idFile.LookUpName(text).Count;
                         if (matches == 1)
                         {
-                            txtName.Text = currentStore.getLookup(text);
+                            matched = _idFile.LookUpName(text).ElementAt(0);
+                            txtName.Text = matched.Name;
                             match.Visibility = System.Windows.Visibility.Visible;
                             match.Text = "Match Found";
                             return true;
@@ -211,8 +216,11 @@ namespace Fatigue_Calculator_Desktop
                     {
                         if (isFinal)
                         {
-                            if (currentStore.doLookup(text) == 1)
+                            int matches = _idFile.LookUpName(text).Count;
+                            if (matches == 1)
                             {
+                                matched = _idFile.LookUpName(text).ElementAt(0);
+                                txtName.Text = matched.Name;
                                 match.Visibility = System.Windows.Visibility.Visible;
                                 match.Text = "Match Found";
                                 return true;

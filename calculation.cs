@@ -8,18 +8,28 @@ namespace Fatigue_Calculator_Desktop
 {
     public class calculation
     {
+        /// <summary>
+        /// blank constructor just loads the presets
+        /// </summary>
         public calculation()
         {
             //load the presets on startup
             this.LoadPresets();
         }
+
         private bool _logged;
+        /// <summary>
+        /// logged indicates whether the calculation has been logged or not
+        /// </summary>
         public bool logged 
         {
             get {return _logged;}
             set { _logged = value;}
         }
-        // fatigue levels enum to indicate the 4 fatigue levels
+        
+        /// <summary>
+        /// 4 levels of fatigue risk
+        /// </summary>
         public enum fatigueLevels
         {
             Low ,
@@ -27,6 +37,11 @@ namespace Fatigue_Calculator_Desktop
             High,
             Extreme
         }
+        /// <summary>
+        /// simple enum-to-int converter
+        /// </summary>
+        /// <param name="level">enum fatigue risk level</param>
+        /// <returns>int equivalent of the enum fatigue risk level</returns>
         public int levelToNumber(fatigueLevels level)
         {
             switch (level)
@@ -42,6 +57,11 @@ namespace Fatigue_Calculator_Desktop
             }
             return 0;
         }
+        /// <summary>
+        /// int to enum converter for fatigue risk levels
+        /// </summary>
+        /// <param name="level">int representation of fatigue level</param>
+        /// <returns>enum for that level of fatigue risk</returns>
         public fatigueLevels levelFromNumber(int level)
         {
             switch (level)
@@ -57,6 +77,12 @@ namespace Fatigue_Calculator_Desktop
             }
             return fatigueLevels.Low;
         }
+
+        /// <summary>
+        /// converter of fatigue level to brush colour
+        /// </summary>
+        /// <param name="level">fatigue risk leve</param>
+        /// <returns>Brush for that fatigue level</returns>
         public Brush getColourForLevel(calculation.fatigueLevels level)
         {
             //TODO: may have to look this up in the resource directory
@@ -73,7 +99,50 @@ namespace Fatigue_Calculator_Desktop
             }
             return Brushes.White;
         }
-
+        /// <summary>
+        /// logs the current calculation to the appropriate log service
+        /// </summary>
+        /// <param name="logger">the log service to use (usually file or web service)</param>
+        /// <returns>true if log operation was successful, false otherwise</returns>
+        public bool logCalc(ILogService logger)
+        {
+            // check for a valid log service first
+            if (!logger.isValid)
+                return false;
+            // create the new entry
+            logEntry newEntry = new logEntry();
+            // presets
+            newEntry.AlgorithmVersion = this.currentPresets.algorithmVersion.ToString();
+            newEntry.lowThreshold = this.currentPresets.lowThreshold;
+            newEntry.highThreshold = this.currentPresets.highThreshold;
+            // inputs
+            newEntry.DeviceId =  this.currentInputs.deviceId;
+            newEntry.Identity = this.currentInputs.identity;
+            newEntry.shiftStart = this.currentInputs.shiftStart;
+            newEntry.shiftEnd =  this.currentInputs.shiftEnd;
+            newEntry.sleep24 =  this.currentInputs.sleep24;
+            newEntry.sleep48 =  this.currentInputs.sleep48;
+            newEntry.hoursAwake =  this.currentInputs.hoursAwake;
+            // outputs
+            newEntry.currentScore  = this.currentOutputs.currentScore;
+            newEntry.CurrentLevel = this.currentOutputs.currentLevel.ToString();
+            newEntry.dateDone = this.currentOutputs.calcDone.Date;
+            newEntry.timeDone = this.currentOutputs.calcDone.TimeOfDay;
+            newEntry.becomesModerate =  this.currentOutputs.calcDone + this.currentOutputs.becomesModerate;
+            newEntry.becomesHigh = this.currentOutputs.calcDone + this.currentOutputs.becomesHigh;
+            newEntry.becomesExtreme = this.currentOutputs.calcDone + this.currentOutputs.becomesExtreme;
+            
+            //add the new entry to the logger and bug out
+            _logged = logger.AddLogEntry(newEntry);
+            return _logged;
+        }
+        /// <summary>
+        /// calculates the fatigue level for a given score and threshold set
+        /// </summary>
+        /// <param name="lowThreshold">the point at which Moderate fatigue risk becomes High</param>
+        /// <param name="highThreshold">the point at which High fatigue risk becomes Extreme</param>
+        /// <param name="score">the score to check</param>
+        /// <returns>the enum for the appropriate fatigue risk level for this score using these thresholds</returns>
         public fatigueLevels calcFatigueLevel(int lowThreshold, int highThreshold, int score)
         {
             // simple comparison of levels and score
@@ -82,7 +151,9 @@ namespace Fatigue_Calculator_Desktop
             else if (score < highThreshold) return fatigueLevels.High;
             else return fatigueLevels.Extreme;
         }
-        // struct to remember the inputs so far
+        /// <summary>
+        /// structure to hold the inputs for a calculation. Not validated
+        /// </summary>
         public struct inputs
         {
             public string identity ;
@@ -94,6 +165,10 @@ namespace Fatigue_Calculator_Desktop
             public double hoursAwake;
         }
         public inputs currentInputs;
+        /// <summary>
+        /// validation of current input set
+        /// </summary>
+        /// <returns>true if valid, false if not</returns>
         public bool areInputsValid()
         {
             // checks the inputs and returns true if they're valid
@@ -108,7 +183,9 @@ namespace Fatigue_Calculator_Desktop
             return true;
         }
 
-        // struct to remember the outputs so far
+        /// <summary>
+        /// struct to hold the outputs from the calculation algorithm. not validated
+        /// </summary>
         public struct outputs
         {
             public DateTime calcDone;
@@ -123,17 +200,22 @@ namespace Fatigue_Calculator_Desktop
             public rosterItem[] roster;
         }
         public outputs currentOutputs;
+        /// <summary>
+        /// performs a fatigue calculation on the current inputs struct and puts the results in the current outputs struct
+        /// </summary>
+        /// <returns>true if the calculation was successful, false if a problem occurred</returns>
         public bool doCalc()
         {
             //do the calculation and return true if done, false if not
             try
             {
                 // grab the device
-                this.currentInputs.deviceId = Properties.Settings.Default.DeviceId;
+                //this.currentInputs.deviceId = Properties.Settings.Default.DeviceId;
                 // check the inputs
                 if (!this.areInputsValid()) return false;
                 // calculate the roster
-                if(this.currentOutputs.rosterLength == 0) this.currentOutputs.rosterLength = this.currentPresets.defaultRosterLength;
+                if(this.currentOutputs.rosterLength == 0)
+                    this.currentOutputs.rosterLength = this.currentPresets.defaultRosterLength;
                 this.currentOutputs.roster = this.calcRoster(this.currentOutputs.rosterLength, this.currentPresets.lowThreshold, this.currentPresets.highThreshold, this.currentInputs.sleep24, this.currentInputs.sleep48, this.currentInputs.hoursAwake);
                 // current score is roster at 0
                 this.currentOutputs.currentScore = this.currentOutputs.roster[0].score;
@@ -181,7 +263,9 @@ namespace Fatigue_Calculator_Desktop
             }
         }
 
-        // struct to remember presets
+        /// <summary>
+        /// struct to hold the presets. Presets usually loaded from config file but may be specified as a constant
+        /// </summary>
         public struct presets
         {
             public int lowThreshold;
@@ -193,14 +277,16 @@ namespace Fatigue_Calculator_Desktop
 
         public bool LoadPresets()
         {
-            this.currentPresets.defaultRosterLength = Properties.Settings.Default.defaultRosterLength;
-            this.currentPresets.lowThreshold = Properties.Settings.Default.lowThreshold;
-            this.currentPresets.highThreshold = Properties.Settings.Default.highThreshold;
+            this.currentPresets.defaultRosterLength = 72;
+            //this.currentPresets.lowThreshold = Properties.Settings.Default.lowThreshold;
+            //this.currentPresets.highThreshold = Properties.Settings.Default.highThreshold;
             this.currentPresets.algorithmVersion = 1;
             return true;
         }
         #region "Roster Calculation"
-        // roster item to hold the details of a single hour's calculation
+        /// <summary>
+        /// struct to hold a single roster item (a single hour's fatigue score and level)
+        /// </summary>
         public struct rosterItem
         {
             public int hour;
@@ -208,6 +294,16 @@ namespace Fatigue_Calculator_Desktop
             public fatigueLevels level;
         }
 
+        /// <summary>
+        /// calculates the roster of fatigue risk scores
+        /// </summary>
+        /// <param name="numItems">number of hours to calculate for</param>
+        /// <param name="lowThreshold">the Moderate-to-High risk transition score to use</param>
+        /// <param name="highThreshold">the High-To-Extreme risk transition score to use</param>
+        /// <param name="sleep24">number of hours sleep had in the last 24 hours</param>
+        /// <param name="sleep48">number of hours sleep had in the last 48 hours</param>
+        /// <param name="hoursAwake">number of hours awake since the last sleep period</param>
+        /// <returns>array of rosterItems representing the fatigue risk roster</returns>
         public rosterItem[] calcRoster(int numItems, int lowThreshold, int highThreshold, double sleep24, double sleep48, double hoursAwake)
         {
             // calculate the scores for a whole roster, and give fatigue levels as determined by the fatigue levels
@@ -227,6 +323,13 @@ namespace Fatigue_Calculator_Desktop
         
         #endregion
         #region "Single Score Calculation"
+        /// <summary>
+        /// calculation of a single score
+        /// </summary>
+        /// <param name="sleep24">the hours of sleep had in the last 24 hours</param>
+        /// <param name="sleep48">the hours of sleep had in the last 48 hours</param>
+        /// <param name="hoursAwake">the hours since the last sleep period</param>
+        /// <returns>fatigue score represented as a single integer</returns>
         public int calcScore(double sleep24, double sleep48, double hoursAwake)
         {
             //Algorithm property of the Centre for Sleep Research and licensed to MB Solutions

@@ -33,3 +33,5 @@ O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\
 O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Server Release\GenerateResource.write.1.tlog
 O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Server Release\Fatigue Calculator Desktop.exe
 O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Server Release\Fatigue Calculator Desktop.pdb
+O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Server Release\disclaimerPage.baml
+O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Server Release\disclaimerPage.g.cs

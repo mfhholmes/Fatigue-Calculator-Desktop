@@ -43,15 +43,6 @@ namespace Fatigue_Calculator_Desktop.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("72")]
-        public int defaultRosterLength {
-            get {
-                return ((int)(this["defaultRosterLength"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("%app.path%People.csv")]
         public string IdentityLookupFile {
             get {
@@ -62,9 +53,9 @@ namespace Fatigue_Calculator_Desktop.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("%documents%fatiguelog.csv")]
-        public string logfile {
+        public string LogServiceURL {
             get {
-                return ((string)(this["logfile"]));
+                return ((string)(this["LogServiceURL"]));
             }
         }
         
