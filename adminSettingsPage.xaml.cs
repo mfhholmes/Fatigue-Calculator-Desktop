@@ -25,6 +25,7 @@ namespace Fatigue_Calculator_Desktop
         public adminSettingsPage()
         {
             InitializeComponent();
+            LoadSettings();
         }
 
         /// <summary>
@@ -106,8 +107,21 @@ namespace Fatigue_Calculator_Desktop
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             //Validate the new value
-            // Write the changes to the file
-            ConfigSettings.settings.item(LabelKey.Text).strValue = txtValue.Text;
+            try
+            {
+                ConfigSettings.settings.item(LabelKey.Text).strValue = txtValue.Text;
+            }
+            catch (Exception err)
+            {
+                LabelError.Text = err.Message;
+                return;
+            }
+            // we're good so write the changes to the file
+            if (!ConfigSettings.saveSettings())
+            {
+                LabelError.Text = "Settings didn't save correctly";
+                return;
+            }
             if( ConfigSettings.settings.item(LabelKey.Text).strValue == txtValue.Text)
             {
                 LoadSettings();

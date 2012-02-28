@@ -14,24 +14,26 @@ namespace Fatigue_Calculator_Desktop.Config
         {
             get { return _validator; }
         }
-        private bool changed = false;
+        private bool _changed = false;
+
+
         private string _key = "";
         public string key
         {
             get { return _key; }
-            set { _key = value; changed = true; }
+            set { _key = value; _changed = true; }
         }
         private string _name = "";
         public string name
         {
             get { return _name; }
-            set { _name = value; changed = true; }
+            set { _name = value; _changed = true; }
         }
         private string _description = "";
         public string description
         {
             get { return _description; }
-            set { _description = value; changed = true; }
+            set { _description = value; _changed = true; }
         }
         private string _rawType = "";
         private System.Type _type;
@@ -42,28 +44,48 @@ namespace Fatigue_Calculator_Desktop.Config
         }
         private string _rawValue = "";
 
-        private int _intValue = 0;
         public int intValue
         {
-            get { return _intValue ; }
+            get
+            {
+                int _intvalue;
+                if (int.TryParse(_rawValue, out _intvalue))
+                    return _intvalue;
+                else
+                    return 0;
+            }
             set { changeValue(value.ToString()); }
         }
-        private double _dblValue = 0;
+        
         public double dblValue
         {
-            get { return _dblValue; }
+            get
+            {
+                double _dblvalue;
+                if (double.TryParse(_rawValue, out _dblvalue))
+                    return _dblvalue;
+                else
+                    return 0;
+            }
             set { changeValue(value.ToString());  }
         }
-        private string _strValue = "";
+        
         public string strValue
         {
-            get { return _strValue; }
+            get { return _rawValue; }
             set { changeValue(value); }
         }
-        private DateTime _dtValue = default(DateTime);
+        
         public DateTime dtValue
         {
-            get { return _dtValue; }
+            get
+            {
+                DateTime _dtvalue;
+                if (DateTime.TryParse(_rawValue, out _dtvalue))
+                    return _dtvalue;
+                else
+                    return default(DateTime);
+            }
             set { changeValue(value.ToString()); }
         }
         private string _lastValidationError;
@@ -73,6 +95,11 @@ namespace Fatigue_Calculator_Desktop.Config
         }
 
         private string _validationXML;
+        public string validationXML
+        {
+            get { return _validationXML; }
+            set { _validationXML = value; setUpValidation(); _changed = true; }
+        }
 
         private string typeString(System.Type type)
         {
@@ -81,25 +108,22 @@ namespace Fatigue_Calculator_Desktop.Config
         }
         private void changeValue(string value)
         {
+            _rawValue = value;
+            _changed = true;
             validate();
-            changed = true;
-            // set the values from the rawvalue
-            int.TryParse(_rawValue, out  _intValue);
-            DateTime.TryParse(_rawValue, out _dtValue);
-            double.TryParse(_rawValue, out _dblValue);
-            _strValue = _rawValue;
             return;
         }
         private void validate()
         {
-            //TODO: set any validation errors and roll back any changes
+            if (validator == null)
+                setUpValidation();
             if (validator.validate(this))
             {
-                //yay
+                // yay
             }
             else
             {
-                // boo
+                throw new Exception(_lastValidationError);
             }
         }
         /// <summary>
@@ -132,71 +156,79 @@ namespace Fatigue_Calculator_Desktop.Config
                 XmlNode validationNode = settingsNode.SelectSingleNode("validation");
                 if (validationNode == null)
                     return false;
-                _validationXML = validationNode.InnerXml;
-                node = validationNode.SelectSingleNode("type");
-                if (node == null)
-                    return false;
-                _rawType = node.InnerText;
-                
-                
-                switch (_rawType.ToLower())
-                {
-                    case "int":
-                        {
-                            _type = typeof(int);
-                            _validator = new intValidator();
-                            _validator.setup(validationNode);
-                            validate();
-                            break;
-                        }
-                    case "file":
-                        {
-                            _type = typeof(string);
-                            _validator = new fileValidator();
-                            _validator.setup(validationNode);
-                            validate();
-                            break;
-                        }
-                    case "choice":
-                        {
-                            _type = typeof(string);
-                            _validator = new choiceValidator();
-                            _validator.setup(validationNode);
-                            validate();
-                            break;
-                        }
-                    case "string":
-                        {
-                            {
-                                _type = typeof(string);
-                                _validator = new stringValidator();
-                                _validator.setup(validationNode);
-                                validate();
-                                break;
-                            }
-                        }
-                    case "datetime":
-                        {
-                            {
-                                _type = typeof(string);
-                                _validator = new dateTimeValidator();
-                                _validator.setup(validationNode);
-                                validate();
-                                break;
-                            }
-
-                        }
-                    default:
-                        {
-                            return false;
-                        }
-                }
+                _validationXML = validationNode.OuterXml;
+                setUpValidation();
             }
-            catch (Exception err)
+            catch (Exception )
             {
                 return false;
             }
             return true;
+        }
+        /// <summary>
+        /// translates the validationXML into the appropriate validator object
+        /// </summary>
+        private void setUpValidation()
+        {
+            XmlDocument validationXML = new XmlDocument();
+            validationXML.LoadXml( _validationXML);
+            
+            XmlNode node;
+            node = validationXML.SelectSingleNode("validation/type");
+            if (node == null)
+                return;
+            _rawType = node.InnerText;
+            XmlNode validationNode = validationXML.SelectSingleNode("validation");
+
+            switch (_rawType.ToLower())
+            {
+                case "int":
+                    {
+                        _type = typeof(int);
+                        _validator = new intValidator();
+                        _validator.setup(validationNode );
+                        break;
+                    }
+                case "file":
+                    {
+                        _type = typeof(string);
+                        _validator = new fileValidator();
+                        _validator.setup(validationNode);
+                        break;
+                    }
+                case "choice":
+                    {
+                        _type = typeof(string);
+                        _validator = new choiceValidator();
+                        _validator.setup(validationNode);
+                        break;
+                    }
+                case "string":
+                    {
+                        {
+                            _type = typeof(string);
+                            _validator = new stringValidator();
+                            _validator.setup(validationNode);
+                            break;
+                        }
+                    }
+                case "datetime":
+                    {
+                        {
+                            _type = typeof(string);
+                            _validator = new dateTimeValidator();
+                            _validator.setup(validationNode);
+                            break;
+                        }
+
+                    }
+                default:
+                    {
+                        return;
+                    }
+            }
+
+
         }
 
         /// <summary>
@@ -207,27 +239,28 @@ namespace Fatigue_Calculator_Desktop.Config
         public XmlElement writeXML(XmlDocument parentDoc)
         {
             XmlElement result = parentDoc.CreateElement("setting");
-            parentDoc.SelectSingleNode("config").AppendChild(result);
+            XmlElement node;
             //key
-            XmlNode node = parentDoc.CreateAttribute("key");
-            node.Value = _key;
-            result.AppendChild(node);
+            XmlAttribute attr = parentDoc.CreateAttribute("key");
+            attr.Value = _key;
+            result.SetAttributeNode(attr);
             // name
             node = parentDoc.CreateElement("name");
-            node.Value = _name;
+            node.InnerText = _name;
             result.AppendChild(node);
             // description
             node = parentDoc.CreateElement("description");
-            node.Value = _description;
+            node.InnerText = _description;
             result.AppendChild(node);
             //value
             node = parentDoc.CreateElement("value");
-            node.Value = _rawValue;
+            node.InnerText = _rawValue;
             result.AppendChild(node);
             //validationXML
-            node = parentDoc.CreateElement("validationXML");
-            node.InnerXml = _validationXML;
-            result.AppendChild(node);
+            XmlDocumentFragment frag;
+            frag = parentDoc.CreateDocumentFragment();
+            frag.InnerXml = _validationXML;
+            result.AppendChild(frag);
             return result;
         }
 
@@ -243,9 +276,9 @@ namespace Fatigue_Calculator_Desktop.Config
                 // int validation has a min and a max
                 // TODO: do some checking that the bloody rules parsed
                 XmlNode node = validationNode.SelectSingleNode("min");
-                int.TryParse(node.Value, out _min);
+                int.TryParse(node.InnerText, out _min);
                 node = validationNode.SelectSingleNode("max");
-                int.TryParse(node.Value, out _max);
+                int.TryParse(node.InnerText, out _max);
                 
                 return true;
             }
@@ -274,9 +307,9 @@ namespace Fatigue_Calculator_Desktop.Config
                 //string validation has a minlength and a maxlength
                 // TODO: do some checking that the bloody rules parsed
                 XmlNode node = validationNode.SelectSingleNode("minLength");
-                int.TryParse(node.Value, out _minLength);
+                int.TryParse(node.InnerText, out _minLength);
                 node = validationNode.SelectSingleNode("maxLength");
-                int.TryParse(node.Value, out _maxLength);
+                int.TryParse(node.InnerText, out _maxLength);
                 return true;
 
             }
@@ -303,7 +336,7 @@ namespace Fatigue_Calculator_Desktop.Config
             {
                 foreach (XmlNode node in validationNode.SelectNodes("fixedValueSet/value"))
                 {
-                    choices.Add(node.Value.ToLower());
+                    choices.Add(node.InnerText.ToLower());
                 }
                 return true;
             }
@@ -325,7 +358,7 @@ namespace Fatigue_Calculator_Desktop.Config
             bool IValidator.setup(XmlNode validationNode)
             {
                 XmlNode node = validationNode.SelectSingleNode("mustExist");
-                string test = node.Value.ToLower();
+                string test = node.InnerText.ToLower();
 
                 if (test.IndexOf("yes") > -1 || test.IndexOf("true") > -1)
                     _mustExist = true;

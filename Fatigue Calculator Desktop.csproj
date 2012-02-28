@@ -265,7 +265,6 @@
     <Compile Include="adminGraphPage.xaml.cs">
       <DependentUpon>adminGraphPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ICalculatorSettings.cs" />
     <Compile Include="identity.cs" />
     <Compile Include="identityFile.cs" />
     <Compile Include="identityLookupFactory.cs" />

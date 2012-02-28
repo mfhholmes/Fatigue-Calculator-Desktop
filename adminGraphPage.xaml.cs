@@ -20,7 +20,6 @@ namespace Fatigue_Calculator_Desktop
     /// </summary>
     public partial class adminGraphPage : Page
     {
-        private ICalculatorSettings _settings;
         private string _dataFilePath;
         private DateTime _firstResult = DateTime.Now;
         private DateTime _lastResult = DateTime.Now;
@@ -104,12 +103,7 @@ namespace Fatigue_Calculator_Desktop
         public adminGraphPage()
         {
             InitializeComponent();
-        }
-        public adminGraphPage(ICalculatorSettings settings)
-        {
-            InitializeComponent();
-            _settings = settings;
-            setUpPage(_settings.GetSetting("LogServiceURL"));
+            setUpPage(Config.ConfigSettings.settings.logServiceUrl);
         }
         /// <summary>
         /// sets up the graph page with the data pulled from the data file

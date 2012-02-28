@@ -10,7 +10,7 @@ namespace Fatigue_Calculator_Desktop
         identity _fixed;
         public lookupFixed()
         {
-            _fixed = new identity(Properties.Settings.Default.FixedID);
+            _fixed = new identity(Config.ConfigSettings.settings.fixedId);
         }
         IIdentityService IidentityLookup.source
         {

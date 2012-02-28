@@ -19,7 +19,6 @@ namespace Fatigue_Calculator_Desktop
     /// </summary>
     public partial class adminIDListPage : Page
     {
-        ICalculatorSettings _settings;
         identityFile _idList = new identityFile();
 
         //state machine settings for the page
@@ -35,11 +34,6 @@ namespace Fatigue_Calculator_Desktop
 
         public adminIDListPage()
         {
-            InitializeComponent();
-        }
-        public adminIDListPage(ICalculatorSettings settings)
-        {
-            _settings = settings;
             InitializeComponent();
             setState(currentAction.action_list);
         }
@@ -121,7 +115,7 @@ namespace Fatigue_Calculator_Desktop
         private void loadList()
         {
             // get the filename from the settings
-            string filename = _settings.GetSetting("IdentityLookupFile");
+            string filename = Config.ConfigSettings.settings.IDLookupFile;
             // set the list up
             _idList.SetIdentityListSource(filename);
             // load the identities into the interface

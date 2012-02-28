@@ -12,7 +12,7 @@ namespace Fatigue_Calculator_Desktop.Config
     /// </summary>
     class ConfigSourceFile : IConfigSource
     {
-        string _filename = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\config.xml";
+        string _filename = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"/Fatigue Calculator/config.xml";
 
         /// <summary>
         /// fetches the xml file from the appdata directory and returns the xml document
@@ -50,10 +50,18 @@ namespace Fatigue_Calculator_Desktop.Config
 
         bool IConfigSource.saveConfigXML(XmlDocument newVersion)
         {
+            
             // save the document to the file...easy
             try
             {
-                newVersion.Save(_filename);
+                // check we've got a valid directory
+                FileInfo file = new FileInfo(_filename);
+                createDir(file.Directory);
+                DirectoryInfo dir = file.Directory;
+                if (dir.Exists)
+                    newVersion.Save(_filename);
+                else
+                    dir.Create();
             }
             catch
             {
@@ -62,6 +70,14 @@ namespace Fatigue_Calculator_Desktop.Config
             return true;
         }
         
+        void createDir(DirectoryInfo dir)
+        {
+            if (!dir.Exists)
+            {
+                createDir(dir.Parent);
+                dir.Create();
+            }
+        }
 
         private XmlDocument createConfigFile()
         {

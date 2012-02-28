@@ -68,7 +68,7 @@ namespace Fatigue_Calculator_Desktop
             }
             // now check if this is their first calculation, and if so, give them the Disclaimer
             ILogService log = new logFile();
-            log.setLogURL(Properties.Settings.Default.LogServiceURL);
+            log.setLogURL(Config.ConfigSettings.settings.logServiceUrl);
 
             if(log.isIdentityOnLog(valid))
             {

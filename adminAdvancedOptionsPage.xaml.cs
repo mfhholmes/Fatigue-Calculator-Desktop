@@ -22,22 +22,16 @@ namespace Fatigue_Calculator_Desktop
     /// </summary>
     public partial class adminAdvancedOptionsPage : Page
     {
-        private ICalculatorSettings _settings ;
         private string _dataPath = "";
         private string _filter = "";
 
         public adminAdvancedOptionsPage()
         {
             InitializeComponent();
-        }
-
-        public adminAdvancedOptionsPage(ICalculatorSettings settings)
-        {
-            InitializeComponent();
-            _settings = settings;
             showSettings();
         }
 
+       
         private void btnChangeSettings_Click(object sender, RoutedEventArgs e)
         {
             LabelKey.Text = "Settings File";
@@ -70,35 +64,35 @@ namespace Fatigue_Calculator_Desktop
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            
-            if (LabelKey.Text == "Settings File")
-            {
-                // parse the path
-                string parsedPath = Utilities.parsePath(txtFilePath.Text);
-                // load up the settings file
-                _settings = new CalculatorSettingsFile();
-                CalculatorSettingsFile settingsFile = new CalculatorSettingsFile();
-                string checkedPath = settingsFile.checkPath(parsedPath);
-                if (settingsFile.LoadFile(checkedPath))
-                {
-                    // all good
-                    txtSettings.Text = txtFilePath.Text;
-                    _settings = settingsFile;
-                    _dataPath = _settings.GetSetting("LogServiceURL");
-                    showSettings();
-                }
-                else
-                {
-                    //failed to load
-                    LabelError.Text = "Invalid File" + System.Environment.NewLine + _settings.lastValidationError;
-                }
-            }
-            else
-            {
-                txtData.Text = txtFilePath.Text;
-                _dataPath = txtFilePath.Text;
-                showSettings();
-            }
+            // disable for now until I can work out how the advanced options page will work to the future   
+            //if (LabelKey.Text == "Settings File")
+            //{
+            //    // parse the path
+            //    string parsedPath = Utilities.parsePath(txtFilePath.Text);
+            //    // load up the settings file
+            //    _settings = new CalculatorSettingsFile();
+            //    CalculatorSettingsFile settingsFile = new CalculatorSettingsFile();
+            //    string checkedPath = settingsFile.checkPath(parsedPath);
+            //    if (settingsFile.LoadFile(checkedPath))
+            //    {
+            //        // all good
+            //        txtSettings.Text = txtFilePath.Text;
+            //        _settings = settingsFile;
+            //        _dataPath = _settings.GetSetting("LogServiceURL");
+            //        showSettings();
+            //    }
+            //    else
+            //    {
+            //        //failed to load
+            //        LabelError.Text = "Invalid File" + System.Environment.NewLine + _settings.lastValidationError;
+            //    }
+            //}
+            //else
+            //{
+            //    txtData.Text = txtFilePath.Text;
+            //    _dataPath = txtFilePath.Text;
+            //    showSettings();
+            //}
         }
 
         private void showSettings()
@@ -120,8 +114,7 @@ namespace Fatigue_Calculator_Desktop
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            // need to pass on the new settings file
-            this.NavigationService.Navigate(new adminMenuPage(_settings));
+            this.NavigationService.Navigate(new adminMenuPage());
         }
     }
 }

@@ -41,8 +41,7 @@ namespace Fatigue_Calculator_Desktop
             Page startPage;
             if (admin)
             {
-                ICalculatorSettings settings = new CalculatorSettingsFile();
-                startPage = new adminMenuPage(settings);
+                startPage = new adminMenuPage();
             }
             else
             {
