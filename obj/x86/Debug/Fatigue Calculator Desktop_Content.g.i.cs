@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/spinmiddle.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("config/config.xml")]
 
 

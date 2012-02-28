@@ -37,7 +37,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -224,6 +224,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -242,6 +243,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="adminAdvancedOptionsPage.xaml.cs">
+      <DependentUpon>adminAdvancedOptionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Config\configItem.cs" />
+    <Compile Include="Config\ConfigSettings.cs" />
+    <Compile Include="Config\ConfigSourceFile.cs" />
+    <Compile Include="Config\FatigueCalcConfig.cs" />
+    <Compile Include="Config\IConfigSource.cs" />
+    <Compile Include="Config\IValidator.cs" />
     <Compile Include="confirmPage.xaml.cs">
       <DependentUpon>confirmPage.xaml</DependentUpon>
     </Compile>
@@ -252,15 +262,31 @@
     <Compile Include="graphPage.xaml.cs">
       <DependentUpon>graphPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="adminGraphPage.xaml.cs">
+      <DependentUpon>adminGraphPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ICalculatorSettings.cs" />
     <Compile Include="identity.cs" />
-    <Compile Include="IdentityFile.cs" />
+    <Compile Include="identityFile.cs" />
+    <Compile Include="identityLookupFactory.cs" />
     <Compile Include="identityPage.xaml.cs">
       <DependentUpon>identityPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="adminIDListPage.xaml.cs">
+      <DependentUpon>adminIDListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IidentityLookup.cs" />
     <Compile Include="IIdentityService.cs" />
     <Compile Include="ILogService.cs" />
     <Compile Include="logentry.cs" />
     <Compile Include="logFile.cs" />
+    <Compile Include="adminMenuPage.xaml.cs">
+      <DependentUpon>adminMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="lookupClosed.cs" />
+    <Compile Include="lookupFixed.cs" />
+    <Compile Include="lookupOpen.cs" />
+    <Compile Include="lookupNone.cs" />
     <Compile Include="Print.cs" />
     <Compile Include="recommendPage.xaml.cs">
       <DependentUpon>recommendPage.xaml</DependentUpon>
@@ -268,6 +294,10 @@
     <Compile Include="resultsPage.xaml.cs">
       <DependentUpon>resultsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="adminSettingsPage.xaml.cs">
+      <DependentUpon>adminSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="shiftPage.xaml.cs">
       <DependentUpon>shiftPage.xaml</DependentUpon>
     </Compile>
@@ -281,6 +311,10 @@
     <Compile Include="welcomePage.xaml.cs">
       <DependentUpon>welcomePage.xaml</DependentUpon>
     </Compile>
+    <Page Include="adminAdvancedOptionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="confirmPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -293,9 +327,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="adminGraphPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="identityPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="adminIDListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="adminMenuPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="recommendPage.xaml">
       <SubType>Designer</SubType>
@@ -304,6 +350,10 @@
     <Page Include="resultsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="adminSettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="shiftPage.xaml">
       <SubType>Designer</SubType>
@@ -361,9 +411,6 @@
     <Resource Include="Fonts\PFHandbookPro-Regular.otf" />
     <Resource Include="Fonts\PFHandbookPro-Thin.otf" />
     <None Include="app.config" />
-    <Resource Include="People.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -434,6 +481,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\SpinMiddle.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Config\Config.xml">
+      <SubType>Designer</SubType>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

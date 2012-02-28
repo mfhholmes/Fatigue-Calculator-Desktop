@@ -14,7 +14,7 @@ namespace Fatigue_Calculator_Desktop
         public string Id
         {
             get { return _id; }
-            set { _id = value; }
+            set { _id = value.ToUpper(); }
         }
         private string _name = "";
         public string Name
@@ -22,7 +22,7 @@ namespace Fatigue_Calculator_Desktop
             get { return _name; }
             set
             {
-                _name = value;
+                _name = value.ToUpper();
                 _isValid = true;
             }
         }
@@ -41,7 +41,7 @@ namespace Fatigue_Calculator_Desktop
         public identity(string line)
         {
             //string noquotes = line.Replace(QUOTE.ToString(), String.Empty);
-            string[] values = line.Split(',');
+            string[] values = line.ToUpper().Split(',');
             //remove any whitespace outside the quotes
             for (int i = 0; i < values.Length; i++)
             {
@@ -120,7 +120,7 @@ namespace Fatigue_Calculator_Desktop
             if (otherId == null)
                 return false;
             // check for equal values
-            if ((otherId.Name == this.Name) && (otherId.Id == this.Id))
+            if ((otherId.Name.ToUpper() == this.Name.ToUpper()) && (otherId.Id.ToUpper() == this.Id.ToUpper()))
                 return true;
             else
                 return false;

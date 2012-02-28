@@ -20,28 +20,33 @@ namespace Fatigue_Calculator_Desktop
     public partial class identityPage : Page
     {
         private calculation _currentCalc;
-        private IdentityFile _idFile;
-
-        private enum lookupType
-        {
-            none,
-            dynamic,
-            single
-        }
-        private lookupType lookup;
-
+        private IidentityLookup _idLookup;
 
         public identityPage()
         {
             InitializeComponent();
-            loadIdentities();
+            _idLookup = new identityLookupFactory().getLookup();
         }
         public identityPage(calculation passedCalc)
         {
             InitializeComponent();
             // set up values from calculation
             _currentCalc = passedCalc;
-            loadIdentities();
+            _idLookup = new identityLookupFactory().getLookup();
+        }
+
+        public bool skipPage
+        {
+            get
+            {
+                if(!_idLookup.displayPage)
+                {
+                    // skipping the page, so set the default identity
+                    _currentCalc.currentInputs.identity = _idLookup.validate("");
+                    return true;
+                }
+                return false;
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -52,65 +57,30 @@ namespace Fatigue_Calculator_Desktop
 
         private void btnGo_Click(object sender, RoutedEventArgs e)
         {
-            // no validation for the identity
-            switch (lookup)
+            // get the match from the lookup
+            identity valid = new identity(_idLookup.validate(txtName.Text));
+            _currentCalc.currentInputs.identity = valid.Name;
+            if(!valid.isValid)
             {
-                case lookupType.none:
-                    {
-                        //  no validation, free input, let's go
-                        _currentCalc.currentInputs.identity = this.txtName.Text;
-                        break;
-                    }
-                case lookupType.dynamic:
-                    {
-                        // check if it's a valid name or not
-                        if (checkLookup(txtName.Text, true))
-                        {
-                            // matched, and already in the control, let's go
-                            _currentCalc.currentInputs.identity = this.txtName.Text;
-                            break;
-                        }
-                        else
-                        {
-                            // didn't match...no go
-                            return;
-                        }
-                    }
-                case lookupType.single:
-                    {
-                        // check if it's a valid name or not
-                        if (checkLookup(txtName.Text, true))
-                        {
-                            // matched, but not in the control
-                            List<identity> matches = _idFile.LookUpName(txtName.Text);
-                            if (matches.Count == 1)
-                                this.txtName.Text = matches.ElementAt(0).Name;
-                            _currentCalc.currentInputs.identity = this.txtName.Text;
-                            break;
-                        }
-                        else
-                        {
-                            // didn't match...no go
-                            return;
-                        }
-                    }
-                default:
-                    {
-                        //TODO: some kind of error here?
-                        return;
-                    }
+                match.Text = "That name or ID does not match a valid identity.";
+                match.Visibility = System.Windows.Visibility.Visible;
+                return;
             }
             // now check if this is their first calculation, and if so, give them the Disclaimer
-            if (_idFile.LookUpName(txtName.Text).Count == 0)
-            {
-                disclaimerPage disclaimer = new disclaimerPage(_currentCalc);
-                this.NavigationService.Navigate(disclaimer);
-            }
-            else
+            ILogService log = new logFile();
+            log.setLogURL(Properties.Settings.Default.LogServiceURL);
+
+            if(log.isIdentityOnLog(valid))
             {
                 shiftPage next = new shiftPage(_currentCalc);
                 this.NavigationService.Navigate(next);
             }
+            else
+            {
+                disclaimerPage disclaimer = new disclaimerPage(_currentCalc);
+                this.NavigationService.Navigate(disclaimer);
+            }
+
         }
 
         private void Keyboard_Click(object sender, RoutedEventArgs e)
@@ -120,133 +90,30 @@ namespace Fatigue_Calculator_Desktop
             else if (key.Content.ToString() == "Reset") txtName.Text = "";
             else if (key.Content.ToString() == "Space") txtName.Text += " ";
             else txtName.Text = txtName.Text + key.Content.ToString();
-            checkLookup(txtName.Text,false);
+            checkLookup(txtName.Text);
 
         }
-        private void loadIdentities()
+        private bool checkLookup(string text)
         {
-        _idFile = new IdentityFile();
-#if (Multiuser || Unprotected || DEBUG)
-            // get the lookup type from the settings
-            string ltype = Properties.Settings.Default.IDLookupType;
-            string filename = Properties.Settings.Default.IdentityLookupFile;
-            
-            switch (ltype.ToLower())
+            match.Visibility = System.Windows.Visibility.Visible;
+            int numMatches = _idLookup.getMatchCount(text);
+            if (numMatches == 1)
             {
-                case "dynamic":
-                    {
-                        if ( _idFile.SetIdentityListSource(filename))
-                        {
-                            lookup = lookupType.dynamic;
-                        }
-                        else
-                        {
-                            lookup = lookupType.none;
-                        }
-                        break;
-                    }
-                case "none":
-                    {
-                        lookup= lookupType.none;
-                        break;
-                    }
-                case "single":
-                    {
-                        if (_idFile.SetIdentityListSource(filename))
-                        {
-                            lookup = lookupType.single;
-                        }
-                        else
-                        {
-                            lookup = lookupType.none;
-                        }
-                        break;
-                    }
-                default:
-                    {
-                        lookup= lookupType.none;
-                        break;
-                    }
+                txtName.Text = _idLookup.getBestMatch(text);
+                txtName.CaretIndex = txtName.Text.Length;
+                match.Text = "valid identity match";
+                return true;
             }
-            
-#else
-            lookup = lookupType.none;
-            return;
-#endif
-            //try
-        }
-        private bool checkLookup(string text, bool isFinal)
-        {
-            identity matched;
-            // check the flag
-            switch (lookup)
-            {
-                case lookupType.dynamic:
-                    {
-                        int matches = _idFile.LookUpName(text).Count;
-                        if (matches == 1)
-                        {
-                            matched = _idFile.LookUpName(text).ElementAt(0);
-                            txtName.Text = matched.Name;
-                            match.Visibility = System.Windows.Visibility.Visible;
-                            match.Text = "Match Found";
-                            return true;
-                        }
-                        else
-                        {
-                            match.Visibility = System.Windows.Visibility.Visible;
-                            if (matches > 0)
-                            {
-                                match.Text = "Multiple Matches Found";
-                            }
-                            else
-                            {
-                                match.Text = "No Matches Found";
-                            }
-                            return false;
-                        }
-                    }
-                case lookupType.none:
-                    {
-                        // always return false...free entry
-                        match.Visibility = System.Windows.Visibility.Hidden;
-                        return false;
-                    }
-                case lookupType.single:
-                    {
-                        if (isFinal)
-                        {
-                            int matches = _idFile.LookUpName(text).Count;
-                            if (matches == 1)
-                            {
-                                matched = _idFile.LookUpName(text).ElementAt(0);
-                                txtName.Text = matched.Name;
-                                match.Visibility = System.Windows.Visibility.Visible;
-                                match.Text = "Match Found";
-                                return true;
-                            }
-                            else
-                            {
-                                match.Visibility = System.Windows.Visibility.Visible;
-                                match.Text = "Multiple Matches Found";
-                                return false;
-                            }
-                        }
-                        else
-                        {
-                            match.Visibility = System.Windows.Visibility.Hidden;
-                            return false;
-                        }
-                            
-                    }
-                default:
-                    return false;
-            }
+            if (numMatches == 0)
+                match.Text = "no matches";
+            else
+                match.Text = "multiple matches";
+            return false;
         }
 
         private void txtName_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = checkLookup(e.Text,false);
+            e.Handled = checkLookup(txtName.Text + e.Text);
         }
 
     }

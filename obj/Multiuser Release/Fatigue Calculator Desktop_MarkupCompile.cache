@@ -10,11 +10,11 @@ none
 false
 TRACE;Multiuser
 O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\App.xaml
-11-1565247480
+16-1977125199
 
-25-272287073
-12-1381780322
-confirmPage.xaml;disclaimerPage.xaml;graphPage.xaml;identityPage.xaml;recommendPage.xaml;resultsPage.xaml;shiftPage.xaml;sleepPage.xaml;spinner.xaml;welcomePage.xaml;MainWindow.xaml;
+40-743667553
+131231921237
+adminAdvancedOptionsPage.xaml;confirmPage.xaml;disclaimerPage.xaml;graphPage.xaml;adminGraphPage.xaml;identityPage.xaml;adminIDListPage.xaml;adminMenuPage.xaml;recommendPage.xaml;resultsPage.xaml;adminSettingsPage.xaml;shiftPage.xaml;sleepPage.xaml;spinner.xaml;welcomePage.xaml;MainWindow.xaml;
 
 False
 

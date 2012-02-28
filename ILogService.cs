@@ -12,5 +12,6 @@ namespace Fatigue_Calculator_Desktop
         bool AddLogEntry(logEntry newEntry);
         bool isValid { get; }
         Exception lastError{get;}
+        bool isIdentityOnLog(identity user);
     }
 }

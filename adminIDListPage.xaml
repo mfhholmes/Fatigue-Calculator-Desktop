@@ -1,0 +1,115 @@
+﻿<Page x:Class="Fatigue_Calculator_Desktop.adminIDListPage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	  mc:Ignorable="d" 
+	  d:DesignHeight="643" d:DesignWidth="1024"
+	  Background="{StaticResource brushFCBlue}"
+	  Title="ID List Management"
+>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="40"></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="75"></ColumnDefinition>
+			<ColumnDefinition Width="75"></ColumnDefinition>
+			<ColumnDefinition Width="40"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"></RowDefinition>
+			<RowDefinition Height="50"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition  Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="50"></RowDefinition>
+			<RowDefinition Height="40"></RowDefinition>
+		</Grid.RowDefinitions>
+		<TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9" Style="{StaticResource styleFCHeading1Orange}">Identity List Management</TextBlock>
+		<Border Grid.Row="3" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="10" BorderBrush="Black" BorderThickness="2" Background="White" Padding="10" CornerRadius="20" Name="bdrList" Visibility="Hidden" >
+			<StackPanel VerticalAlignment="Top">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition></RowDefinition>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition></ColumnDefinition>
+						<ColumnDefinition Width="8*"></ColumnDefinition>
+						<ColumnDefinition></ColumnDefinition>
+						<ColumnDefinition Width="4*"></ColumnDefinition>
+						<ColumnDefinition Width="2*"></ColumnDefinition>
+						<ColumnDefinition Width="2*"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+					<TextBlock Grid.Column="1" Style="{StaticResource styleFCHeading2Blue}" HorizontalAlignment="Left">Name</TextBlock>
+					<TextBlock Grid.Column="3" Style="{StaticResource styleFCHeading2Blue}" HorizontalAlignment="Left">Id Reference</TextBlock>
+					<TextBlock Name="styleSample" Grid.Row="0" Grid.Column="2" Style="{StaticResource styleFCSettingBlue}" Visibility="Hidden" VerticalAlignment="Center">Dave Smith</TextBlock>
+					<Button  Grid.Row ="0" Grid.Column="4" Template="{StaticResource controlFCButton}" Height="10px" Name="buttonSample" Visibility="Hidden" >Edit</Button>
+				</Grid>
+				<ScrollViewer Name="scrollViewer1" CanContentScroll="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Stretch" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="350" >
+					<Grid Name="grdContent" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+						<Grid.RowDefinitions>
+							<RowDefinition></RowDefinition>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition></ColumnDefinition>
+							<ColumnDefinition Width="8*"></ColumnDefinition>
+							<ColumnDefinition></ColumnDefinition>
+							<ColumnDefinition Width="4*"></ColumnDefinition>
+							<ColumnDefinition Width="2*"></ColumnDefinition>
+							<ColumnDefinition Width="2*"></ColumnDefinition>
+						</Grid.ColumnDefinitions>
+						<CheckBox Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"></CheckBox>
+						<TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource styleFCSettingBlue}" VerticalAlignment="Center">Dave Smith</TextBlock>
+						<TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource styleFCSettingBlue}" VerticalAlignment="Center">A1AA1</TextBlock>
+						<Button  Grid.Row ="0" Grid.Column="4" Template="{StaticResource controlFCButton}" Height="32px" Click="edit_Click">Edit</Button>
+						<Button  Grid.Row ="0" Grid.Column="5" Template="{StaticResource controlFCButton}" Height="32px" Click="del_Click">Delete</Button>
+					</Grid>
+				</ScrollViewer> 
+			</StackPanel>
+		</Border>
+		<Button Content="Add New" Grid.Column="1" Grid.Row="9" Name="btnAdd" Template="{StaticResource controlFCButton}" Click="btnAdd_Click" />
+		<Button Content="Back" Grid.Column="9" Grid.Row="9" Grid.ColumnSpan="2"  Name="btnBack" Template="{StaticResource controlFCButton}" Click="btnBack_Click" />
+		<Border Grid.Row="3" Grid.RowSpan="7" Grid.Column="1" Grid.ColumnSpan="10" BorderBrush="Black" BorderThickness="2" Background="White" Padding="10" CornerRadius="20" Name="bdrIdentity" Visibility="Visible" >
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="1*"/>
+					<RowDefinition Height="3*"/>
+					<RowDefinition Height="1*"/>
+					<RowDefinition Height="3*"/>
+					<RowDefinition Height="1*"/>
+					<RowDefinition Height="3*"/>
+					<RowDefinition Height="1*"/>
+					<RowDefinition Height="2*"/>
+					<RowDefinition Height="1*"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*"/>
+					<ColumnDefinition Width="5*"/>
+					<ColumnDefinition Width="1*"/>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="3*"/>
+					<ColumnDefinition Width="1*"/>					
+				</Grid.ColumnDefinitions>
+				<TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource styleFCHeading2Blue}" HorizontalAlignment="Right" VerticalAlignment="Center">Name:</TextBlock>
+				<TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource styleFCHeading2Blue}" HorizontalAlignment="Right" VerticalAlignment="Center">Identity Reference:</TextBlock>
+				<TextBox Grid.Row="1" Grid.Column="3" Name="txtName" FontSize="32" FontFamily="Arial" HorizontalAlignment="Stretch" VerticalAlignment="Center" BorderThickness="2" Grid.ColumnSpan="3">Name</TextBox>
+				<TextBox Grid.Row="3" Grid.Column="3" Name="txtIdentity" FontSize=" 32" FontFamily="Arial" HorizontalAlignment="Stretch" VerticalAlignment="Center" BorderThickness="2" Grid.ColumnSpan="3">Identity</TextBox>
+				<TextBlock Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5" Style="{StaticResource styleFCHeading2Blue}" Foreground="Red" HorizontalAlignment="Stretch" VerticalAlignment="Center" Visibility="Hidden" Name="ErrorMessage" >Error Message</TextBlock>
+				<Button Grid.Row="7" Grid.Column="3" Name="btnCancel" Template="{StaticResource controlFCButton}" Click="btnCancel_Click">Cancel</Button>
+				<Button Grid.Row="7" Grid.Column="5" Name="btnOK" Template="{StaticResource controlFCButton}" Click="btnOK_Click">OK</Button>
+			</Grid>
+		</Border>
+	</Grid>
+</Page>

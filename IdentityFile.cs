@@ -6,14 +6,14 @@ using System.IO;
 
 namespace Fatigue_Calculator_Desktop
 {
-    public class IdentityFile : IIdentityService
+    public class identityFile : IIdentityService
     {
         string _logFile = "";
         bool _isValid = false;
         List<identity> _identities = new List<identity>();
         Exception _lastError = null;
 
-        public IdentityFile()
+        public identityFile()
         {
             // do nothing at this point
         }
@@ -58,10 +58,11 @@ namespace Fatigue_Calculator_Desktop
 
         public List<identity> LookUpId(string Id)
         {
+            string id = Id.ToUpper();
             if (!_isValid) return
                 new List<identity>();
             List<identity> result = new List<identity>();
-            foreach (identity matchedId in _identities.Where(ident => ident.Id.IndexOf(Id) > -1))
+            foreach (identity matchedId in _identities.Where(ident => ident.Id.IndexOf(id) == 0))
             {
                 result.Add(matchedId);
             }
@@ -70,10 +71,11 @@ namespace Fatigue_Calculator_Desktop
 
         public List<identity> LookUpName(string Name)
         {
+            string name = Name.ToUpper();
             if (!_isValid) return
                 new List<identity>();
             List<identity> result = new List<identity>();
-            foreach (identity matchedId in _identities.Where(ident => ident.Name.IndexOf(Name) > -1))
+            foreach (identity matchedId in _identities.Where(ident => ident.Name.IndexOf(name) == 0))
             {
                 result.Add(matchedId);
             }
@@ -82,10 +84,11 @@ namespace Fatigue_Calculator_Desktop
 
         public List<identity> ExactMatchId(string Id)
         {
+            string id = Id.ToUpper();
             if (!_isValid) return
                 new List<identity>();
             List<identity> result = new List<identity>();
-            foreach (identity matchedId in _identities.Where(ident => ident.Id == Id))
+            foreach (identity matchedId in _identities.Where(ident => ident.Id == id))
             {
                 result.Add(matchedId);
             }
@@ -94,10 +97,11 @@ namespace Fatigue_Calculator_Desktop
 
         public List<identity> ExactMatchName(string Name)
         {
+            string name = Name.ToUpper();
             if (!_isValid) return
                 new List<identity>();
             List<identity> result = new List<identity>();
-            foreach(identity matchedId in _identities.Where(ident => ident.Name == Name))
+            foreach(identity matchedId in _identities.Where(ident => ident.Name == name))
             {
                 result.Add(matchedId);
             }

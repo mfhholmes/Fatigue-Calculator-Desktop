@@ -224,6 +224,37 @@ namespace Fatigue_Calculator_Desktop
             writer.Close();
             return true;
         }
+        bool ILogService.isIdentityOnLog(identity user)
+        {
+            // check for valid log
+            if (!_isValid)
+                return false;
+            // check for name
+            int matches = 0;
+            if (user.Name.Length > 0)
+            {
+                matches = _logEntries.Count<logEntry>(entry => entry.Identity == user.Name);
+                if (matches > 0)
+                    return true;
+            }
+            // no matches, so check for id
+            if (user.Id.Length > 0)
+            {
+                matches = _logEntries.Count<logEntry>(entry => entry.Identity == user.Id);
+                if (matches > 0)
+                    return true;
+            }
+            // no matches, so check for identity string
+            string ident = user.ToString();
+            if (ident.Length > 0)
+            {
+                matches = _logEntries.Count<logEntry>(entry => entry.Identity == ident);
+                if (matches > 0)
+                    return true;
+            }
 
+            // no matches, so no matches
+            return false;
+        }
     }
 }
