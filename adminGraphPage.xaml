@@ -39,7 +39,7 @@
 		<Button Template="{StaticResource controlFCButton}" Grid.Row="9" Grid.Column="9" Grid.ColumnSpan="2" Name="btnBack" Click="btnBack_Click">Back</Button>
 		<Button Template="{StaticResource controlFCButton}" Grid.Row="9" Grid.Column="5" Name="btnSwitch" Click="btnSwitch_Click">Graph By Date</Button>
 
-		<Border Grid.Row="3" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="10" BorderBrush="Black" BorderThickness="2" Background="White" Padding="10" CornerRadius="20" >
+		<Border Grid.Row="3" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="10" BorderBrush="Black" BorderThickness="2" Background="White" Padding="10" CornerRadius="20" Name="bdrGraph" Panel.ZIndex="1" Visibility="Visible">
 			<ScrollViewer >
 				<Grid Name="grdResults">
 				<Grid.RowDefinitions>
@@ -109,6 +109,6 @@
 			<DatePicker Grid.Column="3" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="dtpFirst" FontSize="24" VerticalContentAlignment="Stretch" SelectedDateChanged="dtp_SelectedDateChanged"/>
 			<DatePicker Grid.Column="5" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="dtpLast" FontSize="24" VerticalContentAlignment="Stretch" SelectedDateChanged="dtp_SelectedDateChanged" />
 		</Grid>
-
+		<TextBlock Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="7" Style="{StaticResource styleFCHeading2White}" Name="txtError" HorizontalAlignment="Center">Error Message</TextBlock>
 	</Grid>
 </Page>

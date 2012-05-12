@@ -67,29 +67,29 @@ namespace Fatigue_Calculator_Desktop
             return "";
         }
 
-        string IidentityLookup.validate(string value)
+        identity IidentityLookup.validate(string value)
         {
             // return empty string if no source
             if (_source == null)
-                return "";
+                return null;
 
             // check that we've got an exact match
             // if not, add the name to the file (assume the value is a name)
             // and return it
             // always return an empty match for an empty string
             if (value.Length == 0)
-                return "";
+                return null;
             // unsure whether they're entering a name or an id, so return the one with the largest matches
             List<identity> matches = _source.ExactMatchName(value);
             if (matches.Count == 1)
-                return matches.ElementAt<identity>(0).Name;
+                return matches.ElementAt<identity>(0);
 
             matches = _source.ExactMatchId(value);
             if (matches.Count == 1)
-                return matches.ElementAt<identity>(0).Name;
+                return matches.ElementAt<identity>(0);
 
             // no exact matches, so return empty string
-            return "";
+            return null;
         }
 
         bool IidentityLookup.displayPage

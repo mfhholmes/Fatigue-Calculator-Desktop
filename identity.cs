@@ -26,6 +26,25 @@ namespace Fatigue_Calculator_Desktop
                 _isValid = true;
             }
         }
+        public enum researchStates
+        {
+            research_unasked,
+            research_approved,
+            research_denied
+        }
+        private researchStates _researchApproved = researchStates.research_unasked;
+        public researchStates ResearchApproved
+        {
+            get { return _researchApproved; }
+            set { _researchApproved = value; }
+        }
+        public string logString
+        {
+            get
+            {
+                return _name;
+            }
+        }
         public bool isValid
         {
             get { return _isValid; }
@@ -36,6 +55,13 @@ namespace Fatigue_Calculator_Desktop
             result += QUOTE + _id + QUOTE;
             result += ",";
             result += QUOTE + _name + QUOTE;
+            result += ",";
+            if (_researchApproved == researchStates.research_approved)
+                result += QUOTE + "approved" + QUOTE;
+            else if (_researchApproved == researchStates.research_denied)
+                result += QUOTE + "denied" + QUOTE;
+            else
+                result += QUOTE + "unknown" + QUOTE;
             return result;
         }
         public identity(string line)
@@ -69,22 +95,47 @@ namespace Fatigue_Calculator_Desktop
                         {
                             _name = "";
                             _id = "";
+                            _researchApproved = researchStates.research_unasked;
                             _isValid = false;
-                            break;
                         }
                         else
-                        {
-                            _name = line;
-                            _id = "";
-                            _isValid = true;
-                            break;
-                        }
+                            // check for ":" in the middle
+                            if (values[0].IndexOf(@":") > 0)
+                            { 
+                                int brk = values[0].IndexOf(@":");
+                                _id = values[0].Substring(0, brk);
+                                _name = values[0].Substring(brk);
+                            }
+                            else
+                            {
+                                // just the name
+                                _name = line;
+                                _id = "";
+                                _researchApproved = researchStates.research_unasked;
+                                _isValid = true;
+                            }
+                        break;
                     }
                 case 2:
                     {
                         // name and number
                         _id = values[0];
                         _name = values[1];
+                        _researchApproved = researchStates.research_unasked;
+                        _isValid = true;
+                        break;
+                    }
+                case 3:
+                    {
+                        // name, number and research question
+                        _id = values[0];
+                        _name = values[1];
+                        if (values[2].ToLower() == "approved")
+                            _researchApproved = researchStates.research_approved;
+                        else if (values[2].ToLower() == "denied")
+                            _researchApproved = researchStates.research_denied;
+                        else
+                            _researchApproved = researchStates.research_unasked;
                         _isValid = true;
                         break;
                     }
@@ -93,16 +144,18 @@ namespace Fatigue_Calculator_Desktop
                         // nothing to do, there's no meaningful interpretation
                         _name = "";
                         _id = "";
+                        _researchApproved = researchStates.research_unasked;
                         _isValid = false;
                         break;
                     }
             }
         }
 
-        public identity(string name, string id)
+        public identity(string name, string id, researchStates research)
         {
-            _name = name;
-            _id = id;
+            _name = name.ToUpper();
+            _id = id.ToUpper();
+            _researchApproved = research;
             _isValid = true;
         }
 
@@ -124,7 +177,7 @@ namespace Fatigue_Calculator_Desktop
                 return true;
             else
                 return false;
-
+            // research question has no bearing on equality
         }
         public override int GetHashCode()
         {

@@ -15,7 +15,10 @@ namespace Fatigue_Calculator_Desktop.Config
             get { return _validator; }
         }
         private bool _changed = false;
-
+        public bool changed
+        {
+            get { return _changed; }
+        }
 
         private string _key = "";
         public string key
@@ -274,12 +277,12 @@ namespace Fatigue_Calculator_Desktop.Config
             bool IValidator.setup(XmlNode validationNode)
             {
                 // int validation has a min and a max
-                // TODO: do some checking that the bloody rules parsed
                 XmlNode node = validationNode.SelectSingleNode("min");
-                int.TryParse(node.InnerText, out _min);
+                if (!int.TryParse(node.InnerText, out _min))
+                    _min = int.MinValue;
                 node = validationNode.SelectSingleNode("max");
-                int.TryParse(node.InnerText, out _max);
-                
+                if (!int.TryParse(node.InnerText, out _max))
+                    _max = int.MaxValue;
                 return true;
             }
 
@@ -305,11 +308,13 @@ namespace Fatigue_Calculator_Desktop.Config
             bool IValidator.setup(XmlNode validationNode)
             {
                 //string validation has a minlength and a maxlength
-                // TODO: do some checking that the bloody rules parsed
                 XmlNode node = validationNode.SelectSingleNode("minLength");
-                int.TryParse(node.InnerText, out _minLength);
+                if (!int.TryParse(node.InnerText, out _minLength))
+                    _minLength = 0;
                 node = validationNode.SelectSingleNode("maxLength");
-                int.TryParse(node.InnerText, out _maxLength);
+                if (!int.TryParse(node.InnerText, out _maxLength))
+                    _maxLength = 1024; // number plucked from thin air, but reasonable.
+                
                 return true;
 
             }

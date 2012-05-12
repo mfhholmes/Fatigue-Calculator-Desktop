@@ -78,7 +78,7 @@
 					<ColumnDefinition Width="1*"></ColumnDefinition>
 				</Grid.ColumnDefinitions>
 				<TextBlock Name="LabelKey" Style="{StaticResource styleFCHeading2Blue}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" >Setting Name</TextBlock>
-				<TextBox Name="txtValue" FontFamily="Arial" FontSize="36" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5"></TextBox>
+				<TextBox Name="txtValue" FontFamily="Arial" FontSize="30" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5"></TextBox>
 				<TextBlock Name="LabelDescription" Style="{StaticResource styleFCHeading2Blue}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5" TextAlignment="Justify" HorizontalAlignment="Stretch" FontSize="24">Description of the purpose of the setting currently displayed and common values for it</TextBlock>
 				<TextBlock Name="LabelError" Style="{StaticResource styleFCHeading2Blue}" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" TextAlignment="Center" HorizontalAlignment="Stretch" FontSize="24" Foreground="Red"></TextBlock>
 				<Button Name="btnOK" Grid.Row="9" Grid.Column="5" Template="{StaticResource controlFCButton}" Click="btnOK_Click">OK</Button>

@@ -92,3 +92,5 @@ D:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\
 D:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Debug\Fatigue_Calculator_Desktop.Properties.Resources.resources
 D:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Debug\GenerateResource.read.1.tlog
 D:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Debug\GenerateResource.write.1.tlog
+O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Debug\researchPage.baml
+O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Debug\researchPage.g.cs

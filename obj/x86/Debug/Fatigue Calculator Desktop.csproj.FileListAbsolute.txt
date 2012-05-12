@@ -143,3 +143,5 @@ D:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\
 D:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Debug\GenerateResource.read.1.tlog
 D:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Debug\GenerateResource.write.1.tlog
 D:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Debug\Fatigue Calculator Desktop.pdb
+O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Debug\researchPage.baml
+O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Debug\researchPage.g.cs

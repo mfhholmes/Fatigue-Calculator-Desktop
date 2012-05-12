@@ -85,5 +85,11 @@ namespace Fatigue_Calculator_Desktop.Config
             return result;
         }
 
+
+
+        string IConfigSource.URL
+        {
+            get { return _filename; }
+        }
     }
 }

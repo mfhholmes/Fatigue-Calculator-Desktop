@@ -33,8 +33,16 @@ namespace Fatigue_Calculator_Desktop
         }
         private void btnGo_Click(object sender, RoutedEventArgs e)
         {
-            shiftPage nextPage = new shiftPage(currentCalc);
-            this.NavigationService.Navigate(nextPage);
+            if (Config.ConfigSettings.settings.researchPage == "shown")
+            {
+                researchPage nextPage = new researchPage(currentCalc);
+                this.NavigationService.Navigate(nextPage);
+            }
+            else
+            {
+                shiftPage nextPage = new shiftPage(currentCalc);
+                this.NavigationService.Navigate(nextPage);
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

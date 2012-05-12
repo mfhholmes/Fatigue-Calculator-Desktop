@@ -31,9 +31,9 @@ namespace Fatigue_Calculator_Desktop
             return value;
         }
 
-        string IidentityLookup.validate(string value)
+        identity IidentityLookup.validate(string value)
         {
-            return value;
+            return new identity(value);
         }
 
         bool IidentityLookup.displayPage

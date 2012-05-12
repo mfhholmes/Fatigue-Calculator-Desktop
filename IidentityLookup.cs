@@ -14,6 +14,6 @@ namespace Fatigue_Calculator_Desktop
         IIdentityService source { get; set; }
         int getMatchCount(string value);
         string getBestMatch(string value);
-        string validate(string value);
+        identity validate(string value);
     }
 }

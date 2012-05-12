@@ -22,7 +22,7 @@ namespace Fatigue_Calculator_Desktop
     /// </summary>
     public partial class adminAdvancedOptionsPage : Page
     {
-        private string _dataPath = "";
+        //private string _dataPath = "";
         private string _filter = "";
 
         public adminAdvancedOptionsPage()
@@ -64,41 +64,25 @@ namespace Fatigue_Calculator_Desktop
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            // disable for now until I can work out how the advanced options page will work to the future   
-            //if (LabelKey.Text == "Settings File")
-            //{
-            //    // parse the path
-            //    string parsedPath = Utilities.parsePath(txtFilePath.Text);
-            //    // load up the settings file
-            //    _settings = new CalculatorSettingsFile();
-            //    CalculatorSettingsFile settingsFile = new CalculatorSettingsFile();
-            //    string checkedPath = settingsFile.checkPath(parsedPath);
-            //    if (settingsFile.LoadFile(checkedPath))
-            //    {
-            //        // all good
-            //        txtSettings.Text = txtFilePath.Text;
-            //        _settings = settingsFile;
-            //        _dataPath = _settings.GetSetting("LogServiceURL");
-            //        showSettings();
-            //    }
-            //    else
-            //    {
-            //        //failed to load
-            //        LabelError.Text = "Invalid File" + System.Environment.NewLine + _settings.lastValidationError;
-            //    }
-            //}
-            //else
-            //{
-            //    txtData.Text = txtFilePath.Text;
-            //    _dataPath = txtFilePath.Text;
-            //    showSettings();
-            //}
+            try
+            {
+                Config.ConfigSettings.settings.logServiceUrl = txtFilePath.Text;
+                Config.ConfigSettings.saveSettings();
+                showSettings();
+            }
+            catch (Exception err)
+            {
+                LabelError.Text = err.Message;
+            }
         }
 
         private void showSettings()
         {
             bdrSettings.Visibility = System.Windows.Visibility.Visible;
             bdrChanges.Visibility = System.Windows.Visibility.Hidden;
+            txtData.Text = Config.ConfigSettings.settings.logServiceUrl;
+            txtSettings.Text = Config.ConfigSettings.source.URL;
+            btnChangeSettings.Visibility = System.Windows.Visibility.Hidden;
         }
         private void showChanges()
         {

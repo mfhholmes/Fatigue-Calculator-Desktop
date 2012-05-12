@@ -19,7 +19,7 @@ namespace Fatigue_Calculator_Desktop
     /// </summary>
     public partial class adminMenuPage : Page
     {
-        private string _dataPath = "";
+        //private string _dataPath = "";
 
         public adminMenuPage()
         {

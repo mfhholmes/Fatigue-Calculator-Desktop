@@ -14,7 +14,12 @@ namespace Fatigue_Calculator_Desktop.Config
 
         public static IConfigSource source
         {
-            get { return _source; }
+            get 
+            {
+                if (_source == null)
+                    source = new ConfigSourceFile();
+                return _source; 
+            }
             set {
                 _source = value;
                 _settingsXML = source.getConfigXML();
@@ -131,6 +136,12 @@ namespace Fatigue_Calculator_Desktop.Config
             setting.strValue = "SingleUser";
             _settings.Add(setting);
 
+            //research page
+            setting = new configItem();
+            setting.validationXML = "<validation><type>choice</type><fixedValueSet><value>shown</value><value>not shown</value></fixedValueSet></validation>";
+            setting.key = "researchPage";
+            setting.name = "Show Research Page";
+            setting.description = "Determines if the Research Page asking the user for their consent for research data is shown or not. Values can be 'shown' or 'not shown'";
             return true;
         }
 

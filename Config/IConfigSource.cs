@@ -10,5 +10,6 @@ namespace Fatigue_Calculator_Desktop.Config
     {
         XmlDocument getConfigXML();
         bool saveConfigXML(XmlDocument newVersion);
+        string URL { get; }
     }
 }

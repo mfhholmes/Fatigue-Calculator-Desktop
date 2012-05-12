@@ -29,8 +29,8 @@ namespace Fatigue_Calculator_Desktop.Config
         private configItem _highThreshold;
         public int highThreshold
         {
-            get { return _lowThreshold.intValue;}
-            set { _lowThreshold.intValue = value; }
+            get { return _highThreshold.intValue;}
+            set { _highThreshold.intValue = value; }
         }
         private configItem _IDLookupFile;
         public string IDLookupFile
@@ -62,6 +62,12 @@ namespace Fatigue_Calculator_Desktop.Config
             get { return _logServiceURL.strValue; }
             set { _logServiceURL.strValue = value; }
         }
+        private configItem _researchPage;
+        public string researchPage
+        {
+            get { return _researchPage.strValue; }
+            set { _researchPage.strValue = value; }
+        }
         /// <summary>
         /// adds a configItem to the config settings
         /// </summary>
@@ -91,14 +97,30 @@ namespace Fatigue_Calculator_Desktop.Config
                         _IDLookupType = newItem;
                         break;
                     }
-                case "deviceId":
+                case "deviceid":
                     {
                         _deviceId = newItem;
                         break;
                     }
-                case "fixedId":
+                case "fixedid":
                     {
                         _fixedId = newItem;
+                        break;
+                    }
+                case "logserviceurl":
+                    {
+                        _logServiceURL = newItem;
+                        break;
+                    }
+                case "researchpage":
+                    {
+                        _researchPage = newItem;
+                        break;
+                    }
+                default:
+                    {
+                        //throw new Exception("unknown config handle");
+                        // just add it to the list but don't assign a handle
                         break;
                     }
             }

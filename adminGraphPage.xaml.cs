@@ -115,13 +115,7 @@ namespace Fatigue_Calculator_Desktop
             if (_dataFilePath.Length == 0)
             {
                 // invalid data path sent...so tell them
-                TextBlock error = new TextBlock();
-                error.Inlines.Add(new Run("A data file cannot be found at the location specified"));
-                error.Inlines.Add(new LineBreak());
-                error.Inlines.Add(new Run("Please check your settings"));
-                error.FontFamily = lblTitle.FontFamily;
-                error.FontSize = 36;
-                error.Foreground = Brushes.Red;
+                txtError.Text = "The data file path specified is invalid. Please check your settings";
             }
             else
             {
@@ -140,6 +134,16 @@ namespace Fatigue_Calculator_Desktop
             // open the file and parse the data in
             _log = new logFile();
             _log.setLogURL(_dataFilePath);
+            //check for no data
+            if (_log.logEntries.Count == 0)
+            {
+                grdByDate.Visibility = System.Windows.Visibility.Hidden;
+                grdByID.Visibility = System.Windows.Visibility.Hidden;
+                bdrGraph.Visibility = System.Windows.Visibility.Hidden;
+                btnSwitch.Visibility = System.Windows.Visibility.Hidden;
+                txtError.Text = "No calculations have been stored in this file.";
+                return;
+            }
             // grab the earliest and latest dates from the file
             _firstResult = _log.logEntries.Min(entry => entry.dateTimeDone);
             _lastResult = _log.logEntries.Max(entry => entry.dateTimeDone);

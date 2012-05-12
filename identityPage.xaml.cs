@@ -21,6 +21,7 @@ namespace Fatigue_Calculator_Desktop
     {
         private calculation _currentCalc;
         private IidentityLookup _idLookup;
+        private bool _warned = false;
 
         public identityPage()
         {
@@ -57,10 +58,16 @@ namespace Fatigue_Calculator_Desktop
 
         private void btnGo_Click(object sender, RoutedEventArgs e)
         {
+            if(_warned)
+            {
+                // just move to the next screen, we've done all this once
+                shiftPage next = new shiftPage(_currentCalc);
+                this.NavigationService.Navigate(next);
+            }
             // get the match from the lookup
-            identity valid = new identity(_idLookup.validate(txtName.Text));
-            _currentCalc.currentInputs.identity = valid.Name;
-            if(!valid.isValid)
+            identity valid = _idLookup.validate(txtName.Text);
+            _currentCalc.currentInputs.identity = valid;
+            if(valid==null || !valid.isValid)
             {
                 match.Text = "That name or ID does not match a valid identity.";
                 match.Visibility = System.Windows.Visibility.Visible;
@@ -72,6 +79,15 @@ namespace Fatigue_Calculator_Desktop
 
             if(log.isIdentityOnLog(valid))
             {
+                // check if they've done a calculation in the last 12 hours
+                DateTime? lastLog = log.lastLogEntryForUser(valid);
+                if ((lastLog != null) && (lastLog > (DateTime.Now - new TimeSpan(12,0,0))))
+                {
+                    // yeah, the last calculation was within the last 12 hours so display a warning
+                    bdrWarning.Visibility = System.Windows.Visibility.Visible;
+                    _warned = true;
+                    return;
+                }
                 shiftPage next = new shiftPage(_currentCalc);
                 this.NavigationService.Navigate(next);
             }
@@ -86,21 +102,41 @@ namespace Fatigue_Calculator_Desktop
         private void Keyboard_Click(object sender, RoutedEventArgs e)
         {
             Button key = (Button)sender;
-            if (key.Content.ToString() == "Back") txtName.Text = txtName.Text.Substring(0, txtName.Text.Length - 1);
-            else if (key.Content.ToString() == "Reset") txtName.Text = "";
-            else if (key.Content.ToString() == "Space") txtName.Text += " ";
-            else txtName.Text = txtName.Text + key.Content.ToString();
-            checkLookup(txtName.Text);
+            bool doPopulate = true;
+            if (key.Content.ToString() == "Back")
+            {
+                txtName.Text = txtName.Text.Substring(0, txtName.Text.Length - 1);
+                doPopulate = false;
+            }
+            else if (key.Content.ToString() == "Reset")
+            {
+                txtName.Text = "";
+                doPopulate = false;
+            }
+            else if (key.Content.ToString() == "Space")
+            {
+                txtName.Text += " ";
+                doPopulate = true;
+            }
+            else
+            {
+                txtName.Text = txtName.Text + key.Content.ToString();
+                doPopulate = true;
+            }
+            checkLookup(txtName.Text, doPopulate);
 
         }
-        private bool checkLookup(string text)
+        private bool checkLookup(string text, bool populateOnBest = true)
         {
             match.Visibility = System.Windows.Visibility.Visible;
             int numMatches = _idLookup.getMatchCount(text);
             if (numMatches == 1)
             {
-                txtName.Text = _idLookup.getBestMatch(text);
-                txtName.CaretIndex = txtName.Text.Length;
+                if (populateOnBest)
+                {
+                    txtName.Text = _idLookup.getBestMatch(text);
+                    txtName.CaretIndex = txtName.Text.Length;
+                }
                 match.Text = "valid identity match";
                 return true;
             }

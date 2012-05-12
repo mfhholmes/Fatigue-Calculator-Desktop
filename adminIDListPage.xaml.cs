@@ -133,17 +133,15 @@ namespace Fatigue_Calculator_Desktop
                 TextBlock name = new TextBlock();
                 name.VerticalAlignment = System.Windows.VerticalAlignment.Center;
                 name.Name = "name0";
-                name.Text = "No identities in ths file yet";
+                name.Text = "No identities in this file yet";
                 name.Style = styleSample.Style;
                 Grid.SetRow(name, 0);
                 Grid.SetColumn(name, 1);
                 Grid.SetColumnSpan(name,3);
                 grdContent.Children.Add(name);
             }
-            // enable actions
-            
-
         }
+
         private void listIdentity(identity ident)
         {
             // new row to hold the new stuff
@@ -255,15 +253,15 @@ namespace Fatigue_Calculator_Desktop
             {
                 case currentAction.action_edit:
                 {
-                    identity newIdent = new identity(txtName.Text, txtIdentity.Text);
-                    _idList.changeIdentity(_currentIdent, newIdent);
+                    identity newIdent = new identity(txtName.Text, txtIdentity.Text, identity.researchStates.research_unasked);
+                    _idList.ChangeIdentity(_currentIdent, newIdent);
                     _currentIdent = newIdent;
                     setState(currentAction.action_list);
                     break;
                 }
                 case currentAction.action_new:
                 {
-                    identity newIdent = new identity(txtName.Text, txtIdentity.Text);
+                    identity newIdent = new identity(txtName.Text, txtIdentity.Text, identity.researchStates.research_unasked);
                     if (!_idList.AddNewIdentity(newIdent))
                     {
                         // didn't add to the file, let's tell the user

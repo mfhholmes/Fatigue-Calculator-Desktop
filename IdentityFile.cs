@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Security.AccessControl;
 
 namespace Fatigue_Calculator_Desktop
 {
     public class identityFile : IIdentityService
     {
-        string _logFile = "";
+        string _idFile = "";
         bool _isValid = false;
         List<identity> _identities = new List<identity>();
         Exception _lastError = null;
@@ -24,7 +25,7 @@ namespace Fatigue_Calculator_Desktop
             // check the file
             string checkedFile = Utilities.checkFileName(sourceURL);
             // check if this file is the same as any existing one
-            if (checkedFile == _logFile)
+            if (checkedFile == _idFile)
             {
                 // check if we've loaded it already
                 if (_isValid)
@@ -32,15 +33,15 @@ namespace Fatigue_Calculator_Desktop
             }
             else
             {
-                _logFile = checkedFile;
+                _idFile = checkedFile;
             }
-            if (_logFile.Length == 0)
+            if (_idFile.Length == 0)
             {
                 _isValid = false;
                 return false;
             }
             // check it exists
-            FileInfo file = new FileInfo(_logFile);
+            FileInfo file = new FileInfo(_idFile);
             if (file.Exists)
             {
                 // yeah so read it in
@@ -101,7 +102,7 @@ namespace Fatigue_Calculator_Desktop
             if (!_isValid) return
                 new List<identity>();
             List<identity> result = new List<identity>();
-            foreach(identity matchedId in _identities.Where(ident => ident.Name == name))
+            foreach (identity matchedId in _identities.Where(ident => ident.Name == name))
             {
                 result.Add(matchedId);
             }
@@ -128,7 +129,7 @@ namespace Fatigue_Calculator_Desktop
         private bool readFile()
         {
             // assume this has been checked when set, so before getting this far
-            FileInfo file = new FileInfo(_logFile);
+            FileInfo file = new FileInfo(_idFile);
             StreamReader reader;
             try
             {
@@ -150,7 +151,7 @@ namespace Fatigue_Calculator_Desktop
                     line = reader.ReadLine();
                     newId = new identity(line);
                     // only add valid identities to the list
-                    if(newId.isValid)
+                    if (newId.isValid)
                         _identities.Add(newId);
                 }
                 reader.Close();
@@ -174,13 +175,13 @@ namespace Fatigue_Calculator_Desktop
                 return false;
             }
             // check we've got a good file and a valid read
-            if (!((_logFile.Length > 0) && _isValid))
+            if (!((_idFile.Length > 0) && _isValid))
             {
                 return false;
             }
             // open the file for append access
-            FileInfo file = new FileInfo(_logFile);
-            StreamWriter writer =StreamWriter.Null;
+            FileInfo file = new FileInfo(_idFile);
+            StreamWriter writer = StreamWriter.Null;
             try
             {
                 writer = file.AppendText();
@@ -195,13 +196,14 @@ namespace Fatigue_Calculator_Desktop
             }
             return true;
         }
+
         /// <summary>
         /// changes all existing identities in the file that match the old identity parameter to the new identity
         /// </summary>
         /// <param name="oldIdent">the identity to change</param>
         /// <param name="newIdent">the identity to replace them with</param>
         /// <returns>true if anything changed</returns>
-        public bool changeIdentity(identity oldIdent, identity newIdent)
+        public bool ChangeIdentity(identity oldIdent, identity newIdent)
         {
             if (!newIdent.isValid || !oldIdent.isValid)
             {
@@ -209,17 +211,17 @@ namespace Fatigue_Calculator_Desktop
                 return false;
             }
             // check we've got a good file and a valid read
-            if (!((_logFile.Length > 0) && _isValid))
+            if (!((_idFile.Length > 0) && _isValid))
             {
                 return false;
             }
 
             // easiest way to do this will be to read the whole file in, edit it in memory, then write it out to a new file, then swap the files
-            
+
             readFile();
 
             // better lock the original file while we do this
-            FileInfo loglock = new FileInfo(_logFile);
+            FileInfo loglock = new FileInfo(_idFile);
             loglock.IsReadOnly = true;
 
             //find the matching identities
@@ -230,18 +232,21 @@ namespace Fatigue_Calculator_Desktop
                     // match, so change it
                     possible.Id = newIdent.Id;
                     possible.Name = newIdent.Name;
+                    possible.ResearchApproved = newIdent.ResearchApproved;
                 }
             }
             // now write the whole list to a new file
-            string newFilename = _logFile + ".tmp";
+            string newFilename = _idFile + ".tmp";
             if (!writeFile(newFilename))
                 return false;
             FileInfo newFile = new FileInfo(newFilename);
             // now replace the contents of the old file with the new file
             loglock.IsReadOnly = false;
-            newFile.Replace(_logFile , _logFile+".bck");
+            newFile.Replace(_idFile, _idFile + ".bck");
             // and delete the new file
             newFile.Delete();
+            // set permissions on the file
+            setPermissions(_idFile);
             // and reload the list
             return readFile();
         }
@@ -253,7 +258,7 @@ namespace Fatigue_Calculator_Desktop
                 return false;
             }
             // check we've got a good file and a valid read
-            if (!((_logFile.Length > 0) && _isValid))
+            if (!((_idFile.Length > 0) && _isValid))
             {
                 return false;
             }
@@ -262,7 +267,7 @@ namespace Fatigue_Calculator_Desktop
             readFile();
 
             // better lock the original file while we do this
-            FileInfo loglock = new FileInfo(_logFile);
+            FileInfo loglock = new FileInfo(_idFile);
             loglock.IsReadOnly = true;
 
             //find the matching identities and store them in a separate list so we can delete them once we've finished iterating
@@ -276,14 +281,14 @@ namespace Fatigue_Calculator_Desktop
                 }
             }
             // now kill the ones marked for death
-            foreach(identity dead in forDeletion )
+            foreach (identity dead in forDeletion)
             {
                 _identities.Remove(dead);
             }
             // unlock the file as we're ready to write it
             loglock.IsReadOnly = false;
             // then write the file over the old one
-            if (!writeFile(_logFile))
+            if (!writeFile(_idFile))
                 return false;
             // and reload the list
             return readFile();
@@ -317,6 +322,7 @@ namespace Fatigue_Calculator_Desktop
                 foreach (identity newId in _identities)
                     writer.WriteLine(newId.ToString());
                 writer.Close();
+                setPermissions(newFilename);
             }
             catch (Exception err)
             {
@@ -327,5 +333,27 @@ namespace Fatigue_Calculator_Desktop
             }
             return true;
         }
+        private bool setPermissions(string filename)
+        {
+            // try and set the permissions on the new file
+            try
+            {
+                FileSystemAccessRule newRule = new FileSystemAccessRule("Everyone", FileSystemRights.Modify, AccessControlType.Allow);
+                FileSecurity fileSec = new FileSecurity(filename, AccessControlSections.Group);
+                fileSec.AddAccessRule(newRule);
+                File.SetAccessControl(filename, fileSec);
+                return true;
+            }
+            catch
+            {
+                //something went wrong, probably insufficient rights to change it
+                // nae bother, just move on...
+                return false;
+            }
+
+        }
+
+
+
     }
-}
+    }

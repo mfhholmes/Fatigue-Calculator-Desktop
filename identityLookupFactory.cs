@@ -14,10 +14,10 @@ namespace Fatigue_Calculator_Desktop
 #if (Multiuser || Unprotected)
             // for the moment we can only deal with identity files. this will change with Fatigue Manager
             IIdentityService idFile = new identityFile();
-            string filename = Properties.Settings.Default.IdentityLookupFile;
+            string filename = Config.ConfigSettings.settings.IDLookupFile;
             idFile.SetIdentityListSource(filename);
 
-            string setting = Properties.Settings.Default.IDLookupType;
+            string setting = Config.ConfigSettings.settings.IDLookupType;
             switch (setting.ToLower())
             {
                 case "dynamic":
@@ -49,10 +49,10 @@ namespace Fatigue_Calculator_Desktop
 #if Server
             // for the moment we can only deal with identity files. this will change with Fatigue Manager
             IIdentityService idFile = new identityFile();
-            string filename = Properties.Settings.Default.IdentityLookupFile;
+            string filename = Config.ConfigSettings.settings.IDLookupFile;
             idFile.SetIdentityListSource(filename);
 
-            string setting = Properties.Settings.Default.IDLookupType;
+            string setting = Config.ConfigSettings.settings.IDLookupType;
             switch (setting.ToLower())
             {
                 case "dynamic":
@@ -80,10 +80,10 @@ namespace Fatigue_Calculator_Desktop
 #if Kiosk
             // for the moment we can only deal with identity files. this will change with Fatigue Manager
             IIdentityService idFile = new identityFile();
-            string filename = Properties.Settings.Default.IdentityLookupFile;
+            string filename = Config.ConfigSettings.settings.IDLookupFile;
             idFile.SetIdentityListSource(filename);
 
-            string setting = Properties.Settings.Default.IDLookupType;
+            string setting = Config.ConfigSettings.settings.IDLookupType;
             switch (setting.ToLower())
             {
                 case "dynamic":

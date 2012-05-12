@@ -53,6 +53,7 @@ for any breach of this agreement, or in connection with this agreement, shall be
 however caused (whether by MB Solutions (Aust) Pty Ltd negligence or otherwise) which may be suffered or incurred or which may arise directly or indirectly in
 respect of FATIGUE CALCULATOR or this agreement.
 		</TextBlock>
+		<TextBlock Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="7" TextAlignment="Center" Style="{StaticResource styleFCBodyCopy3}">If you are unable to accept this disclaimer, the calculation will terminate</TextBlock>
 		<Button Name="btnBack" Grid.Column="1" Grid.Row="9" Click="btnBack_Click" Template="{StaticResource controlFCButton}">I Don't Accept</Button>
 		<Button Name="btnGo" Grid.Column="9" Grid.Row="9" Grid.ColumnSpan="2" Click="btnGo_Click" Template="{StaticResource controlFCButton}">I Accept</Button>
 	</Grid>

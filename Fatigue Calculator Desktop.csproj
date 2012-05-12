@@ -27,7 +27,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2.10.0.%2a</ApplicationVersion>
+    <ApplicationVersion>2.12.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -290,6 +290,9 @@
     <Compile Include="recommendPage.xaml.cs">
       <DependentUpon>recommendPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="researchPage.xaml.cs">
+      <DependentUpon>researchPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="resultsPage.xaml.cs">
       <DependentUpon>resultsPage.xaml</DependentUpon>
     </Compile>
@@ -343,6 +346,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="recommendPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="researchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -482,11 +489,6 @@
     <Resource Include="Images\SpinMiddle.png" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Resource Include="Config\Config.xml">
-      <SubType>Designer</SubType>
-    </Resource>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

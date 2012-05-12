@@ -85,7 +85,7 @@ namespace Fatigue_Calculator_Desktop
         /// <returns>Brush for that fatigue level</returns>
         public Brush getColourForLevel(calculation.fatigueLevels level)
         {
-            //TODO: may have to look this up in the resource directory
+            //TODO: may have to look this up in the theme
             switch (level)
             {
                 case calculation.fatigueLevels.Low:
@@ -117,7 +117,7 @@ namespace Fatigue_Calculator_Desktop
             newEntry.highThreshold = this.currentPresets.highThreshold;
             // inputs
             newEntry.DeviceId =  this.currentInputs.deviceId;
-            newEntry.Identity = this.currentInputs.identity;
+            newEntry.Identity = this.currentInputs.identity.logString;
             newEntry.shiftStart = this.currentInputs.shiftStart;
             newEntry.shiftEnd =  this.currentInputs.shiftEnd;
             newEntry.sleep24 =  this.currentInputs.sleep24;
@@ -156,7 +156,7 @@ namespace Fatigue_Calculator_Desktop
         /// </summary>
         public struct inputs
         {
-            public string identity ;
+            public identity identity ;
             public string deviceId;
             public DateTime shiftStart;
             public DateTime shiftEnd;
@@ -278,8 +278,8 @@ namespace Fatigue_Calculator_Desktop
         public bool LoadPresets()
         {
             this.currentPresets.defaultRosterLength = 72;
-            //this.currentPresets.lowThreshold = Properties.Settings.Default.lowThreshold;
-            //this.currentPresets.highThreshold = Properties.Settings.Default.highThreshold;
+            this.currentPresets.lowThreshold = Config.ConfigSettings.settings.lowThreshold;
+            this.currentPresets.highThreshold = Config.ConfigSettings.settings.highThreshold;
             this.currentPresets.algorithmVersion = 1;
             return true;
         }

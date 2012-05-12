@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Security.AccessControl;
 
 namespace Fatigue_Calculator_Desktop
 {
@@ -74,6 +75,59 @@ namespace Fatigue_Calculator_Desktop
                 else
                     return new Exception("no error reported");
             }
+        }
+        DateTime? ILogService.lastLogEntryForUser(identity user)
+        {
+            // check for valid log
+            if (!_isValid)
+                return null;
+            // get all matching entries
+            if (user.Name.Length > 0)
+            {
+                DateTime? last = null;
+                foreach (logEntry match in _logEntries.Where<logEntry>(entry => entry.Identity == user.Name))
+                {
+                    if ((last == null) || (match.dateTimeDone > last))
+                    {
+                        last = match.dateTimeDone;
+                    }
+                }
+                return last;
+            }
+            return null;
+        }
+
+        bool ILogService.isIdentityOnLog(identity user)
+        {
+            // check for valid log
+            if (!_isValid)
+                return false;
+            // check for name
+            int matches = 0;
+            if (user.Name.Length > 0)
+            {
+                matches = _logEntries.Count<logEntry>(entry => entry.Identity == user.Name);
+                if (matches > 0)
+                    return true;
+            }
+            // no matches, so check for id
+            if (user.Id.Length > 0)
+            {
+                matches = _logEntries.Count<logEntry>(entry => entry.Identity == user.Id);
+                if (matches > 0)
+                    return true;
+            }
+            // no matches, so check for identity string
+            string ident = user.ToString();
+            if (ident.Length > 0)
+            {
+                matches = _logEntries.Count<logEntry>(entry => entry.Identity == ident);
+                if (matches > 0)
+                    return true;
+            }
+
+            // no matches, so no matches
+            return false;
         }
 
         #endregion
@@ -147,6 +201,7 @@ namespace Fatigue_Calculator_Desktop
             _logEntries.Clear();
             logEntry entry;
             // iterate through the list
+            //TODO: investigate if there's a better way than this...reading the entire log file into memory seems like it's not going to scale at all...
             System.IO.StreamReader reader = new System.IO.StreamReader(fstream);
             while (!reader.EndOfStream)
             {
@@ -172,6 +227,7 @@ namespace Fatigue_Calculator_Desktop
         /// <returns></returns>
         private bool addEntry(logEntry newEntry)
         {
+            bool createdFile = false;
             // before we get into file handling and stuff, let's just check we've got a valid entry
             if (!newEntry.isValid)
                 return false;
@@ -201,6 +257,7 @@ namespace Fatigue_Calculator_Desktop
                             // it's valid but doesn't exist yet so let's create it and write the headers
                             writer = log.CreateText();
                             writer.WriteLine(newEntry.headers);
+                            createdFile = true;
                         }
                         catch (Exception err)
                         {
@@ -222,39 +279,24 @@ namespace Fatigue_Calculator_Desktop
             string output = newEntry.makeOutputLine();
             writer.WriteLine(output);
             writer.Close();
+            // if we created the file, try and set the permissions on it
+            if (createdFile)
+            {
+                try
+                {
+                    FileSystemAccessRule newRule = new FileSystemAccessRule("Everyone", FileSystemRights.Modify, AccessControlType.Allow);
+                    FileSecurity fileSec = new FileSecurity(log.FullName,AccessControlSections.Group);
+                    fileSec.AddAccessRule(newRule);
+                    File.SetAccessControl(log.FullName, fileSec);
+                }
+                catch
+                {
+                    //something went wrong, probably insufficient rights to change it
+                    // nae bother, just move on...
+                }
+            }
             return true;
         }
-        bool ILogService.isIdentityOnLog(identity user)
-        {
-            // check for valid log
-            if (!_isValid)
-                return false;
-            // check for name
-            int matches = 0;
-            if (user.Name.Length > 0)
-            {
-                matches = _logEntries.Count<logEntry>(entry => entry.Identity == user.Name);
-                if (matches > 0)
-                    return true;
-            }
-            // no matches, so check for id
-            if (user.Id.Length > 0)
-            {
-                matches = _logEntries.Count<logEntry>(entry => entry.Identity == user.Id);
-                if (matches > 0)
-                    return true;
-            }
-            // no matches, so check for identity string
-            string ident = user.ToString();
-            if (ident.Length > 0)
-            {
-                matches = _logEntries.Count<logEntry>(entry => entry.Identity == ident);
-                if (matches > 0)
-                    return true;
-            }
 
-            // no matches, so no matches
-            return false;
-        }
     }
 }
