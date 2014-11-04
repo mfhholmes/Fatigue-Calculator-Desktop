@@ -38,7 +38,7 @@ namespace Fatigue_Calculator_Desktop
             lblLevel.Inlines.Add(" risk of Fatigue");
             if (currentCalc.currentOutputs.becomesModerate > new TimeSpan(0, 0, 0))
             {
-                lblModerate.Text = "You will be at Moderate risk of Fatigue at " + (currentCalc.currentOutputs.calcDone + currentCalc.currentOutputs.becomesModerate).ToString("ddd dd MMM h:mm tt");
+                lblModerate.Text = "You will be at Moderate risk of Fatigue at " + (currentCalc.currentOutputs.calcDone + currentCalc.currentOutputs.becomesModerate).ToString("ddd dd MMM HH:mm");
                 lblModerate.Visibility = System.Windows.Visibility.Visible;
                 btnModerateRecommend.Visibility = System.Windows.Visibility.Visible;
             }
@@ -57,7 +57,7 @@ namespace Fatigue_Calculator_Desktop
             }
             if (currentCalc.currentOutputs.becomesHigh > new TimeSpan(0, 0, 0))
             {
-                lblHigh.Text = "You will be at High risk of Fatigue at " + (currentCalc.currentOutputs.calcDone + currentCalc.currentOutputs.becomesHigh).ToString("ddd dd MMM h:mm tt");
+                lblHigh.Text = "You will be at High risk of Fatigue at " + (currentCalc.currentOutputs.calcDone + currentCalc.currentOutputs.becomesHigh).ToString("ddd dd MMM HH:mm");
                 lblHigh.Visibility = System.Windows.Visibility.Visible;
                 btnHighRecommend.Visibility = System.Windows.Visibility.Visible;
             }
@@ -74,7 +74,7 @@ namespace Fatigue_Calculator_Desktop
             }
             if (currentCalc.currentOutputs.becomesExtreme > new TimeSpan(0, 0, 0))
             {
-                lblExtreme.Text = "You will be at Extreme risk of Fatigue at " + (currentCalc.currentOutputs.calcDone + currentCalc.currentOutputs.becomesExtreme).ToString("ddd dd MMM h:mm tt");
+                lblExtreme.Text = "You will be at Extreme risk of Fatigue at " + (currentCalc.currentOutputs.calcDone + currentCalc.currentOutputs.becomesExtreme).ToString("ddd dd MMM HH:mm");
                 lblExtreme.Visibility = System.Windows.Visibility.Visible;
                 btnExtremeRecommend.Visibility = System.Windows.Visibility.Visible;
 

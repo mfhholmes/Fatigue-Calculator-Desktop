@@ -69,10 +69,10 @@
 					<ColumnDefinition Width="4*"></ColumnDefinition>
 					<ColumnDefinition></ColumnDefinition>
 				</Grid.ColumnDefinitions>
-				<TextBlock Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Style="{StaticResource styleFCSettingBlue}" TextWrapping="Wrap" VerticalAlignment="Center">
+				<TextBlock Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Style="{StaticResource styleFCSettingBlue}" TextWrapping="Wrap" VerticalAlignment="Center" >
 					Manage the list of users that are authorised to use the system or that have used the system, depending on version.
 				</TextBlock>
-				<TextBlock Grid.Row="5" Grid.RowSpan="3" Grid.Column="1" Style="{StaticResource styleFCSettingBlue}" TextWrapping="Wrap" VerticalAlignment="Center">
+				<TextBlock Grid.Row="5" Grid.RowSpan="3" Grid.Column="1" Style="{StaticResource styleFCSettingBlue}" TextWrapping="Wrap" VerticalAlignment="Center" Name="GraphLabel">
 					Display the data collected by the Fatigue Calculator in Graph Format
 				</TextBlock>
 				<TextBlock Grid.Row="9" Grid.RowSpan="3" Grid.Column="1" Style="{StaticResource styleFCSettingBlue}" TextWrapping="Wrap" VerticalAlignment="Center">

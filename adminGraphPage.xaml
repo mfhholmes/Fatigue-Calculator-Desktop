@@ -89,7 +89,7 @@
 				<ColumnDefinition Width="1*"></ColumnDefinition>
 				<ColumnDefinition Width="3*"></ColumnDefinition>
 			</Grid.ColumnDefinitions>
-			<TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Style="{StaticResource styleFCHeading2White}"  >Date:</TextBlock>
+			<TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Style="{StaticResource styleFCHeading2White}" Name="lblDate"  >Date:</TextBlock>
 			<DatePicker Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="dtpDate" FontSize="24" VerticalContentAlignment="Stretch" SelectedDateChanged="dtpDate_SelectedDateChanged"/>
 		</Grid>
 		<Grid Name="grdByID" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="8" Visibility="Hidden">

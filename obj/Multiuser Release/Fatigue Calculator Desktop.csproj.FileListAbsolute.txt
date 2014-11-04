@@ -90,3 +90,5 @@ D:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\
 D:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Multiuser Release\GenerateResource.write.1.tlog
 O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Multiuser Release\researchPage.baml
 O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Multiuser Release\researchPage.g.cs
+O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\bin\Multiuser Release\Fatigue Calculator Desktop.XmlSerializers.dll
+O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Multiuser Release\Fatigue Calculator Desktop.XmlSerializers.dll

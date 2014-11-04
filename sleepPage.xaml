@@ -13,11 +13,11 @@
 			<ColumnDefinition Width="40"></ColumnDefinition>
 			<ColumnDefinition Width="150"></ColumnDefinition>
 			<ColumnDefinition></ColumnDefinition>
-			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition Width="200"></ColumnDefinition>
 			<ColumnDefinition></ColumnDefinition>
 			<ColumnDefinition Width="150"></ColumnDefinition>
 			<ColumnDefinition></ColumnDefinition>
-			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition Width="250"></ColumnDefinition>
 			<ColumnDefinition></ColumnDefinition>
 			<ColumnDefinition Width="75"></ColumnDefinition>
 			<ColumnDefinition Width="75"></ColumnDefinition>
@@ -36,25 +36,25 @@
 			<RowDefinition Height="50"></RowDefinition>
 			<RowDefinition Height="40"></RowDefinition>
 		</Grid.RowDefinitions>
-		<TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="7" Style="{StaticResource styleFCHeading1Orange}">Please Enter your Sleep Pattern</TextBlock>
+		<TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="8" Style="{StaticResource styleFCHeading1Orange}">Please Enter your Sleep Pattern</TextBlock>
 		<TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="7" Name="sleep24label" Style="{StaticResource styleFCHeading2White}" VerticalAlignment="Center" HorizontalAlignment="Stretch" >
-			<Run>How many hours of sleep have you had in the last 24 hours?</Run>
+			<Run x:Name="sleep24Text">How many hours of sleep have you had in the last 24 hours from 23:00?</Run>
 			<LineBreak x:Name="LB1" IsEnabled="True"></LineBreak>
-			<Run x:Name="sleep24Help" Style="{StaticResource styleFCOrangeRun}" FontStyle="Normal">Estimate your actual sleep time to the nearest quarter hour. If you woke up or lost some sleep, simply deduct the amount of sleep you lost from your total sleep time</Run>
+			<Run x:Name="sleep24Help" Style="{StaticResource styleFCOrangeRun}" FontStyle="Normal">When calculating your sleep in the last 24hours, this is sleep obtained last night, to the nearest 15 mins. If you woke up or lost some sleep, deduct that time from the total.  When inputting your answers, please use 24:00 time.</Run>
 		</TextBlock>
 		<fc:spinner Grid.Row="3" Grid.Column="9" Grid.ColumnSpan="1" x:Name="spnSleep24Hours" maxValue="24" ValueChanged="spnSleep24Hours_ValueChanged"></fc:spinner>
 		<fc:spinner Grid.Row="3" Grid.Column="10" Grid.ColumnSpan="1" x:Name="spnSleep24Mins" maxValue="60" Step="15" ShowMax="False" ValueChanged="spnSleep24Mins_ValueChanged" ></fc:spinner>
 		<TextBlock Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="7" Name="sleep48label" Style="{StaticResource styleFCHeading2White}" VerticalAlignment="Center" HorizontalAlignment="Stretch" >
-			<Run>How many hours of sleep have you had in the last 48 hours?</Run>
+			<Run x:Name="sleep48Text">How many hours of sleep have you had in the last 48 hours from 23:00?</Run>
 			<LineBreak x:Name="LB2"></LineBreak>
-			<Run x:Name="sleep48Help" Style="{StaticResource styleFCOrangeRun}">Estimate your actual sleep time to the nearest quarter hour. If you woke up or lost some sleep, simply deduct the amount of sleep you lost from your total sleep time</Run>
+			<Run x:Name="sleep48Help" Style="{StaticResource styleFCOrangeRun}">When calculating your sleep in the last 24hours, this is sleep obtained last night and the night before, to the nearest 15 mins. If you woke up or lost some sleep, deduct that time from the total.  When inputting your answers, please use 24:00 time.</Run>
 		</TextBlock>
 		<fc:spinner Grid.Row="5" Grid.Column="9" Grid.ColumnSpan="1" x:Name="spnSleep48Hours" maxValue="48" ValueChanged="spnSleep48Hours_ValueChanged"></fc:spinner>
 		<fc:spinner Grid.Row="5" Grid.Column="10" Grid.ColumnSpan="1"  x:Name="spnSleep48Mins" maxValue="60" Step="15" ShowMax="False" ValueChanged="spnSleep48Mins_ValueChanged" ></fc:spinner>
 		<TextBlock Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="7" Name="hoursAwakelabel" Style="{StaticResource styleFCHeading2White}" VerticalAlignment="Center" HorizontalAlignment="Stretch"  >
-			<Run>How many hours since when you last woke and 12:00 pm?</Run>
+			<Run x:Name="hoursAwakeText">How many hours since when you last woke and 23:00?</Run>
 			<LineBreak x:Name="LB3"></LineBreak>	
-			<Run x:Name="hoursAwakeHelp" Style="{StaticResource styleFCOrangeRun}">When calculating how long you have been awake, use the time you woke up from a continual sleep of two hours or more.</Run>			
+			<Run x:Name="hoursAwakeHelp" Style="{StaticResource styleFCOrangeRun}">When calculating how long you have been awake, use the time you woke up from a continual sleep of two hours or more. When inputting your answers, please use 24:00 time.</Run>			
 		</TextBlock>
 		<fc:spinner Grid.Row="7" Grid.Column="9" Grid.ColumnSpan="1" x:Name="spnHoursAwake" maxValue="48" ValueChanged="spnHoursAwake_ValueChanged"></fc:spinner>
 		<fc:spinner Grid.Row="7" Grid.Column="10" Grid.ColumnSpan="1" x:Name="spnMinsAwake" maxValue="60" Step="15" ShowMax="False" HorizontalAlignment="Right" Width="75"></fc:spinner>

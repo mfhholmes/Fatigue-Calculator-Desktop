@@ -64,19 +64,19 @@ namespace Fatigue_Calculator_Desktop
                 shiftPage next = new shiftPage(_currentCalc);
                 this.NavigationService.Navigate(next);
             }
+
             // get the match from the lookup
-            identity valid = _idLookup.validate(txtName.Text);
+            identity valid = _idLookup.validate(txtInput.Text);
             _currentCalc.currentInputs.identity = valid;
             if(valid==null || !valid.isValid)
             {
-                match.Text = "That name or ID does not match a valid identity.";
-                match.Visibility = System.Windows.Visibility.Visible;
+                lblMatch.Text = "That name or ID does not match a valid identity.";
+                lblMatch.Visibility = System.Windows.Visibility.Visible;
                 return;
             }
             // now check if this is their first calculation, and if so, give them the Disclaimer
-            ILogService log = new logFile();
-            log.setLogURL(Config.ConfigSettings.settings.logServiceUrl);
-
+            ILogService log = LogFactory.createLog(Config.ConfigSettings.settings.logServiceUrl);
+            
             if(log.isIdentityOnLog(valid))
             {
                 // check if they've done a calculation in the last 12 hours
@@ -102,55 +102,57 @@ namespace Fatigue_Calculator_Desktop
         private void Keyboard_Click(object sender, RoutedEventArgs e)
         {
             Button key = (Button)sender;
-            bool doPopulate = true;
-            if (key.Content.ToString() == "Back")
-            {
-                txtName.Text = txtName.Text.Substring(0, txtName.Text.Length - 1);
-                doPopulate = false;
-            }
-            else if (key.Content.ToString() == "Reset")
-            {
-                txtName.Text = "";
-                doPopulate = false;
-            }
-            else if (key.Content.ToString() == "Space")
-            {
-                txtName.Text += " ";
-                doPopulate = true;
-            }
-            else
-            {
-                txtName.Text = txtName.Text + key.Content.ToString();
-                doPopulate = true;
-            }
-            checkLookup(txtName.Text, doPopulate);
-
+            handleInput(key.Content.ToString());
         }
-        private bool checkLookup(string text, bool populateOnBest = true)
+        private void handleInput(string input)
         {
-            match.Visibility = System.Windows.Visibility.Visible;
+            if (input== "Back")
+            {
+                txtInput.Text = txtInput.Text.Substring(0, txtInput.Text.Length - 1);
+            }
+            else if (input == "Reset")
+            {
+                txtInput.Text = "";
+            }
+            else if (input == "Space")
+            {
+                txtInput.Text += " ";
+            }
+            else if ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-'1234567890 ".Contains(input))
+            {
+                txtInput.Text = txtInput.Text + input.ToUpper();
+            }
+            checkLookup(txtInput.Text);
+        }
+        private bool checkLookup(string text)
+        {
+            lblMatch.Visibility = System.Windows.Visibility.Visible;
             int numMatches = _idLookup.getMatchCount(text);
             if (numMatches == 1)
             {
-                if (populateOnBest)
-                {
-                    txtName.Text = _idLookup.getBestMatch(text);
-                    txtName.CaretIndex = txtName.Text.Length;
-                }
-                match.Text = "valid identity match";
+                txtMatch.Text = _idLookup.getBestMatch(text).Substring(text.Length).ToUpper();
+                txtInput.Text = text;
+                lblMatch.Text = "valid identity match";
                 return true;
             }
             if (numMatches == 0)
-                match.Text = "no matches";
+            {
+                lblMatch.Text = "no matches";
+                txtMatch.Text = "";
+            }
             else
-                match.Text = "multiple matches";
+            {
+                lblMatch.Text = "multiple matches";
+                txtMatch.Text = "";
+            }
             return false;
         }
 
-        private void txtName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void page_TextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = checkLookup(txtName.Text + e.Text);
+            handleInput(e.Text);
         }
+
 
     }
 }

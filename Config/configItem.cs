@@ -111,22 +111,28 @@ namespace Fatigue_Calculator_Desktop.Config
         }
         private void changeValue(string value)
         {
+            string oldvalue = _rawValue;
             _rawValue = value;
             _changed = true;
-            validate();
+            if (!validate())
+            {
+                _rawValue = oldvalue;
+                _changed = false;
+                throw new Exception(_lastValidationError);
+            }
             return;
         }
-        private void validate()
+        private bool validate()
         {
             if (validator == null)
                 setUpValidation();
             if (validator.validate(this))
             {
-                // yay
+                return true;
             }
             else
             {
-                throw new Exception(_lastValidationError);
+                return false;
             }
         }
         /// <summary>
@@ -189,7 +195,7 @@ namespace Fatigue_Calculator_Desktop.Config
                     {
                         _type = typeof(int);
                         _validator = new intValidator();
-                        _validator.setup(validationNode );
+                        _validator.setup(validationNode);
                         break;
                     }
                 case "file":
@@ -208,22 +214,24 @@ namespace Fatigue_Calculator_Desktop.Config
                     }
                 case "string":
                     {
-                        {
-                            _type = typeof(string);
-                            _validator = new stringValidator();
-                            _validator.setup(validationNode);
-                            break;
-                        }
+                        _type = typeof(string);
+                        _validator = new stringValidator();
+                        _validator.setup(validationNode);
+                        break;
                     }
                 case "datetime":
                     {
-                        {
-                            _type = typeof(string);
-                            _validator = new dateTimeValidator();
-                            _validator.setup(validationNode);
-                            break;
-                        }
-
+                        _type = typeof(string);
+                        _validator = new dateTimeValidator();
+                        _validator.setup(validationNode);
+                        break;
+                    }
+                case "url":
+                    {
+                        _type = typeof(string);
+                        _validator = new URLValidator();
+                        _validator.setup(validationNode);
+                        break;
                     }
                 default:
                     {
@@ -392,6 +400,43 @@ namespace Fatigue_Calculator_Desktop.Config
                         return false;
                     }
                 return true;
+            }
+        }
+        private class URLValidator: IValidator
+        {
+            IValidator subTest = new fileValidator();
+            bool IValidator.setup(XmlNode validationNode)
+            {
+                // we may need to test it by pinging in the future
+                // but for now, nothing.
+                // but setup the subtest
+                subTest.setup(validationNode);
+                return true;
+            }
+
+            bool IValidator.validate(configItem parent)
+            {
+                try
+                {
+                    string url = parent.strValue;
+                    Uri testresult;
+                    bool result;
+                    result = Uri.TryCreate(url, UriKind.Absolute, out testresult);
+                    if (!result)
+                    {
+                        // possible it's an absolute path to a file instead of an internet URL
+                        // so test it with the file validator
+                        return subTest.validate(parent);
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
             }
         }
         private class dateTimeValidator:IValidator

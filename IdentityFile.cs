@@ -86,10 +86,10 @@ namespace Fatigue_Calculator_Desktop
         public List<identity> ExactMatchId(string Id)
         {
             string id = Id.ToUpper();
-            if (!_isValid) return
-                new List<identity>();
+            if (!_isValid)
+                return new List<identity>();
             List<identity> result = new List<identity>();
-            foreach (identity matchedId in _identities.Where(ident => ident.Id == id))
+            foreach(identity matchedId in _identities.Where(ident => ident.Id == id))
             {
                 result.Add(matchedId);
             }

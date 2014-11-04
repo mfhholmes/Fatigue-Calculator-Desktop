@@ -14,5 +14,12 @@ namespace Fatigue_Calculator_Desktop
         Exception lastError{get;}
         bool isIdentityOnLog(identity user);
         DateTime? lastLogEntryForUser(identity user);
+        LogType thisLogType { get; }
+    }
+    public enum LogType
+    {
+        unknown = 0,
+        local = 1,
+        remote =2
     }
 }

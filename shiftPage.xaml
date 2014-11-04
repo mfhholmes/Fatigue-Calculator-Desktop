@@ -42,12 +42,12 @@
 		<TextBlock Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="7" VerticalAlignment="Center" Style="{StaticResource styleFCHeading2White}" Name="shiftStartLabel" HorizontalAlignment="Stretch">
 			<Run>When does your shift start?</Run>
 			<LineBreak x:Name="LB1"> </LineBreak>
-			<Run Style="{StaticResource styleFCOrangeRun}" x:Name="shiftStartHelp" >Use the controls to the right to enter the time that your shift starts in hours and minutes (to the nearest 30 mins).</Run>
+			<Run Style="{StaticResource styleFCOrangeRun}" x:Name="shiftStartHelp" >Use the controls to the right to enter the time that your shift starts in hours and minutes (to the nearest 30 mins). When inputting your answers, please use 24:00 time.</Run>
 		</TextBlock>
 		<TextBlock Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="7" VerticalAlignment="Center" Style="{StaticResource styleFCHeading2White}" Name="shiftEndLabel" HorizontalAlignment="Stretch">
 			<Run>When does your shift end?</Run>
 			<LineBreak x:Name="LB2"> </LineBreak>
-			<Run Style="{StaticResource styleFCOrangeRun}" x:Name="shiftEndHelp">If your shift ends before it starts, the Calculator will assume your shift ends tomorrow and calculate accordingly.</Run>
+			<Run Style="{StaticResource styleFCOrangeRun}" x:Name="shiftEndHelp">If your shift ends before it starts, the Calculator will assume your shift ends tomorrow and calculate accordingly.  When inputting your answers, please use 24:00 time.</Run>
 
 		</TextBlock>
 		<fc:spinner Grid.Row="5" Grid.Column="9" x:Name="spnStartHour" maxValue="24" minValue="0" velocityShift="0.5" ShowMax="False"></fc:spinner>

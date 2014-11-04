@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://marcusholmes.biz/FatigueManager/FatigueCalculatorData.svc?disco" filename="FatigueCalculatorData.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://marcusholmes.biz/FatigueManager/FatigueCalculatorData.svc?xsd=xsd1" filename="FatigueCalculatorData.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://marcusholmes.biz/FatigueManager/FatigueCalculatorData.svc?xsd=xsd0" filename="FatigueCalculatorData0.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://marcusholmes.biz/FatigueManager/FatigueCalculatorData.svc?wsdl" filename="FatigueCalculatorData.wsdl" />
+  </Results>
+</DiscoveryClientResultsFile>

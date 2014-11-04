@@ -124,7 +124,7 @@ namespace Fatigue_Calculator_Desktop.Config
                 }
             }
         }
-        private configItem _deviceId;
+        
         public string deviceId
         {
             get
@@ -296,7 +296,7 @@ namespace Fatigue_Calculator_Desktop.Config
         {
             //log service URL
             configItem setting = new configItem();
-            setting.validationXML = "<validation><type>file</type><mustExist>no</mustExist></validation>";
+            setting.validationXML = "<validation><type>url</type><mustExist>no</mustExist></validation>";
             setting.key = "logServiceUrl";
             setting.name = "Calculation Logging File";
             setting.description = "The file containing the log of calculations that this calculator has performed";

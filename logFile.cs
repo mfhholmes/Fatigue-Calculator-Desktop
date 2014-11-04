@@ -298,5 +298,11 @@ namespace Fatigue_Calculator_Desktop
             return true;
         }
 
+
+
+        public LogType thisLogType
+        {
+            get { return LogType.local; }
+        }
     }
 }

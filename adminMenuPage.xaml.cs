@@ -24,6 +24,8 @@ namespace Fatigue_Calculator_Desktop
         public adminMenuPage()
         {
             InitializeComponent();
+            //check for remote log service
+            checkLogService(Config.ConfigSettings.settings.logServiceUrl);
         }
 
         private void btnUserList_Click(object sender, RoutedEventArgs e)
@@ -50,6 +52,23 @@ namespace Fatigue_Calculator_Desktop
         {
             Application.Current.Shutdown();
         }
+        private void checkLogService(string url)
+        {
+            // check for a remote log
+            ILogService log = LogFactory.createLog(url);
+            if (log.thisLogType != LogType.local)
+            {
+                GraphLabel.Text = "See Fatigue Manager for calculation log information";
+                btnGraph.IsEnabled = false;
+                btnGraph.Opacity = 0.5;
+            }
+            else
+            {
+                GraphLabel.Text = "Display the data collected by the Fatigue Calculator in Graph Format";
+                btnGraph.IsEnabled = true;
+                btnGraph.Opacity = 1;
+            }
 
+        }
     }
 }

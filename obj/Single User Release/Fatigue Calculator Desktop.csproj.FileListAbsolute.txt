@@ -90,3 +90,5 @@ D:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\
 D:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Single User Release\Fatigue Calculator Desktop.exe
 O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Single User Release\researchPage.baml
 O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Single User Release\researchPage.g.cs
+O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\bin\Single User Release\Fatigue Calculator Desktop.XmlSerializers.dll
+O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\Single User Release\Fatigue Calculator Desktop.XmlSerializers.dll

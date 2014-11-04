@@ -27,7 +27,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2.12.0.%2a</ApplicationVersion>
+    <ApplicationVersion>2.14.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -226,6 +226,14 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activities" />
+    <Reference Include="System.ServiceModel.Channels" />
+    <Reference Include="System.ServiceModel.Discovery" />
+    <Reference Include="System.ServiceModel.Routing" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -278,10 +286,12 @@
     <Compile Include="IIdentityService.cs" />
     <Compile Include="ILogService.cs" />
     <Compile Include="logentry.cs" />
+    <Compile Include="LogFactory.cs" />
     <Compile Include="logFile.cs" />
     <Compile Include="adminMenuPage.xaml.cs">
       <DependentUpon>adminMenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LogFM.cs" />
     <Compile Include="lookupClosed.cs" />
     <Compile Include="lookupFixed.cs" />
     <Compile Include="lookupOpen.cs" />
@@ -310,6 +320,11 @@
       <DependentUpon>spinner.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
+    <Compile Include="Web References\FatigueManager\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="welcomePage.xaml.cs">
       <DependentUpon>welcomePage.xaml</DependentUpon>
     </Compile>
@@ -413,6 +428,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Web References\FatigueManager\FatigueCalculatorData.wsdl" />
+    <None Include="Web References\FatigueManager\FatigueCalculatorData.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\FatigueManager\FatigueCalculatorData0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\FatigueManager\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Resource Include="Fonts\PFHandbookPro-Black.otf" />
     <Resource Include="Fonts\PFHandbookPro-Regular.otf" />
     <Resource Include="Fonts\PFHandbookPro-Thin.otf" />
@@ -488,7 +514,28 @@
   <ItemGroup>
     <Resource Include="Images\SpinMiddle.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://marcusholmes.biz/fatiguemanager/FatigueCalculatorData.svc">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\FatigueManager\</RelPath>
+      <UpdateFromURL>http://marcusholmes.biz/fatiguemanager/FatigueCalculatorData.svc</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Fatigue_Calculator_Desktop_biz_marcusholmes_FatigueCalculatorData</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\FatigueManager\FatigueCalculatorData.disco" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

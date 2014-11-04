@@ -5,7 +5,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 	  mc:Ignorable="d" 
 	  d:DesignHeight="643" d:DesignWidth="1024"
-	Title="identityPage">
+	Title="identityPage" TextInput="page_TextInput">
 
 	<Grid Background="{StaticResource brushFCBlue}">
 		<Grid.ColumnDefinitions>
@@ -39,8 +39,10 @@
 		<TextBlock Style="{StaticResource styleFCHeading1Orange}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="10">Please Confirm your Identity</TextBlock>
 
 		<TextBlock Name="lblID" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="10" VerticalAlignment="Center"  Style="{StaticResource styleFCHeading2White}">Name / ID Number:</TextBlock>
-		<TextBox Name="txtName" Height="50" FontSize="32" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="5" PreviewTextInput="txtName_PreviewTextInput" ></TextBox>
-		<TextBlock Name="match" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="5" Foreground="{StaticResource brushFCOrange}" Style="{StaticResource styleFCBodyCopy1}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Visibility="Hidden">Match Found</TextBlock>
+		<TextBlock Name="txtName" Height="50" FontSize="32" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="5" Focusable="True" IsHyphenationEnabled="True" IsManipulationEnabled="True" Background="White">
+			<Run Name="txtInput" Focusable="True"></Run><Run Name="txtMatch" Foreground="Gray" IsEnabled="False" ></Run>
+		</TextBlock>
+		<TextBlock Name="lblMatch" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="5" Foreground="{StaticResource brushFCOrange}" Style="{StaticResource styleFCBodyCopy1}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Visibility="Hidden">Match Found</TextBlock>
 		<Grid Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="7" Grid.RowSpan="4">
 			<Grid.RowDefinitions>
 				<RowDefinition />

@@ -80,11 +80,11 @@ namespace Fatigue_Calculator_Desktop
             if (value.Length == 0)
                 return null;
             // unsure whether they're entering a name or an id, so return the one with the largest matches
-            List<identity> matches = _source.ExactMatchName(value);
+            List<identity> matches = _source.LookUpName(value);
             if (matches.Count == 1)
                 return matches.ElementAt<identity>(0);
 
-            matches = _source.ExactMatchId(value);
+            matches = _source.LookUpId(value);
             if (matches.Count == 1)
                 return matches.ElementAt<identity>(0);
 

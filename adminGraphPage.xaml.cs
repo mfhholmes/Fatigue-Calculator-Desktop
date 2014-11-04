@@ -382,6 +382,12 @@ namespace Fatigue_Calculator_Desktop
             if (_graphType == graphType.byID) checkValidIDGraphParams();
         }
 
+        private void setError(string errorText)
+        {
+            bdrGraph.Visibility = System.Windows.Visibility.Hidden;
+            grdByDate.Visibility = System.Windows.Visibility.Hidden;
+            grdByID.Visibility = System.Windows.Visibility.Hidden;
+        }
 
     }
 }
