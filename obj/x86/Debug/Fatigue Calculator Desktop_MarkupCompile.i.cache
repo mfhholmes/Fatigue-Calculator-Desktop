@@ -8,13 +8,19 @@ O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\
 Fatigue_Calculator_Desktop
 none
 false
-DEBUG;TRACE
+TRACE;DEBUG
 O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\App.xaml
-11-1565247480
+17441905416
 
+<<<<<<< HEAD
 26-2018262127
 12-1381780322
 confirmPage.xaml;disclaimerPage.xaml;graphPage.xaml;identityPage.xaml;recommendPage.xaml;resultsPage.xaml;shiftPage.xaml;sleepPage.xaml;spinner.xaml;welcomePage.xaml;MainWindow.xaml;
+=======
+48274494113
+211691311735
+adminAdvancedOptionsPage.xaml;confirmPage.xaml;disclaimerPage.xaml;graphPage.xaml;adminGraphPage.xaml;identityPage.xaml;adminIDListPage.xaml;adminMenuPage.xaml;recommendPage.xaml;researchPage.xaml;resultsPage.xaml;adminSettingsPage.xaml;shiftPage.xaml;sleepPage.xaml;spinner.xaml;welcomePage.xaml;MainWindow.xaml;
+>>>>>>> refs/heads/admin_merge
 
 True
 

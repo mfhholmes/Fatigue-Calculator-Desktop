@@ -20,28 +20,34 @@ namespace Fatigue_Calculator_Desktop
     public partial class identityPage : Page
     {
         private calculation _currentCalc;
-        private IdentityFile _idFile;
-
-        private enum lookupType
-        {
-            none,
-            dynamic,
-            single
-        }
-        private lookupType lookup;
-
+        private IidentityLookup _idLookup;
+        private bool _warned = false;
 
         public identityPage()
         {
             InitializeComponent();
-            loadIdentities();
+            _idLookup = new identityLookupFactory().getLookup();
         }
         public identityPage(calculation passedCalc)
         {
             InitializeComponent();
             // set up values from calculation
             _currentCalc = passedCalc;
-            loadIdentities();
+            _idLookup = new identityLookupFactory().getLookup();
+        }
+
+        public bool skipPage
+        {
+            get
+            {
+                if(!_idLookup.displayPage)
+                {
+                    // skipping the page, so set the default identity
+                    _currentCalc.currentInputs.identity = _idLookup.validate("");
+                    return true;
+                }
+                return false;
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -52,202 +58,101 @@ namespace Fatigue_Calculator_Desktop
 
         private void btnGo_Click(object sender, RoutedEventArgs e)
         {
-            // no validation for the identity
-            switch (lookup)
+            if(_warned)
             {
-                case lookupType.none:
-                    {
-                        //  no validation, free input, let's go
-                        _currentCalc.currentInputs.identity = this.txtName.Text;
-                        break;
-                    }
-                case lookupType.dynamic:
-                    {
-                        // check if it's a valid name or not
-                        if (checkLookup(txtName.Text, true))
-                        {
-                            // matched, and already in the control, let's go
-                            _currentCalc.currentInputs.identity = this.txtName.Text;
-                            break;
-                        }
-                        else
-                        {
-                            // didn't match...no go
-                            return;
-                        }
-                    }
-                case lookupType.single:
-                    {
-                        // check if it's a valid name or not
-                        if (checkLookup(txtName.Text, true))
-                        {
-                            // matched, but not in the control
-                            List<identity> matches = _idFile.LookUpName(txtName.Text);
-                            if (matches.Count == 1)
-                                this.txtName.Text = matches.ElementAt(0).Name;
-                            _currentCalc.currentInputs.identity = this.txtName.Text;
-                            break;
-                        }
-                        else
-                        {
-                            // didn't match...no go
-                            return;
-                        }
-                    }
-                default:
-                    {
-                        //TODO: some kind of error here?
-                        return;
-                    }
+                // just move to the next screen, we've done all this once
+                shiftPage next = new shiftPage(_currentCalc);
+                this.NavigationService.Navigate(next);
+            }
+
+            // get the match from the lookup
+            identity valid = _idLookup.validate(txtInput.Text);
+            _currentCalc.currentInputs.identity = valid;
+            if(valid==null || !valid.isValid)
+            {
+                lblMatch.Text = "That name or ID does not match a valid identity.";
+                lblMatch.Visibility = System.Windows.Visibility.Visible;
+                return;
             }
             // now check if this is their first calculation, and if so, give them the Disclaimer
-            if (_idFile.LookUpName(txtName.Text).Count == 0)
+            ILogService log = LogFactory.createLog(Config.ConfigSettings.settings.logServiceUrl);
+            
+            if(log.isIdentityOnLog(valid))
+            {
+                // check if they've done a calculation in the last 12 hours
+                DateTime? lastLog = log.lastLogEntryForUser(valid);
+                if ((lastLog != null) && (lastLog > (DateTime.Now - new TimeSpan(12,0,0))))
+                {
+                    // yeah, the last calculation was within the last 12 hours so display a warning
+                    bdrWarning.Visibility = System.Windows.Visibility.Visible;
+                    _warned = true;
+                    return;
+                }
+                shiftPage next = new shiftPage(_currentCalc);
+                this.NavigationService.Navigate(next);
+            }
+            else
             {
                 disclaimerPage disclaimer = new disclaimerPage(_currentCalc);
                 this.NavigationService.Navigate(disclaimer);
             }
-            else
-            {
-                shiftPage next = new shiftPage(_currentCalc);
-                this.NavigationService.Navigate(next);
-            }
+
         }
 
         private void Keyboard_Click(object sender, RoutedEventArgs e)
         {
             Button key = (Button)sender;
-            if (key.Content.ToString() == "Back") txtName.Text = txtName.Text.Substring(0, txtName.Text.Length - 1);
-            else if (key.Content.ToString() == "Reset") txtName.Text = "";
-            else if (key.Content.ToString() == "Space") txtName.Text += " ";
-            else txtName.Text = txtName.Text + key.Content.ToString();
-            checkLookup(txtName.Text,false);
-
+            handleInput(key.Content.ToString());
         }
-        private void loadIdentities()
+        private void handleInput(string input)
         {
-        _idFile = new IdentityFile();
-#if (Multiuser || Unprotected || DEBUG)
-            // get the lookup type from the settings
-            string ltype = Properties.Settings.Default.IDLookupType;
-            string filename = Properties.Settings.Default.IdentityLookupFile;
-            
-            switch (ltype.ToLower())
+            if (input== "Back")
             {
-                case "dynamic":
-                    {
-                        if ( _idFile.SetIdentityListSource(filename))
-                        {
-                            lookup = lookupType.dynamic;
-                        }
-                        else
-                        {
-                            lookup = lookupType.none;
-                        }
-                        break;
-                    }
-                case "none":
-                    {
-                        lookup= lookupType.none;
-                        break;
-                    }
-                case "single":
-                    {
-                        if (_idFile.SetIdentityListSource(filename))
-                        {
-                            lookup = lookupType.single;
-                        }
-                        else
-                        {
-                            lookup = lookupType.none;
-                        }
-                        break;
-                    }
-                default:
-                    {
-                        lookup= lookupType.none;
-                        break;
-                    }
+                txtInput.Text = txtInput.Text.Substring(0, txtInput.Text.Length - 1);
             }
-            
-#else
-            lookup = lookupType.none;
-            return;
-#endif
-            //try
+            else if (input == "Reset")
+            {
+                txtInput.Text = "";
+            }
+            else if (input == "Space")
+            {
+                txtInput.Text += " ";
+            }
+            else if ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-'1234567890 ".Contains(input))
+            {
+                txtInput.Text = txtInput.Text + input.ToUpper();
+            }
+            checkLookup(txtInput.Text);
         }
-        private bool checkLookup(string text, bool isFinal)
+        private bool checkLookup(string text)
         {
-            identity matched;
-            // check the flag
-            switch (lookup)
+            lblMatch.Visibility = System.Windows.Visibility.Visible;
+            int numMatches = _idLookup.getMatchCount(text);
+            if (numMatches == 1)
             {
-                case lookupType.dynamic:
-                    {
-                        int matches = _idFile.LookUpName(text).Count;
-                        if (matches == 1)
-                        {
-                            matched = _idFile.LookUpName(text).ElementAt(0);
-                            txtName.Text = matched.Name;
-                            match.Visibility = System.Windows.Visibility.Visible;
-                            match.Text = "Match Found";
-                            return true;
-                        }
-                        else
-                        {
-                            match.Visibility = System.Windows.Visibility.Visible;
-                            if (matches > 0)
-                            {
-                                match.Text = "Multiple Matches Found";
-                            }
-                            else
-                            {
-                                match.Text = "No Matches Found";
-                            }
-                            return false;
-                        }
-                    }
-                case lookupType.none:
-                    {
-                        // always return false...free entry
-                        match.Visibility = System.Windows.Visibility.Hidden;
-                        return false;
-                    }
-                case lookupType.single:
-                    {
-                        if (isFinal)
-                        {
-                            int matches = _idFile.LookUpName(text).Count;
-                            if (matches == 1)
-                            {
-                                matched = _idFile.LookUpName(text).ElementAt(0);
-                                txtName.Text = matched.Name;
-                                match.Visibility = System.Windows.Visibility.Visible;
-                                match.Text = "Match Found";
-                                return true;
-                            }
-                            else
-                            {
-                                match.Visibility = System.Windows.Visibility.Visible;
-                                match.Text = "Multiple Matches Found";
-                                return false;
-                            }
-                        }
-                        else
-                        {
-                            match.Visibility = System.Windows.Visibility.Hidden;
-                            return false;
-                        }
-                            
-                    }
-                default:
-                    return false;
+                txtMatch.Text = _idLookup.getBestMatch(text).Substring(text.Length).ToUpper();
+                txtInput.Text = text;
+                lblMatch.Text = "valid identity match";
+                return true;
             }
+            if (numMatches == 0)
+            {
+                lblMatch.Text = "no matches";
+                txtMatch.Text = "";
+            }
+            else
+            {
+                lblMatch.Text = "multiple matches";
+                txtMatch.Text = "";
+            }
+            return false;
         }
 
-        private void txtName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void page_TextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = checkLookup(e.Text,false);
+            handleInput(e.Text);
         }
+
 
     }
 }

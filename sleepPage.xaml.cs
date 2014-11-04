@@ -38,7 +38,9 @@ namespace Fatigue_Calculator_Desktop
             spnSleep48Mins.Value = (int)((currentCalc.currentInputs.sleep48 - spnSleep48Hours.Value) * 60.0);
             spnHoursAwake.Value = (int)currentCalc.currentInputs.hoursAwake;
             spnMinsAwake.Value = (int)((currentCalc.currentInputs.hoursAwake - spnMinsAwake.Value) * 60.0);
-            hoursAwakelabel.Text = "How many hours since you last woke, as of " + DateTime.Now.ToString("h:mm tt");
+            sleep24Text.Text = "How many hours of sleep have you had in the last 24 hours from " + DateTime.Now.ToString("HH:mm") + "?";
+            sleep48Text.Text = "How many hours of sleep have you had in the last 48 hours from " + DateTime.Now.ToString("HH:mm") + "?";
+            hoursAwakeText.Text = "How many hours since you last woke, as of " + DateTime.Now.ToString("HH:mm") + "?";
             btnHelp_Click(this, new RoutedEventArgs());
         }
 

@@ -5,7 +5,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 	  mc:Ignorable="d" 
 	  d:DesignHeight="643" d:DesignWidth="1024"
-	Title="identityPage">
+	Title="identityPage" TextInput="page_TextInput">
 
 	<Grid Background="{StaticResource brushFCBlue}">
 		<Grid.ColumnDefinitions>
@@ -39,8 +39,10 @@
 		<TextBlock Style="{StaticResource styleFCHeading1Orange}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="10">Please Confirm your Identity</TextBlock>
 
 		<TextBlock Name="lblID" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="10" VerticalAlignment="Center"  Style="{StaticResource styleFCHeading2White}">Name / ID Number:</TextBlock>
-		<TextBox Name="txtName" Height="50" FontSize="32" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="5" PreviewTextInput="txtName_PreviewTextInput" ></TextBox>
-		<TextBlock Name="match" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="5" Foreground="{StaticResource brushFCOrange}" Style="{StaticResource styleFCBodyCopy1}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Visibility="Hidden">Match Found</TextBlock>
+		<TextBlock Name="txtName" Height="50" FontSize="32" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="5" Focusable="True" IsHyphenationEnabled="True" IsManipulationEnabled="True" Background="White">
+			<Run Name="txtInput" Focusable="True"></Run><Run Name="txtMatch" Foreground="Gray" IsEnabled="False" ></Run>
+		</TextBlock>
+		<TextBlock Name="lblMatch" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="5" Foreground="{StaticResource brushFCOrange}" Style="{StaticResource styleFCBodyCopy1}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Visibility="Hidden">Match Found</TextBlock>
 		<Grid Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="7" Grid.RowSpan="4">
 			<Grid.RowDefinitions>
 				<RowDefinition />
@@ -105,6 +107,28 @@
 		</Grid>
 		<Button Name="btnBack" Grid.Column="1" Grid.Row="9" Click="btnBack_Click" Template="{StaticResource controlFCButton}">Back</Button>
 		<Button Name="btnGo" Grid.Column="9" Grid.Row="9" Grid.ColumnSpan="2" Click="btnGo_Click" Template="{StaticResource controlFCButton}">Continue</Button>
+		<Border Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="10" Grid.RowSpan="7" CornerRadius="20" BorderThickness="5" Panel.ZIndex="100" BorderBrush="Black" Background="White" Visibility="Hidden" Name="bdrWarning" >
+			<TextBlock Style="{StaticResource styleFCHeading1Orange}" TextAlignment="Center" FontSize="32" Margin="25" Foreground="Red">
+				<Run FontSize="48">Warning</Run>
+				<LineBreak/>
+				<Run FontSize="36">You have performed a calculation within the last 12 hours already</Run>
+				<LineBreak/>
+				<LineBreak/>
+				<Run FontSize="34">If your results were incorrect, please discuss this with your supervisor</Run>
+				<LineBreak/>
+				<LineBreak/>
+				<Run FontSize="30">Please alert your supervisor if you haven't performed a calculation</Run>
+				<LineBreak/>
+				<Run FontSize="30">within the last 12 hours as someone else may have used your identity</Run>
+				<LineBreak/>
+				<LineBreak/>
+				<Run FontSize="30">You can continue with this calculation</Run>
+				<LineBreak/>
+				<Run FontSize="30">but changes to your sleep pattern may be discussed with you</Run>
 
+			</TextBlock>
+			
+			
+		</Border>
 	</Grid>
 </Page>

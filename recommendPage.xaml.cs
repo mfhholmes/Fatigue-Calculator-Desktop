@@ -124,9 +124,9 @@ namespace Fatigue_Calculator_Desktop
                                 level.FontWeight = FontWeights.Bold;
                                 Advice.Inlines.Add(level);
                                 addRun(" Fatigue Likelihood from ");
-                                addRun(start.ToString("dddd h:mm tt"));
+                                addRun(start.ToString("dddd HH:mm"));
                                 addRun(" to ");
-                                addRun(finish.ToString("dddd h:mm tt"),2);
+                                addRun(finish.ToString("dddd HH:mm"),2);
                             }
                             else
                             {
@@ -175,13 +175,13 @@ namespace Fatigue_Calculator_Desktop
                                 level.FontWeight = FontWeights.Bold;
                                 Advice.Inlines.Add(level);
                                 addRun(" Fatigue Likelihood from ");
-                                addRun(start.ToString("dddd h:mm tt"));
+                                addRun(start.ToString("dddd HH:mm"));
                                 addRun(" to ");
-                                addRun(finish.ToString("dddd h:mm tt"), 2);
+                                addRun(finish.ToString("dddd HH:mm"), 2);
                                 if(start.Date == DateTime.Now.Date)
-                                    startText = "Notify your supervisor that you will become a HIGH Fatigue Risk at " + start.ToString("h:mm tt");
+                                    startText = "Notify your supervisor that you will become a HIGH Fatigue Risk at " + start.ToString("HH:mm");
                                 else
-                                    startText = "Notify your supervisor that you will become a HIGH Fatigue Risk on " + start.ToString("dddd h:mm tt");
+                                    startText = "Notify your supervisor that you will become a HIGH Fatigue Risk on " + start.ToString("dddd HH:mm");
                             }
                             else
                             {
@@ -229,7 +229,7 @@ namespace Fatigue_Calculator_Desktop
                                 level.FontWeight = FontWeights.Bold;
                                 Advice.Inlines.Add(level);
                                 addRun(" Fatigue Likelihood from ");
-                                addRun(start.ToString("dddd h:mm tt"));
+                                addRun(start.ToString("dddd HH:mm"));
                                 addRun(" until you next sleep.", 2);
                                 addRun("At this time:", 1);
                             }

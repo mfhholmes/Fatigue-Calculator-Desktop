@@ -19,10 +19,10 @@ namespace Fatigue_Calculator_Desktop
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(Page startPage)
         {
             InitializeComponent();
-            this.container.Navigate(new welcomePage());
+            this.container.Navigate(startPage);
         }
     }
 }

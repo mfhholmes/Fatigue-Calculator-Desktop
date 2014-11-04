@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LogCalc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="whenDone" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="DeviceId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="shiftStart" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="shiftEnd" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="sleep24" type="xs:double" />
+        <xs:element minOccurs="0" name="sleep48" type="xs:double" />
+        <xs:element minOccurs="0" name="hoursAwake" type="xs:double" />
+        <xs:element minOccurs="0" name="lowThreshold" type="xs:int" />
+        <xs:element minOccurs="0" name="highThreshold" type="xs:int" />
+        <xs:element minOccurs="0" name="fatigueRiskScore" type="xs:int" />
+        <xs:element minOccurs="0" name="fatigueRiskLevel" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="algorithmVersion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="becomesModerate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="becomesHigh" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="becomesExtreme" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogCalcResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TestConnect">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="param" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TestConnectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TestConnectResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsIdentityOnLog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsIdentityOnLogResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsIdentityOnLogResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="lastLogEntryForUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="lastLogEntryForUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lastLogEntryForUserResult" nillable="true" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

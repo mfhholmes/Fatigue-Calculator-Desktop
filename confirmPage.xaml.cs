@@ -41,17 +41,20 @@ namespace Fatigue_Calculator_Desktop
         private void btnGo_Click(object sender, RoutedEventArgs e)
         {
             //load the calculation settings from the config settings
-            currentCalc.currentPresets.lowThreshold = Properties.Settings.Default.lowThreshold;
-            currentCalc.currentPresets.highThreshold = Properties.Settings.Default.highThreshold;
-            currentCalc.currentInputs.deviceId = Properties.Settings.Default.DeviceId;
+            currentCalc.currentPresets.lowThreshold = Config.ConfigSettings.settings.lowThreshold;
+            currentCalc.currentPresets.highThreshold = Config.ConfigSettings.settings.highThreshold;
+            currentCalc.currentInputs.deviceId = Config.ConfigSettings.settings.deviceId;
             currentCalc.currentPresets.defaultRosterLength = 72;
             
+            // this can take a while...
+            Cursor currentCursor = this.Cursor;
+            this.Cursor = Cursors.Wait;
+
             // so do the calculation!
             currentCalc.doCalc();
 
             //log the calculation
-            ILogService log = new logFile();
-            log.setLogURL(Properties.Settings.Default.LogServiceURL);
+            ILogService log = LogFactory.createLog(Config.ConfigSettings.settings.logServiceUrl);
             if (log.isValid)
             {
                 currentCalc.logged = currentCalc.logCalc(log);
@@ -61,6 +64,8 @@ namespace Fatigue_Calculator_Desktop
                 //failed to log the calculation...let's just make sure the calculator knows it
                 currentCalc.logged = false;
             }
+
+            this.Cursor = currentCursor;
 
             // on to the results
             resultsPage next = new resultsPage(currentCalc);

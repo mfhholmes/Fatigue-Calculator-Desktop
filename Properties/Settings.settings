@@ -2,26 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Fatigue_Calculator_Desktop.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="lowThreshold" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">6</Value>
-    </Setting>
-    <Setting Name="highThreshold" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">13</Value>
-    </Setting>
-    <Setting Name="IdentityLookupFile" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">%app.path%People.csv</Value>
-    </Setting>
-    <Setting Name="LogServiceURL" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">%documents%fatiguelog.csv</Value>
-    </Setting>
-    <Setting Name="DeviceId" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">TestDevice</Value>
-    </Setting>
-    <Setting Name="IDLookupType" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">dynamic</Value>
-    </Setting>
-    <Setting Name="FixedID" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">SingleUser</Value>
+    <Setting Name="Fatigue_Calculator_Desktop_biz_marcusholmes_FatigueCalculatorData" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://marcusholmes.biz/FatigueManager/FatigueCalculatorData.svc</Value>
     </Setting>
   </Settings>
 </SettingsFile>

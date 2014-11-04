@@ -56,5 +56,13 @@ namespace Fatigue_Calculator_Desktop
         /// <param name="noduplicates">true (default) if the list should be pruned of duplicates</param>
         /// <returns>List of identity objects</returns>
         List<identity> IdentityList(bool noduplicates = true);
+
+        /// <summary>
+        /// changes any values in the identity list that match the oldId search values to the values in the newId
+        /// </summary>
+        /// <param name="oldId">search values to find (uses Name and Id only)</param>
+        /// <param name="newId">values to change to</param>
+        /// <returns>true if successful</returns>
+        bool ChangeIdentity(identity oldId, identity newId);
     }
 }

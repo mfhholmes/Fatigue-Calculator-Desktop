@@ -89,7 +89,8 @@ namespace Fatigue_Calculator_Desktop
                 case "app.data":
                 case "appdata":
                     {
-                        result = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData, Environment.SpecialFolderOption.DoNotVerify);
+                        //result = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData, Environment.SpecialFolderOption.DoNotVerify);
+                        result = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
                         break;
                     }
                 case "my documents":
@@ -128,6 +129,8 @@ namespace Fatigue_Calculator_Desktop
             }
             // get the filename from the input and add it to the path
             string justfile = "";
+            // switch the slashes
+            filename = filename.Replace(@"/", @"\");
             if (filename.IndexOf(@"\") == -1)
             {
                 //it's possible, if the path contains a special path

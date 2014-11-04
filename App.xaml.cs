@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Fatigue_Calculator_Desktop
 {
@@ -18,6 +19,7 @@ namespace Fatigue_Calculator_Desktop
             // Process command line args
             bool startFullScreen = false;
             bool windowless = false;
+            bool admin = false;
             for (int i = 0; i != e.Args.Length; ++i)
             {
                 if (e.Args[i].ToUpper() == "/FULLSCREEN")
@@ -28,10 +30,27 @@ namespace Fatigue_Calculator_Desktop
                 {
                     windowless = true;
                 }
+                if (e.Args[i].ToUpper() == "/ADMIN")
+                {
+                    admin = true;
+                }
+
             }
 
-            // Create main application window, starting minimized if specified
-            MainWindow mainWindow = new MainWindow();
+            // work out the start page depending what mode we're in
+            Page startPage;
+            if (admin)
+            {
+                startPage = new adminMenuPage();
+            }
+            else
+            {
+                startPage = new welcomePage();
+            }
+            // create the main window
+            MainWindow mainWindow = new MainWindow(startPage);
+
+            // then work out if we're fullscreen or windowless
             if (startFullScreen)
             {
                 mainWindow.WindowState = WindowState.Maximized;
@@ -40,6 +59,7 @@ namespace Fatigue_Calculator_Desktop
             {
                 mainWindow.WindowStyle = WindowStyle.None;
             }
+            // and.....go!
             mainWindow.Show();
         }
     }

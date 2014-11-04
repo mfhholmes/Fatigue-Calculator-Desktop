@@ -52,6 +52,27 @@
 		<Setter Property="TextWrapping" Value="Wrap"/>
 		<Setter Property="Foreground" Value="{StaticResource brushFCOrange}"/>
 	</Style>
+	<Style x:Key="styleFCHeading2Blue" TargetType="TextBlock">
+		<Setter Property="FontFamily" Value="./Fonts/#PF Handbook Pro Thin"/>
+		<Setter Property="FontSize" Value="32"/>
+		<!--<Setter Property="Padding" Value="65,0,25,0"/>-->
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="TextWrapping" Value="Wrap"/>
+		<Setter Property="Foreground" Value="{StaticResource brushFCBlue}"/>
+	</Style>
+	
+	<Style x:Key="styleFCSettingBlue" TargetType="TextBlock">
+		<Setter Property="FontFamily" Value="Arial"/>
+		<Setter Property="FontSize" Value="24"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="Foreground" Value="{StaticResource brushFCBlue}"/>
+	</Style>
+	<Style x:Key="styleFCSettingBlueLarge" TargetType="TextBlock">
+		<Setter Property="FontFamily" Value="Arial"/>
+		<Setter Property="FontSize" Value="36"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="Foreground" Value="{StaticResource brushFCBlue}"/>
+	</Style>
 
 	<Style x:Key="styleFCWhiteRun" TargetType="Run">
 		<Setter Property="FontFamily" Value="./Fonts/#PF Handbook Pro Thin"/>

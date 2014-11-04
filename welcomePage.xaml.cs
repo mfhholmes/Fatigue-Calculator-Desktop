@@ -31,15 +31,11 @@ namespace Fatigue_Calculator_Desktop
             calculation newCalc = new calculation();
             // next page is the identity page, depending on licence type
 
-#if Singleuser
-            newCalc.currentInputs.identity = Properties.Settings.Default.FixedID;
-            // skip identity page and on to shift
-            shiftPage nextShift = new shiftPage(newCalc);
-            this.NavigationService.Navigate(nextShift);
-#else
             identityPage next = new identityPage(newCalc);
-            this.NavigationService.Navigate(next);
-#endif
+            if (next.skipPage)
+                this.NavigationService.Navigate(new shiftPage(newCalc));
+            else
+                this.NavigationService.Navigate(next);
         }
 
     }
