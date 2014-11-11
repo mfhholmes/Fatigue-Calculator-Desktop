@@ -125,7 +125,8 @@ namespace Fatigue_Calculator_Desktop
 		private void btnPrint_Click(object sender, RoutedEventArgs e)
 		{
 			Print printit = new Print();
-			printit.printCalc(currentCalc);
+			//printit.printCalc(currentCalc);
+			printit.printResultPage(currentCalc);
 		}
 	}
 }

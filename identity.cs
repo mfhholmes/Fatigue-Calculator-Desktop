@@ -69,6 +69,10 @@ namespace Fatigue_Calculator_Desktop
 				result += QUOTE + "unknown" + QUOTE;
 			return result;
 		}
+		public string ToSmallString()
+		{
+			return _id + " : " + _name;		
+		}
 
 		public identity(string line)
 		{
