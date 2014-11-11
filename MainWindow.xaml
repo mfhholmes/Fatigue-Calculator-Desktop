@@ -7,7 +7,7 @@
 		VerticalAlignment="Stretch"
 		Icon="./fatigue calculator icon.ico"
 		Margin="0"
-		Padding="0" 
+		Padding="0"
 		Height="800"
 		Width="1200"
 		mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="894" d:DesignWidth="1131" SizeToContent="Manual" ResizeMode="NoResize">

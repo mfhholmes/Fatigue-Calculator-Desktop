@@ -1,53 +1,52 @@
 ﻿<Page x:Class="Fatigue_Calculator_Desktop.researchPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      mc:Ignorable="d" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
           d:DesignHeight="643" d:DesignWidth="1024"
     Title="researchPage">
 
-    <Grid Background="{StaticResource brushFCBlue}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40"></ColumnDefinition>
-            <ColumnDefinition Width="150"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="150"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="150"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="150"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="75"></ColumnDefinition>
-            <ColumnDefinition Width="75"></ColumnDefinition>
-            <ColumnDefinition Width="40"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="120"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition  Height="120"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="120"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-        </Grid.RowDefinitions>
+	<Grid Background="{StaticResource brushFCBlue}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="40"></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="150"></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition Width="75"></ColumnDefinition>
+			<ColumnDefinition Width="75"></ColumnDefinition>
+			<ColumnDefinition Width="40"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"></RowDefinition>
+			<RowDefinition Height="50"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition  Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="120"></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition Height="50"></RowDefinition>
+			<RowDefinition Height="40"></RowDefinition>
+		</Grid.RowDefinitions>
 
-        <TextBlock Style="{StaticResource styleFCHeading1Orange}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="10">Research Approval</TextBlock>
-        <TextBlock Style="{StaticResource styleFCBodyCopy3}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="10" Grid.RowSpan="5">
+		<TextBlock Style="{StaticResource styleFCHeading1Orange}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="10">Research Approval</TextBlock>
+		<TextBlock Style="{StaticResource styleFCBodyCopy3}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="10" Grid.RowSpan="5">
 			<Run>Do you consent to your data being used for academic and scientific study to further improve this tool? </Run>
-			<LineBreak/>
-			<LineBreak/>
+			<LineBreak />
+			<LineBreak />
 			<Run>All information collected by this tool will remain in the possession of the MB Solutions and the Centre for Sleep Research and will only be used for academic purposes</Run>
-			<LineBreak/>
+			<LineBreak />
 			<Run>All identifying information will be completely removed, the data used will be anonymous and researchers will not be able to trace your participation.</Run>
 		</TextBlock>
 		<TextBlock Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="7" TextAlignment="Center" Style="{StaticResource styleFCBodyCopy3}">This question has no effect on the calculation you are about to perform</TextBlock>
-        <Button Name="btnBack" Grid.Column="1" Grid.Row="9" Click="btnBack_Click" Template="{StaticResource controlFCButton}">I Don't Accept</Button>
-        <Button Name="btnGo" Grid.Column="9" Grid.Row="9" Grid.ColumnSpan="2" Click="btnGo_Click" Template="{StaticResource controlFCButton}">I Accept</Button>
-    </Grid>
-
+		<Button Name="btnBack" Grid.Column="1" Grid.Row="9" Click="btnBack_Click" Template="{StaticResource controlFCButton}">I Don't Accept</Button>
+		<Button Name="btnGo" Grid.Column="9" Grid.Row="9" Grid.ColumnSpan="2" Click="btnGo_Click" Template="{StaticResource controlFCButton}">I Accept</Button>
+	</Grid>
 </Page>

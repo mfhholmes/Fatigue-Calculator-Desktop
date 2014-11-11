@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Fatigue_Calculator_Desktop
+﻿namespace Fatigue_Calculator_Desktop
 {
-    class identityLookupFactory
-    {
-        public IidentityLookup getLookup()
-        {
-
-            // depends on the compile-time constant and settings
+	internal class identityLookupFactory
+	{
+		public IidentityLookup getLookup()
+		{
+			// depends on the compile-time constant and settings
 #if (Multiuser || Unprotected)
             // for the moment we can only deal with identity files. this will change with Fatigue Manager
             IIdentityService idFile = new identityFile();
@@ -109,33 +103,33 @@ namespace Fatigue_Calculator_Desktop
 #endif
 
 #if DEBUG
-            // for the moment we can only deal with identity files. this will change with Fatigue Manager
-            IIdentityService idFile = new identityFile();
-            string filename = Config.ConfigSettings.settings.IDLookupFile;
-            idFile.SetIdentityListSource(filename);
+			// for the moment we can only deal with identity files. this will change with Fatigue Manager
+			IIdentityService idFile = new identityFile();
+			string filename = Config.ConfigSettings.settings.IDLookupFile;
+			idFile.SetIdentityListSource(filename);
 
-            string setting = Config.ConfigSettings.settings.IDLookupType;
-            switch (setting.ToLower())
-            {
-                case "open":
-                    {
-                        return new lookupOpen(idFile);
-                    }
-                case "fixed":
-                    {
-                        return new lookupFixed();
-                    }
-                case "closed":
-                    {
-                        return new lookupClosed(idFile);
-                    }
-                default:
-                    {
-                        // assume 'none' for all invalid cases
-                        return new lookupNone();
-                    }
-            }
+			string setting = Config.ConfigSettings.settings.IDLookupType;
+			switch (setting.ToLower())
+			{
+				case "open":
+					{
+						return new lookupOpen(idFile);
+					}
+				case "fixed":
+					{
+						return new lookupFixed();
+					}
+				case "closed":
+					{
+						return new lookupClosed(idFile);
+					}
+				default:
+					{
+						// assume 'none' for all invalid cases
+						return new lookupNone();
+					}
+			}
 #endif
-        }
-    }
+		}
+	}
 }

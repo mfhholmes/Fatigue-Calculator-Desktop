@@ -1,9 +1,9 @@
 ﻿<Page x:Class="Fatigue_Calculator_Desktop.adminMenuPage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-	  mc:Ignorable="d" 
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  mc:Ignorable="d"
 	  d:DesignHeight="643" d:DesignWidth="1024"
 	  Background="{StaticResource brushFCBlue}"
 	  Title="Admin Utility"
@@ -60,7 +60,6 @@
 					<RowDefinition Height="0*"></RowDefinition>
 
 					<RowDefinition></RowDefinition>
-
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition></ColumnDefinition>
@@ -69,7 +68,7 @@
 					<ColumnDefinition Width="4*"></ColumnDefinition>
 					<ColumnDefinition></ColumnDefinition>
 				</Grid.ColumnDefinitions>
-				<TextBlock Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Style="{StaticResource styleFCSettingBlue}" TextWrapping="Wrap" VerticalAlignment="Center" >
+				<TextBlock Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Style="{StaticResource styleFCSettingBlue}" TextWrapping="Wrap" VerticalAlignment="Center">
 					Manage the list of users that are authorised to use the system or that have used the system, depending on version.
 				</TextBlock>
 				<TextBlock Grid.Row="5" Grid.RowSpan="3" Grid.Column="1" Style="{StaticResource styleFCSettingBlue}" TextWrapping="Wrap" VerticalAlignment="Center" Name="GraphLabel">

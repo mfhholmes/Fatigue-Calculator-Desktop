@@ -1,9 +1,9 @@
 ﻿<Page x:Class="Fatigue_Calculator_Desktop.adminGraphPage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-	  mc:Ignorable="d" 
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  mc:Ignorable="d"
 	  d:DesignHeight="643" d:DesignWidth="1024"
 	  Background="{StaticResource brushFCBlue}"
 >
@@ -40,48 +40,47 @@
 		<Button Template="{StaticResource controlFCButton}" Grid.Row="9" Grid.Column="5" Name="btnSwitch" Click="btnSwitch_Click">Graph By Date</Button>
 
 		<Border Grid.Row="3" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="10" BorderBrush="Black" BorderThickness="2" Background="White" Padding="10" CornerRadius="20" Name="bdrGraph" Panel.ZIndex="1" Visibility="Visible">
-			<ScrollViewer >
+			<ScrollViewer>
 				<Grid Name="grdResults">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="30"></RowDefinition>
-					<RowDefinition></RowDefinition>
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="10*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-					<ColumnDefinition Width="1*"></ColumnDefinition>
-				</Grid.ColumnDefinitions>
-				<TextBlock Grid.Row="0" Grid.Column="0" FontSize="22" Name="typeHeader">Identity</TextBlock>
-				<TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" FontSize="22">00:00</TextBlock>
-				<TextBlock Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="4" FontSize="22">04:00</TextBlock>
-				<TextBlock Grid.Row="0" Grid.Column="9" Grid.ColumnSpan="4" FontSize="22">08:00</TextBlock>
-				<TextBlock Grid.Row="0" Grid.Column="13" Grid.ColumnSpan="4" FontSize="22">12:00</TextBlock>
-				<TextBlock Grid.Row="0" Grid.Column="17" Grid.ColumnSpan="4" FontSize="22">16:00</TextBlock>
-				<TextBlock Grid.Row="0" Grid.Column="21" Grid.ColumnSpan="4" FontSize="22">20:00</TextBlock>
-				
-			</Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="30"></RowDefinition>
+						<RowDefinition></RowDefinition>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="10*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+						<ColumnDefinition Width="1*"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+					<TextBlock Grid.Row="0" Grid.Column="0" FontSize="22" Name="typeHeader">Identity</TextBlock>
+					<TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" FontSize="22">00:00</TextBlock>
+					<TextBlock Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="4" FontSize="22">04:00</TextBlock>
+					<TextBlock Grid.Row="0" Grid.Column="9" Grid.ColumnSpan="4" FontSize="22">08:00</TextBlock>
+					<TextBlock Grid.Row="0" Grid.Column="13" Grid.ColumnSpan="4" FontSize="22">12:00</TextBlock>
+					<TextBlock Grid.Row="0" Grid.Column="17" Grid.ColumnSpan="4" FontSize="22">16:00</TextBlock>
+					<TextBlock Grid.Row="0" Grid.Column="21" Grid.ColumnSpan="4" FontSize="22">20:00</TextBlock>
+				</Grid>
 			</ScrollViewer>
 		</Border>
 		<Grid Name="grdByDate" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="8" Visibility="Visible">
@@ -90,7 +89,7 @@
 				<ColumnDefinition Width="3*"></ColumnDefinition>
 			</Grid.ColumnDefinitions>
 			<TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Style="{StaticResource styleFCHeading2White}" Name="lblDate"  >Date:</TextBlock>
-			<DatePicker Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="dtpDate" FontSize="24" VerticalContentAlignment="Stretch" SelectedDateChanged="dtpDate_SelectedDateChanged"/>
+			<DatePicker Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="dtpDate" FontSize="24" VerticalContentAlignment="Stretch" SelectedDateChanged="dtpDate_SelectedDateChanged" />
 		</Grid>
 		<Grid Name="grdByID" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="8" Visibility="Hidden">
 			<Grid.ColumnDefinitions>
@@ -100,13 +99,12 @@
 				<ColumnDefinition Width="3*"></ColumnDefinition>
 				<ColumnDefinition Width="1*"></ColumnDefinition>
 				<ColumnDefinition Width="3*"></ColumnDefinition>
-
 			</Grid.ColumnDefinitions>
 			<TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Style="{StaticResource styleFCHeading2White}"   >ID:</TextBlock>
 			<TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" Style="{StaticResource styleFCHeading2White}"  >From:</TextBlock>
 			<TextBlock Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" Style="{StaticResource styleFCHeading2White}"  >To:</TextBlock>
 			<ComboBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="cboIds" FontSize="24" VerticalContentAlignment="Stretch" SelectionChanged="cboIds_SelectionChanged" />
-			<DatePicker Grid.Column="3" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="dtpFirst" FontSize="24" VerticalContentAlignment="Stretch" SelectedDateChanged="dtp_SelectedDateChanged"/>
+			<DatePicker Grid.Column="3" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="dtpFirst" FontSize="24" VerticalContentAlignment="Stretch" SelectedDateChanged="dtp_SelectedDateChanged" />
 			<DatePicker Grid.Column="5" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="dtpLast" FontSize="24" VerticalContentAlignment="Stretch" SelectedDateChanged="dtp_SelectedDateChanged" />
 		</Grid>
 		<TextBlock Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="7" Style="{StaticResource styleFCHeading2White}" Name="txtError" HorizontalAlignment="Center">Error Message</TextBlock>

@@ -1,9 +1,9 @@
 ﻿<Page x:Class="Fatigue_Calculator_Desktop.adminAdvancedOptionsPage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-	  mc:Ignorable="d" 
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  mc:Ignorable="d"
 	  d:DesignHeight="643" d:DesignWidth="1024"
 	  Background="{StaticResource brushFCBlue}"
 >
@@ -37,7 +37,7 @@
 		</Grid.RowDefinitions>
 		<TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Style="{StaticResource styleFCHeading1White}">Last File Locations</TextBlock>
 		<Button Template="{StaticResource controlFCButton}" Grid.Row="9" Grid.Column="9" Grid.ColumnSpan="2" Name="btnBack" Click="btnBack_Click">Back</Button>
-		<Border Grid.Row="3" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="10" BorderBrush="Black" BorderThickness="2" Background="White" Padding="10" CornerRadius="20" Name="bdrSettings" >
+		<Border Grid.Row="3" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="10" BorderBrush="Black" BorderThickness="2" Background="White" Padding="10" CornerRadius="20" Name="bdrSettings">
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition></RowDefinition>
@@ -89,7 +89,5 @@
 				<Button Name="btnCancel" Grid.Row="7" Grid.Column="1" Template="{StaticResource controlFCButton}" Click="btnCancel_Click">Cancel</Button>
 			</Grid>
 		</Border>
-
 	</Grid>
-	
 </Page>

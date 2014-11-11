@@ -1,9 +1,9 @@
 ﻿<Page x:Class="Fatigue_Calculator_Desktop.disclaimerPage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-	  mc:Ignorable="d" 
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  mc:Ignorable="d"
 	  d:DesignHeight="643" d:DesignWidth="1024"
 	Title="disclaimerPage">
 
@@ -57,5 +57,4 @@ respect of FATIGUE CALCULATOR or this agreement.
 		<Button Name="btnBack" Grid.Column="1" Grid.Row="9" Click="btnBack_Click" Template="{StaticResource controlFCButton}">I Don't Accept</Button>
 		<Button Name="btnGo" Grid.Column="9" Grid.Row="9" Grid.ColumnSpan="2" Click="btnGo_Click" Template="{StaticResource controlFCButton}">I Accept</Button>
 	</Grid>
-
 </Page>

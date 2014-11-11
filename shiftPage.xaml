@@ -1,10 +1,10 @@
 ﻿<Page x:Class="Fatigue_Calculator_Desktop.shiftPage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:fc="clr-namespace:Fatigue_Calculator_Desktop"
-	  mc:Ignorable="d" 
+	  mc:Ignorable="d"
 	  d:DesignHeight="643" d:DesignWidth="1024"
 	Title="shiftPage">
 
@@ -48,7 +48,6 @@
 			<Run>When does your shift end?</Run>
 			<LineBreak x:Name="LB2"> </LineBreak>
 			<Run Style="{StaticResource styleFCOrangeRun}" x:Name="shiftEndHelp">If your shift ends before it starts, the Calculator will assume your shift ends tomorrow and calculate accordingly.  When inputting your answers, please use 24:00 time.</Run>
-
 		</TextBlock>
 		<fc:spinner Grid.Row="5" Grid.Column="9" x:Name="spnStartHour" maxValue="24" minValue="0" velocityShift="0.5" ShowMax="False"></fc:spinner>
 		<fc:spinner Grid.Row="5" Grid.Column="10" x:Name="spnStartMin" maxValue="60" minValue="0" Step="30" velocityShift="0.2" ShowMax="False" ></fc:spinner>
