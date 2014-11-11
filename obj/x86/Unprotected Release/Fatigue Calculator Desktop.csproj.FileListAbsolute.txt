@@ -50,3 +50,48 @@ O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\
 O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\adminIDListPage.g.cs
 O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\adminMenuPage.g.cs
 O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\adminSettingsPage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\bin\Unprotected\Fatigue Calculator Desktop.exe.config
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\bin\Unprotected\Fatigue Calculator Desktop.exe
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\adminAdvancedOptionsPage.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\confirmPage.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\disclaimerPage.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\graphPage.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\adminGraphPage.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\identityPage.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\adminIDListPage.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\adminMenuPage.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\recommendPage.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\researchPage.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\resultsPage.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\adminSettingsPage.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\spinner.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\welcomePage.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\MainWindow.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\App.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\adminAdvancedOptionsPage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\confirmPage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\disclaimerPage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\graphPage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\adminGraphPage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\identityPage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\adminIDListPage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\adminMenuPage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\recommendPage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\researchPage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\resultsPage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\adminSettingsPage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\shiftPage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\sleepPage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\spinner.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\welcomePage.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\MainWindow.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\App.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\GeneratedInternalTypeHelper.g.cs
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\Fatigue Calculator Desktop_MarkupCompile.cache
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\Fatigue Calculator Desktop_MarkupCompile.lref
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\shiftPage.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\sleepPage.baml
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\Fatigue Calculator Desktop.g.resources
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\Fatigue_Calculator_Desktop.Properties.Resources.resources
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\Fatigue Calculator Desktop.csproj.GenerateResource.Cache
+C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\obj\x86\Unprotected Release\Fatigue Calculator Desktop.exe
