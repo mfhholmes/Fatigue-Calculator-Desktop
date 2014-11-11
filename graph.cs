@@ -6,6 +6,46 @@ using System.Windows.Shapes;
 
 namespace Fatigue_Calculator_Desktop
 {
+	internal class graphTheme
+	{
+		private Brush _textColour = Brushes.White;
+		private Brush _lineColour = Brushes.White;
+		private Brush _tickColour = Brushes.White;
+
+		public Brush TextColour
+		{
+			get
+			{
+				return _textColour;
+			}
+			set
+			{
+				_textColour = value;
+			}
+		}
+		public Brush LineColour
+		{
+			get
+			{
+				return _lineColour;
+			}
+			set
+			{
+				_lineColour = value;
+			}
+		}
+		public Brush TickColour
+		{
+			get
+			{
+				return _tickColour;
+			}
+			set
+			{
+				_tickColour = value;
+			}
+		}
+	}
 	internal class graph
 	{
 		// just Draw Shift: if set, only draws the hours involved in the user's shift pattern
@@ -27,17 +67,29 @@ namespace Fatigue_Calculator_Desktop
 		}
 
 		//draw a graph on a canvas passed to it
-		public bool drawGraph(Canvas context, calculation calc)
+		public bool drawGraph(Canvas context, calculation calc, graphTheme theme)
 		{
 			try
 			{
 				//assume the canvas is the correct scale
+				double height, width;
+				if (context.ActualHeight == 0)
+				{
+					//context.UpdateLayout(); // doesn't actually update the actual width or height
+					height = context.Height;
+					width = context.Width;
+				}
+				else
+				{
+					height = context.ActualHeight;
+					width = context.ActualWidth;
+				}
 				// clear the canvas and set up the various constants
 				context.Children.Clear();
-				double x1 = context.ActualWidth / 10.0;
+				double x1 = width / 10.0;
 				double x2 = x1 * 9;
-				double y1 = (context.ActualHeight / 10.0) * 2.0;
-				double y2 = (context.ActualHeight / 10.0) * 6.0;
+				double y1 = (height / 10.0) * 2.0;
+				double y2 = (height / 10.0) * 6.0;
 
 				//no vertical scale, just the horizontal one
 				int hourStart, hourStop;
@@ -65,20 +117,20 @@ namespace Fatigue_Calculator_Desktop
 				double tickWidth = (x2 - x1) / (double)(hourStop - hourStart);
 
 				// YAxis
-				drawLine(context, x1, y1, x1, y2, Brushes.White, 3, 1);
+				drawLine(context, x1, y1, x1, y2, 3, 1,theme);
 				// XAxis
-				drawLine(context, x1, y2, x2, y2, Brushes.White, 3, 1);
+				drawLine(context, x1, y2, x2, y2, 3, 1, theme);
 				// Y-Axis ticks
-				drawTicks(context, x1, y1, x1, y2, 5, -10);
+				drawTicks(context, x1, y1, x1, y2, 5, -10,theme);
 				// X-Axis ticks
-				drawTicks(context, x1, y2, x2, y2, (hourStop - hourStart), 10);
+				drawTicks(context, x1, y2, x2, y2, (hourStop - hourStart), 10,theme);
 				// add in the times
-				drawDayTicks(context, x1, y2, x2, y2, hourStart, hourStop, calc, 30, 20, Brushes.White, tickWidth);
+				drawDayTicks(context, x1, y2, x2, y2, hourStart, hourStop, calc, 30, 20, tickWidth,theme);
 				// bar segments and labels
 				double lastSeg = 0, nextSeg = 0;
 				// shift start and finish
-				drawShiftMarker(context, x1, y1, x2, tickWidth, Brushes.White, 40, 40, (calc.currentInputs.shiftStart - timeStart), "shift start " + calc.currentInputs.shiftStart.ToString("ddd HH:mm"));
-				drawShiftMarker(context, x1, y1, x2, tickWidth, Brushes.White, 20, 40, (calc.currentInputs.shiftEnd - timeStart), "shift end " + calc.currentInputs.shiftEnd.ToString("ddd HH:mm"));
+				drawShiftMarker(context, x1, y1, x2, tickWidth, 40, 40, (calc.currentInputs.shiftStart - timeStart), "shift start " + calc.currentInputs.shiftStart.ToString("ddd HH:mm"),theme);
+				drawShiftMarker(context, x1, y1, x2, tickWidth, 20, 40, (calc.currentInputs.shiftEnd - timeStart), "shift end " + calc.currentInputs.shiftEnd.ToString("ddd HH:mm"),theme);
 
 				// so the graph is limited by hourStart and hourStop, and so the graph might start on a non-zero hour in the array
 				// and may well start on an intermediate fatigue state
@@ -129,8 +181,8 @@ namespace Fatigue_Calculator_Desktop
 						nextSeg = x1 + ((nextTransition - hourStart) * tickWidth);
 						//then plot the segment
 						drawBarSegment(context, lastSeg, y1, nextSeg, y2, calc.getColourForLevel(calc.levelFromNumber(i)), 1);
-						drawSegmentLabel(context, lastSeg, y1, nextSeg, y2, Brushes.White, 1, calc.levelFromNumber(i).ToString() + " Fatigue Risk");
-						drawLabel(context, lastSeg, y2, transHeight, 40, transitionLabel);
+						drawSegmentLabel(context, lastSeg, y1, nextSeg, y2, theme.TextColour, 1, calc.levelFromNumber(i).ToString() + " Fatigue Risk");
+						drawLabel(context, lastSeg, y2, transHeight, 40, transitionLabel,theme);
 						lastTransition = nextTransition;
 					}
 				}
@@ -144,7 +196,7 @@ namespace Fatigue_Calculator_Desktop
 			return true;
 		}
 
-		private void drawLabel(Canvas context, double x, double y, double tickHeight, double textHeight, string label)
+		private void drawLabel(Canvas context, double x, double y, double tickHeight, double textHeight, string label, graphTheme theme)
 		{
 			try
 			{
@@ -153,7 +205,7 @@ namespace Fatigue_Calculator_Desktop
 				longTick.X2 = x;
 				longTick.Y1 = y;
 				longTick.Y2 = y + tickHeight;
-				longTick.Stroke = Brushes.White;
+				longTick.Stroke = theme.TickColour;
 				longTick.Opacity = 0.5;
 				longTick.StrokeThickness = 2;
 				Canvas.SetTop(longTick, 0);
@@ -165,7 +217,7 @@ namespace Fatigue_Calculator_Desktop
 				lbl.Padding = new System.Windows.Thickness(0);
 				lbl.Content = label;
 				lbl.Height = textHeight;
-				lbl.Foreground = Brushes.White;
+				lbl.Foreground = theme.TextColour;
 				lbl.FontSize = textHeight / 2; // apparently font sizes set in pixels, so let's see if this works ;)
 				context.Children.Add(lbl);
 				lbl.Measure(context.RenderSize);
@@ -178,7 +230,7 @@ namespace Fatigue_Calculator_Desktop
 			}
 		}
 
-		private void drawLine(Canvas context, double x1, double y1, double x2, double y2, Brush colour, int thickness, double opacity)
+		private void drawLine(Canvas context, double x1, double y1, double x2, double y2, int thickness, double opacity, graphTheme theme)
 		{
 			try
 			{
@@ -187,7 +239,7 @@ namespace Fatigue_Calculator_Desktop
 				newLine.X2 = x2;
 				newLine.Y1 = y1;
 				newLine.Y2 = y2;
-				newLine.Stroke = colour;
+				newLine.Stroke = theme.LineColour;
 				newLine.StrokeThickness = thickness;
 				newLine.Opacity = opacity;
 				Canvas.SetLeft(newLine, 0);
@@ -201,7 +253,7 @@ namespace Fatigue_Calculator_Desktop
 			}
 		}
 
-		private void drawTicks(Canvas context, double x1, double y1, double x2, double y2, int numTicks, double tickSize)
+		private void drawTicks(Canvas context, double x1, double y1, double x2, double y2, int numTicks, double tickSize, graphTheme theme)
 		{
 			try
 			{
@@ -221,7 +273,7 @@ namespace Fatigue_Calculator_Desktop
 					yy1 = y1 + (ytick * i);
 					tickMark = new Line(); // create a new line and set it up
 					tickMark.StrokeThickness = 1;
-					tickMark.Stroke = Brushes.White;
+					tickMark.Stroke = theme.TickColour;
 					Canvas.SetLeft(tickMark, 0);
 					Canvas.SetTop(tickMark, 0);
 					tickMark.X1 = xx1;
@@ -237,7 +289,7 @@ namespace Fatigue_Calculator_Desktop
 			}
 		}
 
-		private void drawDayTicks(Canvas context, double x1, double y1, double x2, double y2, int hourStart, int hourStop, calculation calc, int tickHeight, int textHeight, Brush colour, double tickWidth)
+		private void drawDayTicks(Canvas context, double x1, double y1, double x2, double y2, int hourStart, int hourStop, calculation calc, int tickHeight, int textHeight, double tickWidth, graphTheme theme)
 		{
 			try
 			{
@@ -256,7 +308,7 @@ namespace Fatigue_Calculator_Desktop
 					Label lbl = new Label();
 					Viewbox vbox = new Viewbox();
 					lbl.Content = hourLabel;
-					lbl.Foreground = Brushes.White;
+					lbl.Foreground = theme.TextColour;
 					lbl.LayoutTransform = new RotateTransform(270);
 					vbox.Child = lbl;
 					vbox.Height = tickHeight;
@@ -277,7 +329,7 @@ namespace Fatigue_Calculator_Desktop
 					// and draw the line
 					tickMark = new Line(); // create a new line and set it up
 					tickMark.StrokeThickness = 1;
-					tickMark.Stroke = colour;
+					tickMark.Stroke = theme.TickColour;
 					Canvas.SetLeft(tickMark, 0);
 					Canvas.SetTop(tickMark, 0);
 					tickMark.X1 = x1 + (numTicks * tickWidth);
@@ -285,7 +337,7 @@ namespace Fatigue_Calculator_Desktop
 					tickMark.Y1 = y1;
 					tickMark.Y2 = y2;
 					context.Children.Add(tickMark);
-					drawLabel(context, tickMark.X1, tickMark.Y1, tickHeight, textHeight, timeTick.ToString("ddd dd/MM/yyyy"));
+					drawLabel(context, tickMark.X1, tickMark.Y1, tickHeight, textHeight, timeTick.ToString("ddd dd/MM/yyyy"), theme);
 					// move the start time on a day
 					timeStart = timeStart + new TimeSpan(1, 0, 0, 0, 0);
 				}
@@ -296,7 +348,7 @@ namespace Fatigue_Calculator_Desktop
 			}
 		}
 
-		private void drawShiftMarker(Canvas context, double x1, double y1, double x2, double tickWidth, Brush colour, double tickHeight, double textHeight, TimeSpan shift, string label)
+		private void drawShiftMarker(Canvas context, double x1, double y1, double x2, double tickWidth, double tickHeight, double textHeight, TimeSpan shift, string label, graphTheme theme)
 		{
 			try
 			{
@@ -310,9 +362,9 @@ namespace Fatigue_Calculator_Desktop
 				}
 				double pos = x1 + (hours * tickWidth);
 				if (pos > x2) pos = x2;
-				drawLine(context, pos, y1 - tickHeight, pos, y1, colour, 2, 1.0);
+				drawLine(context, pos, y1 - tickHeight, pos, y1, 2, 1.0, theme);
 				marker = new Label();
-				marker.Foreground = colour;
+				marker.Foreground = theme.TickColour;
 				marker.Height = textHeight;
 				marker.Content = label;
 				marker.FontSize = textHeight / 2;

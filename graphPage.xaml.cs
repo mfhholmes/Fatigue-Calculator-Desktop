@@ -24,9 +24,10 @@ namespace Fatigue_Calculator_Desktop
 
 		public void drawGraph()
 		{
+			graphTheme gt = new graphTheme();
 			graph newGraph = new graph();
 			newGraph.MaxHours = numHours;
-			newGraph.drawGraph(context, currentCalc);
+			newGraph.drawGraph(context, currentCalc, gt);
 		}
 
 		private void btnBack_Click(object sender, RoutedEventArgs e)
