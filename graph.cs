@@ -121,7 +121,7 @@ namespace Fatigue_Calculator_Desktop
 				// XAxis
 				drawLine(context, x1, y2, x2, y2, 3, 1, theme);
 				// Y-Axis ticks
-				drawTicks(context, x1, y1, x1, y2, 5, -10,theme);
+				//drawTicks(context, x1, y1, x1, y2, 5, -10,theme);
 				// X-Axis ticks
 				drawTicks(context, x1, y2, x2, y2, (hourStop - hourStart), 10,theme);
 				// add in the times

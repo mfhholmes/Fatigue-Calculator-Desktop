@@ -537,8 +537,12 @@
     <None Include="Web References\FatigueManager\FatigueCalculatorData.disco" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\logo1.png" />
-    <Resource Include="Images\logo2.png" />
+    <Resource Include="Images\logo1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\logo2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
