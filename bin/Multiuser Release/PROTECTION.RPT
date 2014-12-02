@@ -1,0 +1,532 @@
+
+-----------------------------------------------------------
+PC Guard for .NET 05.07.0000 Commercial - Protection report
+-----------------------------------------------------------
+Created on: Wed Nov 19 11:21:57 2014 
+
+Application filename:         C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\bin\Multiuser Release\Fatigue Calculator Desktop.exe
+Target platform:              .NET
+Type:                         Executable file
+
+Output filename:              C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Protection\Newcrest Release\Fatigue Calculator Desktop.exe
+
+Backup created:               Yes
+Backup filename:              O:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Protection\backup\Newcrest\Fatigue Calculator Desktop.exe
+
+File size:                    1.439.232 bytes
+File size after protection:   1.571.840 bytes
+
+Sections (3/2)
+-----------------------------------------------------------
+Name      V Offset  V Size    R Offset  R Size    Flags
+-----------------------------------------------------------
+.text     00002000  0015BD64  00000200  0015BE00  60000020 +
+.rsrc     0015E000  00003358  0015C000  00003400  40000040 +
+.reloc    00162000  0000000C  0015F400  00000200  42000040 +
+-----------------------------------------------------------
+
+Application name:             Fatigue Calculator Desktop Newcrest
+Application signature:        FTGCLCMLT1
+Application Update ID:        0
+
+Languages:
+-----------------------------------------------------------
+English (default)
+
+User information:
+Name:                         
+Address:                      
+Company:                      
+Custom info 1:                
+Custom info 2:                
+Custom info 3:                
+
+Custom dialogs enabled:       No
+
+Logging enabled:              No
+
+
+Protection method:            Remote
+Program ID:                   393303D816ADA032EC88DC66
+License transfer enabled:     Yes
+License removal enabled:      Yes
+License extension enabled:    No
+
+Updates policy:               No
+
+Limited license enabled:      No
+
+Auto enter application:       No
+Special key popup enabled:    Scroll lock 
+Use any special key:          No
+Load activation file:         No
+Lock program to directory:    No
+Erase previous license:       Yes
+Pass control to external app: No
+
+Password protection:          No
+
+Serial numbers enabled:       No
+
+DEMO mode:                    No
+
+MACHINE LOCKING:
+-----------------------------------------------------------
+LOCKS                         ENABLED    CHANGEABLE 
+-----------------------------------------------------------
+(HD) HD volume serial         X          X
+(OS) Operating system         O          O
+(BIOS) Motherboard bios       X          X
+(NET) Network card            O          O
+(CPU) CPU                     X          X
+(HDHW) HD hardware            X          X
+(CDHW) CD/DVD hardware        O          O
+-----------------------------------------------------------
+Allowed hardware changes:     2
+
+Limited number of instances:   No
+
+IP Filtering enabled:         No
+
+Program already protected:    No
+Code sections encrypted:      Yes
+Data sections encrypted:      No
+Relocation data encrypted:    No
+Resources encrypted:          No
+Check license file position:  No
+Object names hidden:          No
+Show warning messages:        Yes
+Check API hooking:            No
+CRC Self checking:            No
+Check program filename:       No
+Encrypt Import directories:   No
+Erase Import directory data:  No
+Anti-dumping protection:      No
+Smart DLL handling:           No
+Detect virtual machine:       No
+Disable remote sessions:      No
+Reset license on crc errors:  No
+Delete damaged license file:  No
+RTE enabled application:      No
+Deep freeze detection:        No
+Manage load config:           No
+Fix OS version information:   No
+Compatibility flag 01:        Yes
+Compatibility flag 02:        No
+Compatibility flag 03:        No
+Internal overlay detected:    No
+Extra system time checks:     No
+Prevent file modifications:   No
+System time adjustments:      No
+Support for restricted users: Yes
+Support for roaming profiles: Yes
+License file folder:          awtRbdcWrAfHEd8e
+
+Custom buttons enabled:       No
+
+Protection interface enabled: No
+
+-----------------------------------------------------------
+END OF REPORT (Wed Nov 19 11:21:57 2014)
+-----------------------------------------------------------
+
+
+
+-----------------------------------------------------------
+PC Guard for .NET 05.07.0000 Commercial - Protection report
+-----------------------------------------------------------
+Created on: Wed Nov 19 11:22:18 2014 
+
+Application filename:         C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\bin\Multiuser Release\Fatigue Calculator Desktop.exe
+Target platform:              .NET
+Type:                         Executable file
+
+Output filename:              C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Protection\Newcrest Release\Fatigue Calculator Desktop.exe
+
+Backup created:               Yes
+Backup filename:              C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Protection\backup\Newcrest\Fatigue Calculator Desktop.exe
+
+File size:                    1.439.232 bytes
+File size after protection:   1.571.840 bytes
+
+Sections (3/2)
+-----------------------------------------------------------
+Name      V Offset  V Size    R Offset  R Size    Flags
+-----------------------------------------------------------
+.text     00002000  0015BD64  00000200  0015BE00  60000020 +
+.rsrc     0015E000  00003358  0015C000  00003400  40000040 +
+.reloc    00162000  0000000C  0015F400  00000200  42000040 +
+-----------------------------------------------------------
+
+Application name:             Fatigue Calculator Desktop Newcrest
+Application signature:        FTGCLCMLT1
+Application Update ID:        0
+
+Languages:
+-----------------------------------------------------------
+English (default)
+
+User information:
+Name:                         
+Address:                      
+Company:                      
+Custom info 1:                
+Custom info 2:                
+Custom info 3:                
+
+Custom dialogs enabled:       No
+
+Logging enabled:              No
+
+
+Protection method:            Remote
+Program ID:                   393303D816ADA032EC88DC66
+License transfer enabled:     Yes
+License removal enabled:      Yes
+License extension enabled:    No
+
+Updates policy:               No
+
+Limited license enabled:      No
+
+Auto enter application:       No
+Special key popup enabled:    Scroll lock 
+Use any special key:          No
+Load activation file:         No
+Lock program to directory:    No
+Erase previous license:       Yes
+Pass control to external app: No
+
+Password protection:          No
+
+Serial numbers enabled:       No
+
+DEMO mode:                    No
+
+MACHINE LOCKING:
+-----------------------------------------------------------
+LOCKS                         ENABLED    CHANGEABLE 
+-----------------------------------------------------------
+(HD) HD volume serial         X          X
+(OS) Operating system         O          O
+(BIOS) Motherboard bios       X          X
+(NET) Network card            O          O
+(CPU) CPU                     X          X
+(HDHW) HD hardware            X          X
+(CDHW) CD/DVD hardware        O          O
+-----------------------------------------------------------
+Allowed hardware changes:     2
+
+Limited number of instances:   No
+
+IP Filtering enabled:         No
+
+Program already protected:    No
+Code sections encrypted:      Yes
+Data sections encrypted:      No
+Relocation data encrypted:    No
+Resources encrypted:          No
+Check license file position:  No
+Object names hidden:          No
+Show warning messages:        Yes
+Check API hooking:            No
+CRC Self checking:            No
+Check program filename:       No
+Encrypt Import directories:   No
+Erase Import directory data:  No
+Anti-dumping protection:      No
+Smart DLL handling:           No
+Detect virtual machine:       No
+Disable remote sessions:      No
+Reset license on crc errors:  No
+Delete damaged license file:  No
+RTE enabled application:      No
+Deep freeze detection:        No
+Manage load config:           No
+Fix OS version information:   No
+Compatibility flag 01:        Yes
+Compatibility flag 02:        No
+Compatibility flag 03:        No
+Internal overlay detected:    No
+Extra system time checks:     No
+Prevent file modifications:   No
+System time adjustments:      No
+Support for restricted users: Yes
+Support for roaming profiles: Yes
+License file folder:          awtRbdcWrAfHEd8e
+
+Custom buttons enabled:       No
+
+Protection interface enabled: No
+
+-----------------------------------------------------------
+END OF REPORT (Wed Nov 19 11:22:18 2014)
+-----------------------------------------------------------
+
+
+
+-----------------------------------------------------------
+PC Guard for .NET 05.07.0000 Commercial - Protection report
+-----------------------------------------------------------
+Created on: Wed Nov 19 11:31:11 2014 
+
+Application filename:         C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\bin\Multiuser Release\Fatigue Calculator Desktop.exe
+Target platform:              .NET
+Type:                         Executable file
+
+Output filename:              C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Protection\Newcrest Release\Fatigue Calculator Desktop.exe
+
+Backup created:               Yes
+Backup filename:              C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Protection\backup\Newcrest\Fatigue Calculator Desktop.exe
+
+File size:                    1.439.232 bytes
+File size after protection:   1.571.840 bytes
+
+Sections (3/2)
+-----------------------------------------------------------
+Name      V Offset  V Size    R Offset  R Size    Flags
+-----------------------------------------------------------
+.text     00002000  0015BD64  00000200  0015BE00  60000020 +
+.rsrc     0015E000  00003358  0015C000  00003400  40000040 +
+.reloc    00162000  0000000C  0015F400  00000200  42000040 +
+-----------------------------------------------------------
+
+Application name:             Fatigue Calculator Desktop Newcrest
+Application signature:        FTGCLCMLT1
+Application Update ID:        0
+
+Languages:
+-----------------------------------------------------------
+English (default)
+
+User information:
+Name:                         
+Address:                      
+Company:                      
+Custom info 1:                
+Custom info 2:                
+Custom info 3:                
+
+Custom dialogs enabled:       No
+
+Logging enabled:              No
+
+
+Protection method:            Remote
+Program ID:                   393303D816ADA032EC88DC66
+License transfer enabled:     Yes
+License removal enabled:      Yes
+License extension enabled:    No
+
+Updates policy:               No
+
+Limited license enabled:      No
+
+Auto enter application:       No
+Special key popup enabled:    Scroll lock 
+Use any special key:          No
+Load activation file:         No
+Lock program to directory:    No
+Erase previous license:       Yes
+Pass control to external app: No
+
+Password protection:          No
+
+Serial numbers enabled:       No
+
+DEMO mode:                    No
+
+MACHINE LOCKING:
+-----------------------------------------------------------
+LOCKS                         ENABLED    CHANGEABLE 
+-----------------------------------------------------------
+(HD) HD volume serial         X          X
+(OS) Operating system         O          O
+(BIOS) Motherboard bios       X          X
+(NET) Network card            O          O
+(CPU) CPU                     X          X
+(HDHW) HD hardware            X          X
+(CDHW) CD/DVD hardware        O          O
+-----------------------------------------------------------
+Allowed hardware changes:     2
+
+Limited number of instances:   No
+
+IP Filtering enabled:         No
+
+Program already protected:    No
+Code sections encrypted:      Yes
+Data sections encrypted:      No
+Relocation data encrypted:    No
+Resources encrypted:          No
+Check license file position:  No
+Object names hidden:          No
+Show warning messages:        Yes
+Check API hooking:            No
+CRC Self checking:            No
+Check program filename:       No
+Encrypt Import directories:   No
+Erase Import directory data:  No
+Anti-dumping protection:      No
+Smart DLL handling:           No
+Detect virtual machine:       No
+Disable remote sessions:      No
+Reset license on crc errors:  No
+Delete damaged license file:  No
+RTE enabled application:      No
+Deep freeze detection:        No
+Manage load config:           No
+Fix OS version information:   No
+Compatibility flag 01:        Yes
+Compatibility flag 02:        No
+Compatibility flag 03:        No
+Internal overlay detected:    No
+Extra system time checks:     No
+Prevent file modifications:   No
+System time adjustments:      No
+Support for restricted users: Yes
+Support for roaming profiles: Yes
+License file folder:          awtRbdcWrAfHEd8e
+
+Custom buttons enabled:       No
+
+Protection interface enabled: No
+
+-----------------------------------------------------------
+END OF REPORT (Wed Nov 19 11:31:11 2014)
+-----------------------------------------------------------
+
+
+
+-----------------------------------------------------------
+PC Guard for .NET 05.07.0000 Commercial - Protection report
+-----------------------------------------------------------
+Created on: Wed Nov 19 11:32:11 2014 
+
+Application filename:         C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Fatigue Calculator Desktop\bin\Multiuser Release\Fatigue Calculator Desktop.exe
+Target platform:              .NET
+Type:                         Executable file
+
+Output filename:              C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Protection\Newcrest Release\Fatigue Calculator Desktop.exe
+
+Backup created:               Yes
+Backup filename:              C:\Dev\Fatigue_Calculator\Fatigue Calculator Desktop\Protection\backup\Newcrest\Fatigue Calculator Desktop.exe
+
+File size:                    1.439.232 bytes
+File size after protection:   1.571.840 bytes
+
+Sections (3/2)
+-----------------------------------------------------------
+Name      V Offset  V Size    R Offset  R Size    Flags
+-----------------------------------------------------------
+.text     00002000  0015BD64  00000200  0015BE00  60000020 +
+.rsrc     0015E000  00003358  0015C000  00003400  40000040 +
+.reloc    00162000  0000000C  0015F400  00000200  42000040 +
+-----------------------------------------------------------
+
+Application name:             Fatigue Calculator Desktop Newcrest
+Application signature:        FTGCLCNWC1
+Application Update ID:        0
+
+Languages:
+-----------------------------------------------------------
+English (default)
+
+User information:
+Name:                         
+Address:                      
+Company:                      
+Custom info 1:                
+Custom info 2:                
+Custom info 3:                
+
+Custom dialogs enabled:       No
+
+Logging enabled:              No
+
+
+Protection method:            Remote
+Program ID:                   393303D816ADA032EC88DC66
+License transfer enabled:     Yes
+License removal enabled:      Yes
+License extension enabled:    No
+
+Updates policy:               No
+
+Limited license enabled:      No
+
+Auto enter application:       No
+Special key popup enabled:    Scroll lock 
+Use any special key:          No
+Load activation file:         No
+Lock program to directory:    No
+Erase previous license:       Yes
+Pass control to external app: No
+
+Password protection:          No
+
+Serial numbers enabled:       No
+
+DEMO mode:                    No
+
+MACHINE LOCKING:
+-----------------------------------------------------------
+LOCKS                         ENABLED    CHANGEABLE 
+-----------------------------------------------------------
+(HD) HD volume serial         X          X
+(OS) Operating system         O          O
+(BIOS) Motherboard bios       X          X
+(NET) Network card            O          O
+(CPU) CPU                     X          X
+(HDHW) HD hardware            X          X
+(CDHW) CD/DVD hardware        O          O
+-----------------------------------------------------------
+Allowed hardware changes:     2
+
+Limited number of instances:   No
+
+IP Filtering enabled:         No
+
+Program already protected:    No
+Code sections encrypted:      Yes
+Data sections encrypted:      No
+Relocation data encrypted:    No
+Resources encrypted:          No
+Check license file position:  No
+Object names hidden:          No
+Show warning messages:        Yes
+Check API hooking:            No
+CRC Self checking:            No
+Check program filename:       No
+Encrypt Import directories:   No
+Erase Import directory data:  No
+Anti-dumping protection:      No
+Smart DLL handling:           No
+Detect virtual machine:       No
+Disable remote sessions:      No
+Reset license on crc errors:  No
+Delete damaged license file:  No
+RTE enabled application:      No
+Deep freeze detection:        No
+Manage load config:           No
+Fix OS version information:   No
+Compatibility flag 01:        Yes
+Compatibility flag 02:        No
+Compatibility flag 03:        No
+Internal overlay detected:    No
+Extra system time checks:     No
+Prevent file modifications:   No
+System time adjustments:      No
+Support for restricted users: Yes
+Support for roaming profiles: Yes
+License file folder:          cxiD1iB
+
+Custom buttons enabled:       No
+
+Protection interface enabled: No
+
+-----------------------------------------------------------
+END OF REPORT (Wed Nov 19 11:32:11 2014)
+-----------------------------------------------------------
+
+

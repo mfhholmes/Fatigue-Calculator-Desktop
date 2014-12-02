@@ -83,7 +83,7 @@ namespace Fatigue_Calculator_Desktop
 		/// </summary>
 		/// <param name="level">fatigue risk leve</param>
 		/// <returns>Brush for that fatigue level</returns>
-		public Brush getColourForLevel(calculation.fatigueLevels level)
+		public SolidColorBrush getColourForLevel(calculation.fatigueLevels level)
 		{
 			//TODO: may have to look this up in the theme
 			switch (level)
@@ -98,6 +98,29 @@ namespace Fatigue_Calculator_Desktop
 					return Brushes.Black;
 			}
 			return Brushes.White;
+		}
+
+		public static String GetIconNameForLevel(calculation.fatigueLevels level)
+		{
+			switch (level)
+			{
+				case calculation.fatigueLevels.Moderate:
+				{
+					return "tired.png";
+				}
+				case calculation.fatigueLevels.High:
+				{
+					return "sleepy.png";
+				}
+				case calculation.fatigueLevels.Extreme:
+				{
+					return "asleep.png";
+				}
+				default:
+				{
+					return "awake.png";
+				}
+			}
 		}
 
 		/// <summary>

@@ -73,7 +73,7 @@ namespace Fatigue_Calculator_Desktop
 			{
 				//assume the canvas is the correct scale
 				double height, width;
-				if (context.ActualHeight == 0)
+				if (context.ActualHeight < 1)
 				{
 					//context.UpdateLayout(); // doesn't actually update the actual width or height
 					height = context.Height;
@@ -90,6 +90,8 @@ namespace Fatigue_Calculator_Desktop
 				double x2 = x1 * 9;
 				double y1 = (height / 10.0) * 2.0;
 				double y2 = (height / 10.0) * 6.0;
+
+				int textheight = (int)( height/8.0);
 
 				//no vertical scale, just the horizontal one
 				int hourStart, hourStop;
@@ -129,8 +131,8 @@ namespace Fatigue_Calculator_Desktop
 				// bar segments and labels
 				double lastSeg = 0, nextSeg = 0;
 				// shift start and finish
-				drawShiftMarker(context, x1, y1, x2, tickWidth, 40, 40, (calc.currentInputs.shiftStart - timeStart), "shift start " + calc.currentInputs.shiftStart.ToString("ddd HH:mm"),theme);
-				drawShiftMarker(context, x1, y1, x2, tickWidth, 20, 40, (calc.currentInputs.shiftEnd - timeStart), "shift end " + calc.currentInputs.shiftEnd.ToString("ddd HH:mm"),theme);
+				drawShiftMarker(context, x1, y1, x2, tickWidth, 40, textheight, (calc.currentInputs.shiftStart - timeStart), "shift start " + calc.currentInputs.shiftStart.ToString("ddd HH:mm"),theme);
+				drawShiftMarker(context, x1, y1, x2, tickWidth, 20, textheight, (calc.currentInputs.shiftEnd - timeStart), "shift end " + calc.currentInputs.shiftEnd.ToString("ddd HH:mm"), theme);
 
 				// so the graph is limited by hourStart and hourStop, and so the graph might start on a non-zero hour in the array
 				// and may well start on an intermediate fatigue state
@@ -181,8 +183,8 @@ namespace Fatigue_Calculator_Desktop
 						nextSeg = x1 + ((nextTransition - hourStart) * tickWidth);
 						//then plot the segment
 						drawBarSegment(context, lastSeg, y1, nextSeg, y2, calc.getColourForLevel(calc.levelFromNumber(i)), 1);
-						drawSegmentLabel(context, lastSeg, y1, nextSeg, y2, theme.TextColour, 1, calc.levelFromNumber(i).ToString() + " Fatigue Risk");
-						drawLabel(context, lastSeg, y2, transHeight, 40, transitionLabel,theme);
+						drawSegmentLabel(context, lastSeg, y1, nextSeg, y2, calc.getColourForLevel(calc.levelFromNumber(i)), 1, calc.levelFromNumber(i).ToString() + " Fatigue Risk");
+						drawLabel(context, lastSeg, y2, transHeight, textheight, transitionLabel,theme);
 						lastTransition = nextTransition;
 					}
 				}
@@ -424,14 +426,14 @@ namespace Fatigue_Calculator_Desktop
 			}
 		}
 
-		private void drawSegmentLabel(Canvas context, double x1, double y1, double x2, double y2, Brush colour, double opacity, string label)
+		private void drawSegmentLabel(Canvas context, double x1, double y1, double x2, double y2, SolidColorBrush colour, double opacity, string label)
 		{
 			try
 			{
 				Label lbl = new Label();
 				Viewbox vbox = new Viewbox();
 				lbl.Content = label;
-				lbl.Foreground = colour;
+				lbl.Foreground = GetContextBrush(colour);
 				lbl.LayoutTransform = new RotateTransform(270);
 				lbl.Opacity = opacity;
 				vbox.Child = lbl;
@@ -445,6 +447,13 @@ namespace Fatigue_Calculator_Desktop
 			{
 				MessageBox.Show("drawSegmentLine: " + e.Message);
 			}
+		}
+
+		private Brush GetContextBrush(SolidColorBrush back)
+		{
+			var colour = back.Color;
+			double Y = 0.2126 * colour.ScR + 0.7152 * colour.ScG + 0.0722 * colour.ScB;
+			return Y > 0.4 ? Brushes.Black : Brushes.White;
 		}
 	}
 }
