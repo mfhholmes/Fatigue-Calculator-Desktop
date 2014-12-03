@@ -9,30 +9,32 @@ namespace Fatigue_Calculator_Desktop
 	/// <summary>
 	/// Interaction logic for resultsPage.xaml
 	/// </summary>
-	public partial class resultsPage : Page
+	public partial class ResultsPage : Page
 	{
-		private calculation currentCalc;
+		private readonly calculation _calc;
 
-		public resultsPage()
+		public ResultsPage()
 		{
 			InitializeComponent();
 		}
 
-		public resultsPage(calculation passedCalc)
+		public ResultsPage(calculation passedCalc)
 		{
 			InitializeComponent();
-			currentCalc = passedCalc;
+			_calc = passedCalc;
 			// show the results
-			lblScore.Text = "Your Fatigue Score is " + currentCalc.currentOutputs.currentScore;
+			lblScore.Text = "Your Fatigue Score is " + _calc.currentOutputs.currentScore;
 			lblLevel.Inlines.Clear();
 			lblLevel.Inlines.Add(new Run("You are at "));
-			Run levelRun = new Run(currentCalc.currentOutputs.currentLevel.ToString());
-			levelRun.Foreground = currentCalc.getColourForLevel(currentCalc.currentOutputs.currentLevel);
+			var levelRun = new Run(_calc.currentOutputs.currentLevel.ToString())
+			{
+				Foreground = _calc.getColourForLevel(_calc.currentOutputs.currentLevel)
+			};
 			lblLevel.Inlines.Add(levelRun);
 			lblLevel.Inlines.Add(" risk of Fatigue");
-			if (currentCalc.currentOutputs.becomesModerate > new TimeSpan(0, 0, 0))
+			if (_calc.currentOutputs.becomesModerate > new TimeSpan(0, 0, 0))
 			{
-				lblModerate.Text = "You will be at Moderate risk of Fatigue at " + (currentCalc.currentOutputs.calcDone + currentCalc.currentOutputs.becomesModerate).ToString("ddd dd MMM HH:mm");
+				lblModerate.Text = "You will be at Moderate risk of Fatigue at " + (_calc.currentOutputs.calcDone + _calc.currentOutputs.becomesModerate).ToString("ddd dd MMM HH:mm");
 				lblModerate.Visibility = System.Windows.Visibility.Visible;
 				btnModerateRecommend.Visibility = System.Windows.Visibility.Visible;
 			}
@@ -49,9 +51,9 @@ namespace Fatigue_Calculator_Desktop
 				Grid.SetRow(btnExtremeRecommend, 4);
 				Grid.SetRow(imgExtreme, 4);
 			}
-			if (currentCalc.currentOutputs.becomesHigh > new TimeSpan(0, 0, 0))
+			if (_calc.currentOutputs.becomesHigh > new TimeSpan(0, 0, 0))
 			{
-				lblHigh.Text = "You will be at High risk of Fatigue at " + (currentCalc.currentOutputs.calcDone + currentCalc.currentOutputs.becomesHigh).ToString("ddd dd MMM HH:mm");
+				lblHigh.Text = "You will be at High risk of Fatigue at " + (_calc.currentOutputs.calcDone + _calc.currentOutputs.becomesHigh).ToString("ddd dd MMM HH:mm");
 				lblHigh.Visibility = System.Windows.Visibility.Visible;
 				btnHighRecommend.Visibility = System.Windows.Visibility.Visible;
 			}
@@ -65,9 +67,9 @@ namespace Fatigue_Calculator_Desktop
 				Grid.SetRow(btnExtremeRecommend, 2);
 				Grid.SetRow(imgExtreme, 2);
 			}
-			if (currentCalc.currentOutputs.becomesExtreme > new TimeSpan(0, 0, 0))
+			if (_calc.currentOutputs.becomesExtreme > new TimeSpan(0, 0, 0))
 			{
-				lblExtreme.Text = "You will be at Extreme risk of Fatigue at " + (currentCalc.currentOutputs.calcDone + currentCalc.currentOutputs.becomesExtreme).ToString("ddd dd MMM HH:mm");
+				lblExtreme.Text = "You will be at Extreme risk of Fatigue at " + (_calc.currentOutputs.calcDone + _calc.currentOutputs.becomesExtreme).ToString("ddd dd MMM HH:mm");
 				lblExtreme.Visibility = System.Windows.Visibility.Visible;
 				btnExtremeRecommend.Visibility = System.Windows.Visibility.Visible;
 			}
@@ -83,50 +85,50 @@ namespace Fatigue_Calculator_Desktop
 
 		private void btnBack_Click(object sender, RoutedEventArgs e)
 		{
-			this.NavigationService.GoBack();
+			if (NavigationService != null) NavigationService.GoBack();
 		}
 
 		private void btnGo_Click(object sender, RoutedEventArgs e)
 		{
-			recommendPage next = new recommendPage(currentCalc);
-			this.NavigationService.Navigate(next);
+			var next = new recommendPage(_calc);
+			if (NavigationService != null) NavigationService.Navigate(next);
 		}
 
 		private void btnGraph_Click(object sender, RoutedEventArgs e)
 		{
-			graphPage graph = new graphPage(currentCalc);
-			NavigationService.Navigate(graph);
+			var graph = new graphPage(_calc);
+			if (NavigationService != null) NavigationService.Navigate(graph);
 		}
 
 		private void btnCurrentRecommend_Click(object sender, RoutedEventArgs e)
 		{
-			recommendPage next = new recommendPage(currentCalc);
-			this.NavigationService.Navigate(next);
+			var next = new recommendPage(_calc);
+			if (NavigationService != null) NavigationService.Navigate(next);
 		}
 
 		private void btnModerateRecommend_Click(object sender, RoutedEventArgs e)
 		{
-			recommendPage next = new recommendPage(currentCalc, calculation.fatigueLevels.Moderate);
-			this.NavigationService.Navigate(next);
+			var next = new recommendPage(_calc, calculation.fatigueLevels.Moderate);
+			if (NavigationService != null) NavigationService.Navigate(next);
 		}
 
 		private void btnHighRecommend_Click(object sender, RoutedEventArgs e)
 		{
-			recommendPage next = new recommendPage(currentCalc, calculation.fatigueLevels.High);
-			this.NavigationService.Navigate(next);
+			var next = new recommendPage(_calc, calculation.fatigueLevels.High);
+			if (NavigationService != null) NavigationService.Navigate(next);
 		}
 
 		private void btnExtremeRecommend_Click(object sender, RoutedEventArgs e)
 		{
-			recommendPage next = new recommendPage(currentCalc, calculation.fatigueLevels.Extreme);
-			this.NavigationService.Navigate(next);
+			var next = new recommendPage(_calc, calculation.fatigueLevels.Extreme);
+			if (NavigationService != null) NavigationService.Navigate(next);
 		}
 
 		private void btnPrint_Click(object sender, RoutedEventArgs e)
 		{
-			Print printit = new Print();
-			//printit.printCalc(currentCalc);
-			printit.printResultPage(currentCalc);
+			var printit = new Print(_calc);
+			//printit.PrintSimpleResults(_calc);
+			printit.PrintResultPage();
 		}
 	}
 }

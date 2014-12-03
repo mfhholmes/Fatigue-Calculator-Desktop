@@ -23,6 +23,7 @@ namespace Fatigue_Calculator_Desktop
 				_textColour = value;
 			}
 		}
+
 		public Brush LineColour
 		{
 			get
@@ -34,6 +35,7 @@ namespace Fatigue_Calculator_Desktop
 				_lineColour = value;
 			}
 		}
+
 		public Brush TickColour
 		{
 			get
@@ -46,6 +48,7 @@ namespace Fatigue_Calculator_Desktop
 			}
 		}
 	}
+
 	internal class graph
 	{
 		// just Draw Shift: if set, only draws the hours involved in the user's shift pattern
@@ -91,7 +94,7 @@ namespace Fatigue_Calculator_Desktop
 				double y1 = (height / 10.0) * 2.0;
 				double y2 = (height / 10.0) * 6.0;
 
-				int textheight = (int)( height/8.0);
+				int textheight = (int)(height / 8.0);
 
 				//no vertical scale, just the horizontal one
 				int hourStart, hourStop;
@@ -119,19 +122,19 @@ namespace Fatigue_Calculator_Desktop
 				double tickWidth = (x2 - x1) / (double)(hourStop - hourStart);
 
 				// YAxis
-				drawLine(context, x1, y1, x1, y2, 3, 1,theme);
+				drawLine(context, x1, y1, x1, y2, 3, 1, theme);
 				// XAxis
 				drawLine(context, x1, y2, x2, y2, 3, 1, theme);
 				// Y-Axis ticks
 				//drawTicks(context, x1, y1, x1, y2, 5, -10,theme);
 				// X-Axis ticks
-				drawTicks(context, x1, y2, x2, y2, (hourStop - hourStart), 10,theme);
+				drawTicks(context, x1, y2, x2, y2, (hourStop - hourStart), 10, theme);
 				// add in the times
-				drawDayTicks(context, x1, y2, x2, y2, hourStart, hourStop, calc, 30, 20, tickWidth,theme);
+				drawDayTicks(context, x1, y2, x2, y2, hourStart, hourStop, calc, 30, 20, tickWidth, theme);
 				// bar segments and labels
 				double lastSeg = 0, nextSeg = 0;
 				// shift start and finish
-				drawShiftMarker(context, x1, y1, x2, tickWidth, 40, textheight, (calc.currentInputs.shiftStart - timeStart), "shift start " + calc.currentInputs.shiftStart.ToString("ddd HH:mm"),theme);
+				drawShiftMarker(context, x1, y1, x2, tickWidth, 40, textheight, (calc.currentInputs.shiftStart - timeStart), "shift start " + calc.currentInputs.shiftStart.ToString("ddd HH:mm"), theme);
 				drawShiftMarker(context, x1, y1, x2, tickWidth, 20, textheight, (calc.currentInputs.shiftEnd - timeStart), "shift end " + calc.currentInputs.shiftEnd.ToString("ddd HH:mm"), theme);
 
 				// so the graph is limited by hourStart and hourStop, and so the graph might start on a non-zero hour in the array
@@ -184,7 +187,7 @@ namespace Fatigue_Calculator_Desktop
 						//then plot the segment
 						drawBarSegment(context, lastSeg, y1, nextSeg, y2, calc.getColourForLevel(calc.levelFromNumber(i)), 1);
 						drawSegmentLabel(context, lastSeg, y1, nextSeg, y2, calc.getColourForLevel(calc.levelFromNumber(i)), 1, calc.levelFromNumber(i).ToString() + " Fatigue Risk");
-						drawLabel(context, lastSeg, y2, transHeight, textheight, transitionLabel,theme);
+						drawLabel(context, lastSeg, y2, transHeight, textheight, transitionLabel, theme);
 						lastTransition = nextTransition;
 					}
 				}

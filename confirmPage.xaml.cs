@@ -59,7 +59,7 @@ namespace Fatigue_Calculator_Desktop
 			this.Cursor = currentCursor;
 
 			// on to the results
-			resultsPage next = new resultsPage(currentCalc);
+			ResultsPage next = new ResultsPage(currentCalc);
 			this.NavigationService.Navigate(next);
 		}
 

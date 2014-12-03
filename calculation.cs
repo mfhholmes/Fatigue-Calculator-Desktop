@@ -105,21 +105,21 @@ namespace Fatigue_Calculator_Desktop
 			switch (level)
 			{
 				case calculation.fatigueLevels.Moderate:
-				{
-					return "tired.png";
-				}
+					{
+						return "tired.png";
+					}
 				case calculation.fatigueLevels.High:
-				{
-					return "sleepy.png";
-				}
+					{
+						return "sleepy.png";
+					}
 				case calculation.fatigueLevels.Extreme:
-				{
-					return "asleep.png";
-				}
+					{
+						return "asleep.png";
+					}
 				default:
-				{
-					return "awake.png";
-				}
+					{
+						return "awake.png";
+					}
 			}
 		}
 
